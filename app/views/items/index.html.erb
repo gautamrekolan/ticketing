@@ -1,0 +1,28 @@
+<h1>Listing items</h1>
+
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Price</th>
+    <th>Quantity ordered</th>
+    <th>Quantity despatched</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @order.items.each do |item| %>
+  <tr>
+    <td><%= item.product_id %></td>
+    <td><%= item.price %></td>
+    <td><%= item.quantity_ordered %></td>
+    <td><%= item.quantity_despatched %></td>
+    <td><%= link_to 'Show', item %></td>
+    <td><%= link_to 'Edit', edit_order_item_path(@order,item) %></td>
+    <td><%= link_to 'Destroy', [@order,item], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

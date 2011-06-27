@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Monogram:</b>
+  <%= @order.monogram %>
+</p>
+
+<p>
+  <b>Customer:</b>
+  <%= @order.customer_id %>
+</p>
+
+<p>
+  <b>Groom name:</b>
+  <%= @order.groom_name %>
+</p>
+
+<p>
+  <b>Ceremony date:</b>
+  <%= @order.ceremony_date %>
+</p>
+
+<p>
+  <b>Ceremony venue:</b>
+  <%= @order.ceremony_venue %>
+</p>
+
+<p>
+  <b>Reception venue:</b>
+  <%= @order.reception_venue %>
+</p>
+
+<p>
+  <b>Reception time:</b>
+  <%= @order.reception_time %>
+</p>
+
+<p>
+  <b>Rsvp date:</b>
+  <%= @order.rsvp_date %>
+</p>
+
+<p>
+  <b>Rsvp address:</b>
+  <%= @order.rsvp_address %>
+</p>
+
+
+<%= link_to 'Back', customer_orders_path %>

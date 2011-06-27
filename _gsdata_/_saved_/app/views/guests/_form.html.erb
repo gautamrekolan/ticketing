@@ -1,0 +1,46 @@
+<%= form_for ([@order, @guest]) do |f| %>
+  <% if @guest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@guest.errors.count, "error") %> prohibited this guest from being saved:</h2>
+
+      <ul>
+      <% @guest.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% @order.items.each do |item| %>
+    <% unless item.guests_remaining < 1 %>
+    <%= f.label item.product.product_type.description %>
+    <%= item.guests_remaining %> remaining
+      <%= check_box_tag "guest[item_ids][]", item.id %><br />
+      <% end %>
+  <% end %>
+  <hr />
+    <div class="field">
+    <%= f.label :name_on_invitation %><br />
+    <%= f.text_field :name_on_invitation %>
+  </div>
+  <% if @order.items.any? { |item| item.guests_remaining > 0 && item.product.product_type.envelope } %>
+  <div class="field">
+    <%= f.label :name_on_envelope %><br />
+    <%= f.text_field :name_on_envelope %>
+  </div>
+    <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :postcode %><br />
+    <%= f.text_field :postcode %>
+  </div>
+  <% end %>
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

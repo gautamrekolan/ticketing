@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  monogram: 1
+  customer_id: 1
+  groom_name: MyString
+  ceremony_date: 2011-05-29 12:42:32
+  ceremony_venue: MyString
+  reception_venue: MyString
+  reception_time: 2011-05-29 12:42:32
+  rsvp_date: 2011-05-29
+  rsvp_address: MyText
+
+two:
+  monogram: 1
+  customer_id: 1
+  groom_name: MyString
+  ceremony_date: 2011-05-29 12:42:32
+  ceremony_venue: MyString
+  reception_venue: MyString
+  reception_time: 2011-05-29 12:42:32
+  rsvp_date: 2011-05-29
+  rsvp_address: MyText

@@ -1,0 +1,23 @@
+<h1>Listing monograms</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @monograms.each do |monogram| %>
+  <tr>
+    <td><%= monogram.description %></td>
+    <td><%= link_to 'Show', monogram %></td>
+    <td><%= link_to 'Edit', edit_monogram_path(monogram) %></td>
+    <td><%= link_to 'Destroy', monogram, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Monogram', new_monogram_path %>

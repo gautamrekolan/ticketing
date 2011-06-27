@@ -1,0 +1,38 @@
+===== 24/06/2011 20:19:00: Job 'ticketing': SYNC started by User on computer 'EASYNOTE' =====
+ticketing: D:\ticketing <-> G:\Data (E)\ticketing, SavePrevVers=30d, TmpDest, EstReq, CopyLocked, FileLinksDrill, CaseSens, Reconnect=3, ChangeLimit=10
+Locking folder D:\ticketing for write
+Locking folder G:\Data (E)\ticketing for write
+Copy Over 'G:\Data (E)\ticketing\app\controllers\guests_controller.rb' -> 'D:\ticketing\app\controllers\guests_controller.rb'
+/app/models/customer.rb: unresolved conflict results in No Copy
+Copy Over 'G:\Data (E)\ticketing\app\models\guest.rb' -> 'D:\ticketing\app\models\guest.rb'
+Copy Over 'G:\Data (E)\ticketing\app\models\item.rb' -> 'D:\ticketing\app\models\item.rb'
+Copy Over 'G:\Data (E)\ticketing\app\models\order.rb' -> 'D:\ticketing\app\models\order.rb'
+Copy Over 'G:\Data (E)\ticketing\app\views\guests\_form.html.erb' -> 'D:\ticketing\app\views\guests\_form.html.erb'
+Copy Over 'G:\Data (E)\ticketing\app\views\guests\index.html.erb' -> 'D:\ticketing\app\views\guests\index.html.erb'
+Copy Over 'G:\Data (E)\ticketing\app\views\orders\index.html.erb' -> 'D:\ticketing\app\views\orders\index.html.erb'
+Copy Over 'G:\Data (E)\ticketing\app\views\product_formats\_form.html.erb' -> 'D:\ticketing\app\views\product_formats\_form.html.erb'
+Copy Over 'G:\Data (E)\ticketing\app\views\product_formats\index.html.erb' -> 'D:\ticketing\app\views\product_formats\index.html.erb'
+Copy Over 'G:\Data (E)\ticketing\app\views\product_types\_form.html.erb' -> 'D:\ticketing\app\views\product_types\_form.html.erb'
+Copy Over 'G:\Data (E)\ticketing\config\routes.rb' -> 'D:\ticketing\config\routes.rb'
+Copy Over 'G:\Data (E)\ticketing\db\migrate\20110623163533_add_folded_to_product_formats.rb' -> 'D:\ticketing\db\migrate\20110623163533_add_folded_to_product_formats.rb'
+Copy Over 'G:\Data (E)\ticketing\db\migrate\20110623185702_add_envelope_to_product_types.rb' -> 'D:\ticketing\db\migrate\20110623185702_add_envelope_to_product_types.rb'
+Copy Over 'G:\Data (E)\ticketing\db\migrate\20110623190945_create_guests_items.rb' -> 'D:\ticketing\db\migrate\20110623190945_create_guests_items.rb'
+Copy Over 'G:\Data (E)\ticketing\db\migrate\20110623194809_add_primary_key_to_join_table.rb' -> 'D:\ticketing\db\migrate\20110623194809_add_primary_key_to_join_table.rb'
+Copy Over 'G:\Data (E)\ticketing\db\migrate\20110623195207_remove_primary_key_from_join_table.rb' -> 'D:\ticketing\db\migrate\20110623195207_remove_primary_key_from_join_table.rb'
+Copy Over 'G:\Data (E)\ticketing\db\migrate\20110623195928_remove_item_id_from_guest.rb' -> 'D:\ticketing\db\migrate\20110623195928_remove_item_id_from_guest.rb'
+/db/development.sqlite3: unresolved conflict results in No Copy
+Copy Over 'G:\Data (E)\ticketing\db\schema.rb' -> 'D:\ticketing\db\schema.rb'
+/log/development.log: unresolved conflict results in No Copy
+Copy Over 'G:\Data (E)\ticketing\tmp\pids\server.pid' -> 'D:\ticketing\tmp\pids\server.pid'
+Copy Over 'G:\Data (E)\ticketing\Gemfile' -> 'D:\ticketing\Gemfile'
+Copy Over 'G:\Data (E)\ticketing\Gemfile.lock' -> 'D:\ticketing\Gemfile.lock'
+Save State File D:\ticketing\_gsdata_\_file_state._gs
+Save State File G:\Data (E)\ticketing\_gsdata_\_file_state._gs
+Delete lock file D:\ticketing\_gsdata_\lock.gsl
+Sync had errors, delete stamp file D:\ticketing\_gsdata_\_insync.gsl
+Delete lock file G:\Data (E)\ticketing\_gsdata_\lock.gsl
+Sync had errors, delete stamp file G:\Data (E)\ticketing\_gsdata_\_insync.gsl
+Sync finished with 3 unresolved conflicts. Click Conflicts button to see unresolved conflicts
+Items Synced OK: 21, Errors: 0
+===== 24/06/2011 20:19:08: Sync Completed. Time: 00:00:14, Speed: 28.0 KB/s =====
+

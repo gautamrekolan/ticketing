@@ -1,0 +1,97 @@
+
+Delivered-To: david.pettifer@gmail.com
+Received: by 10.229.235.206 with SMTP id kh14cs107544qcb;
+		Fri, 20 May 2011 01:51:15 -0700 (PDT)
+Received: by 10.142.154.12 with SMTP id b12mr2579792wfe.156.1305881474078;
+		Fri, 20 May 2011 01:51:14 -0700 (PDT)
+Return-Path: <billing@dreamhost.com>
+Received: from pochacco.sd.dreamhost.com (pochacco.sd.dreamhost.com [66.33.195.34])
+		by mx.google.com with ESMTP id x34si9267238wfd.121.2011.05.20.01.51.13;
+		Fri, 20 May 2011 01:51:14 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of billing@dreamhost.com designates 66.33.195.34 as permitted sender) client-ip=66.33.195.34;
+Authentication-Results: mx.google.com; spf=pass (google.com: best guess record for domain of billing@dreamhost.com designates 66.33.195.34 as permitted sender) smtp.mail=billing@dreamhost.com
+Received: from pokey.sd.dreamhost.com (pokey.sd.dreamhost.com [10.3.67.90])
+	by pochacco.sd.dreamhost.com (Postfix) with ESMTP id 700CE8FBED
+	for <david.pettifer@gmail.com>; Fri, 20 May 2011 01:51:13 -0700 (PDT)
+Received: by pokey.sd.dreamhost.com (Postfix, from userid 0)
+	id 694294828D; Fri, 20 May 2011 01:51:13 -0700 (PDT)
+Content-Type: multipart/alternative; boundary="----------=_1305881473-30237-2"
+Content-Transfer-Encoding: binary
+MIME-Version: 1.0
+X-Mailer: MIME-tools 5.427 (Entity 5.427)
+From: DreamHost Billing Team <billing@dreamhost.com>
+To: david.pettifer@gmail.com
+Subject: [davpet16 45819282] DreamHost Web Hosting Due Payment Notice
+Message-Id: <20110520085113.694294828D@pokey.sd.dreamhost.com>
+Date: Fri, 20 May 2011 01:51:13 -0700 (PDT)
+
+This is a multi-part message in MIME format...
+
+------------=_1305881473-30237-2
+Content-Type: text/plain
+Content-Disposition: inline
+Content-Transfer-Encoding: binary
+
+
+This is just a notice that your DreamHost account #477067 
+("David's Account") has a due balance of $21.90 on it.
+
+| NOTE: Accounts overdue for 60 days will be suspended for non-payment.
+
+CASAMIENTO[1324]
+
+Pay your bill securely and instantly online via credit card or paypal:
+
+	https://panel.dreamhost.com/?tree=billing.payment
+
+Or, make checks or money orders payable to "DreamHost", and send them to:
+
+	DreamHost
+	Attn: Payments
+	PMB #257
+	417 Associated Rd.
+	Brea, CA 92821
+	USA
+
+(Be sure to write your account number "477067" on your check!)
+
+| NOTE: Processing and posting of checks or money orders may take
+| up to 2-3 weeks.
+
+| NOTE: All payments to DreamHost must be made in US dollars ($USD)
+
+
+We have your last payment as $32.85 on 2011-03-17 10:31:56.
+
+Since then the following charges have been added:
+
+
+		2011-04-01 - $10.95 for "Happy Hosting &#45; 1 month: Recurring" through 2011-04-30.
+		2011-05-01 - $10.95 for "Happy Hosting &#45; 1 month: Recurring" through 2011-05-31.
+
+
+For full information on your previous balance please visit your account
+invoice, which you may view from the web panel, here:
+
+	https://panel.dreamhost.com/?tree=billing.invoice
+
+If you would like to close your account with DreamHost, just visit:
+
+	https://panel.dreamhost.com/?tree=billing.accounts
+
+Log in, then click the small "close this account" link.
+
+
+
+If you feel this bill is in error, need more time to pay, or have any
+questions or concerns at all, please just reply to this email and we
+will be happy to work with you to resolve any and all issues!
+
+Thank you for choosing DreamHost!
+
+Sincerely, 
+The Happy DreamHost Billing Team
+http://www.dreamhost.com/
+FAX: +1-714-671-9098
+
+------------=_1305881473-30237-2--

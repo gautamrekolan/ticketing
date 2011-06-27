@@ -1,0 +1,29 @@
+<%= form_for @item do |f| %>
+  <%= f.fields_for :guests do |guests| %>
+  	<% @item.order.items.each do |i| %>
+		<%= i.product.product_type.description %>
+		<%= guests.nested_child_index %>
+		<%= guests.check_box "item_ids" %><br />
+	<% end %>
+  	<p>
+	<%= guests.label :name_on_invitation %>
+  	<%= guests.text_field :name_on_invitation %>
+	</p>
+	
+	<p>
+	<%= guests.label :name_on_envelope %>
+	<%= guests.text_field :name_on_envelope %>
+	</p>
+	
+	<p>
+		<%= guests.label :address %>
+		<%= guests.text_field :address %>
+	</p>
+	
+	<p>
+		<%= guests.label :postcode %>
+		<%= guests.text_field :postcode %>
+	</p>
+  <% end %>
+  <%= f.submit %>
+<% end %>

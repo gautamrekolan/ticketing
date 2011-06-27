@@ -1,0 +1,22 @@
+===== 20/06/2011 22:15:28: Job 'ticketing': SYNC started by User on computer 'EASYNOTE' =====
+ticketing: D:\ticketing <-> G:\Data (E)\ticketing, SavePrevVers=30d, TmpDest, EstReq, CopyLocked, FileLinksDrill, CaseSens, Reconnect=3, ChangeLimit=10
+Locking folder D:\ticketing for write
+Locking folder G:\Data (E)\ticketing for write
+Copy Over 'G:\Data (E)\ticketing\app\controllers\items_controller.rb' -> 'D:\ticketing\app\controllers\items_controller.rb'
+Copy Over 'G:\Data (E)\ticketing\app\models\item.rb' -> 'D:\ticketing\app\models\item.rb'
+Copy Over 'G:\Data (E)\ticketing\app\models\product.rb' -> 'D:\ticketing\app\models\product.rb'
+Copy Over 'G:\Data (E)\ticketing\app\views\orders\_form.html.erb' -> 'D:\ticketing\app\views\orders\_form.html.erb'
+Copy Over 'G:\Data (E)\ticketing\app\views\orders\index.html.erb' -> 'D:\ticketing\app\views\orders\index.html.erb'
+Copy New 'G:\Data (E)\ticketing\db\migrate\20110618123918_add_notes_to_order.rb' -> 'D:\ticketing\db\migrate\20110618123918_add_notes_to_order.rb'
+Copy New 'G:\Data (E)\ticketing\db\migrate\20110618182718_add_delivery_address_to_orders.rb' -> 'D:\ticketing\db\migrate\20110618182718_add_delivery_address_to_orders.rb'
+Copy Over 'G:\Data (E)\ticketing\db\development.sqlite3' -> 'D:\ticketing\db\development.sqlite3'
+Copy Over 'G:\Data (E)\ticketing\db\schema.rb' -> 'D:\ticketing\db\schema.rb'
+Copy Over 'G:\Data (E)\ticketing\log\development.log' -> 'D:\ticketing\log\development.log'
+Copy Over 'G:\Data (E)\ticketing\tmp\pids\server.pid' -> 'D:\ticketing\tmp\pids\server.pid'
+Save State File D:\ticketing\_gsdata_\_file_state._gs
+Save State File G:\Data (E)\ticketing\_gsdata_\_file_state._gs
+Delete lock file D:\ticketing\_gsdata_\lock.gsl
+Delete lock file G:\Data (E)\ticketing\_gsdata_\lock.gsl
+Items Synced OK: 11, Errors: 0
+===== 20/06/2011 22:15:46: Sync Completed. Time: 00:00:23, Speed: 20.0 KB/s =====
+

@@ -1,0 +1,83 @@
+<h1>Listing orders</h1>
+
+<table>
+<h2><%= @customer.name %></h2>
+<% @orders.each do |order| %>
+  <tr>
+    <td>Monogram:</td>
+    <td><%= order.monogram %></td>
+  </tr>
+  <tr>
+    <td>Customer id:</td>
+    <td><%= order.customer_id %></td>
+  </tr>
+  <tr>
+    <td>Groom Name:</td>
+    <td><%= order.groom_name %></td>
+ </tr>
+ <tr>
+ <td>Ceremony Date:</td>
+    <td><%= order.ceremony_date %></td>
+    </tr>
+    <tr>
+    <td>Ceremony venue</td>
+    <td><%= order.ceremony_venue %></td>
+   </tr>
+   <tr>
+   <td>Reception Venue</td>
+    <td><%= order.reception_venue %></td>
+    </tr>
+    <tr>
+    <td>Reception time</td>
+    <td><%= order.reception_time %></td>
+    </tr>
+    <tr>
+    <td>RSVP date</td>
+    <td><%= order.rsvp_date %></td>
+    </tr>
+    <tr>
+    <td>RSVP address:</td>    
+    <td><%= order.rsvp_address %></td>
+    </td>
+  
+  </tr>
+<tr>
+    <td>Options</td>
+    <td>    <%= link_to 'Edit', edit_customer_order_path(@customer,order) %><br/>
+    <%= link_to 'Destroy', [@customer,order], :confirm => 'Are you sure?', :method => :delete %></br></td>
+    </tr>
+
+</table>
+<h2>Items</h2>
+<table>
+
+<tr>
+    <th>Quantity</th><th>Product type</th><th>Product format</th>
+    </tr>
+    <% order.items.each do |item| %>
+    <tr>
+        <td><%= item.quantity_ordered %></td>
+        <td><%= item.product.product_type.description %></td>
+        <td><%= item.product.product_format.description %></td>
+    </tr>
+    <tr>
+        <td colspan="3">
+        <% item.guests.each do |guest| %>
+            <p>
+            <% if item.product.product_type.envelope %>
+                <%= guest.name_on_envelope %>
+               <% else %>
+               <%= guest.name_on_invitation %>
+               <% end %>
+               </p>
+        <% end %>
+        </td>
+    </tr>
+<% end %>
+</table>
+
+<p><%= link_to "Add guests", new_order_guest_path(order) %></p>
+<p><%= link_to "Add items", new_order_item_path(order) %></p>
+<% end %>
+
+<%= link_to 'New Order', new_customer_order_path(@customer) %>

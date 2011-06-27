@@ -1,0 +1,25 @@
+<h1>Listing customer_emails</h1>
+
+<table>
+  <tr>
+    <th>Address</th>
+    <th>Customer</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @customer_emails.each do |customer_email| %>
+  <tr>
+    <td><%= customer_email.address %></td>
+    <td><%= customer_email.customer_id %></td>
+    <td><%= link_to 'Show', customer_email %></td>
+    <td><%= link_to 'Edit', edit_customer_email_path(customer_email) %></td>
+    <td><%= link_to 'Destroy', customer_email, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Customer email', new_customer_email_path %>

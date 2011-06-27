@@ -1,0 +1,14 @@
+<h1>Listing guests</h1>
+<% @order.items.each do |item| %>
+
+<%= item.product.description %> <%= item.guests_remaining %> <br />
+<ul>
+<% item.guests.each do |guest| %>
+<li><%= guest %></li>
+<% end %>
+</ul>
+<% end %>
+
+<br />
+
+<%= link_to 'New Guest', new_order_guest_path(@order) %>

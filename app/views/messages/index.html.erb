@@ -1,0 +1,29 @@
+<h1>Listing messages</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>Conversation</th>
+    <th>Datetime</th>
+    <th>Customer</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @messages.each do |message| %>
+  <tr>
+    <td><%= message.content %></td>
+    <td><%= message.conversation_id %></td>
+    <td><%= message.datetime %></td>
+    <td><%= message.customer_id %></td>
+    <td><%= link_to 'Show', message %></td>
+    <td><%= link_to 'Edit', edit_message_path(message) %></td>
+    <td><%= link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Message', new_message_path %>
