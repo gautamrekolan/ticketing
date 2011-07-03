@@ -1,0 +1,18 @@
+<html>
+
+<%= form_tag customer_guest_file_path(@customer) do %>
+	<p>Type</p>
+	<%= select_tag :select, options_for_select(["hand", "post", "all"]) %>
+	
+	<p>Per Page</p>	
+	<%= select_tag "guest_file[per_page]", options_for_select(1..20) %>
+	
+	<p>Exclude lines</p>
+	<%= select_tag "guest_file[exclude_lines]", options_for_select(0..10), :multiple => true %>
+	
+	<p>Only lines</p>
+	<%= select_tag "guest_file[only_lines]", options_for_select(0..10), :multiple => true %>	
+	
+	<%= submit_tag %>
+<% end %>
+</html>

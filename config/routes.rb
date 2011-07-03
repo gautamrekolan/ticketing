@@ -18,6 +18,12 @@ Ticketing::Application.routes.draw do
   end
   resources :monograms
   resources :customers do
+  resource :guest_file
+    resources :mail_merge_guests do
+      put :update, :on => :collection
+      get :edit, :on => :collection
+      delete :destroy, :on => :collection
+    end
     resources :orders 
   end
   resources :customer_emails

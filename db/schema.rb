@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110623195928) do
+ActiveRecord::Schema.define(:version => 20110702160217) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"
@@ -25,15 +25,11 @@ ActiveRecord::Schema.define(:version => 20110623195928) do
   create_table "customer_emails", :force => true do |t|
     t.string   "address"
     t.integer  "customer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "customers", :force => true do |t|
     t.string   "name"
     t.text     "address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "guests", :force => true do |t|
@@ -41,8 +37,6 @@ ActiveRecord::Schema.define(:version => 20110623195928) do
     t.string   "name_on_invitation"
     t.string   "address"
     t.string   "postcode"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "guests_items", :id => false, :force => true do |t|
@@ -55,8 +49,6 @@ ActiveRecord::Schema.define(:version => 20110623195928) do
     t.integer  "price"
     t.integer  "quantity_ordered"
     t.integer  "quantity_despatched"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "order_id"
   end
 
@@ -68,8 +60,6 @@ ActiveRecord::Schema.define(:version => 20110623195928) do
 
   create_table "monograms", :force => true do |t|
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "orders", :force => true do |t|
@@ -89,8 +79,6 @@ ActiveRecord::Schema.define(:version => 20110623195928) do
 
   create_table "product_formats", :force => true do |t|
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "height"
     t.integer  "width"
     t.string   "style"
@@ -98,8 +86,6 @@ ActiveRecord::Schema.define(:version => 20110623195928) do
 
   create_table "product_types", :force => true do |t|
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.boolean  "envelope"
   end
 
@@ -112,8 +98,12 @@ ActiveRecord::Schema.define(:version => 20110623195928) do
 
   create_table "themes", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  end
+  
+  create_table "mail_merge_guests", :force => true do |t|
+    t.belongs_to "customer"
+    t.text "address", :limit => 1000
+    t.boolean "hand" 
   end
 
 end

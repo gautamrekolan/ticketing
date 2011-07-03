@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/mrdizzy/auto_migrations.git
+  revision: efe9a7aeecaba8d2454f4ba3022f330016393872
+  specs:
+    auto_migrations (1.0.20080704)
+
+PATH
+  remote: E:/rails/plugins_and_gems/casamiento_mail_merge
+  specs:
+    casamiento_mail_merge (0.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -71,6 +82,8 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  auto_migrations!
+  casamiento_mail_merge!
   mail
   rails (= 3.0.9)
   rake (= 0.8.7)

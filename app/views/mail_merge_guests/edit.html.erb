@@ -1,0 +1,14 @@
+<html>
+<head>
+</head>
+<body>
+
+<%= form_for @customer, :url => customer_mail_merge_guests_path(@customer) do |f| %>
+	<%= f.fields_for :mail_merge_guests do |m| %>
+	<%= m.text_area :address, :size => "30x7" %>
+	<%= m.check_box :hand %>
+	<% end %>
+	<%= f.submit %>
+<% end %>
+</body>
+</html>

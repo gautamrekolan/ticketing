@@ -1,0 +1,37 @@
+<html>
+<head>
+</head>
+<body>
+
+<%= form_for @customer, :url => customer_mail_merge_guests_path(@customer) do |f| %>
+<%= fields_for "customer[guest_file]" do |form| %>
+<p><%= link_to "Text", "/", :id => "to_text" %></p>
+	<p><%= form.file_field :file, :disabled => 'true'  %></p>
+	<P><%= form.text_area :file, :size => "100x10"%></p>
+	<p><%= form.text_field :group_delimiter, :value => "*" %></p>
+	<% end %>
+
+	<%= f.fields_for :mail_merge_guests, @customer.new_guest_fields do |m| %>
+	<%= m.text_area :address, :size => "30x7" %>
+	<%= m.check_box :hand %>
+	<% end %>
+	<%= f.submit %>
+<% end %>
+
+<%= javascript_tag do %>
+	function toggleTextArea(event) {
+	console.log(event);
+		if ($('customer_guest_file_file').type == "file") {
+			$('customer_guest_file_file').type = "textarea";
+			$('customer_guest_file_file').writeAttribute({'rows': 10, 'cols': 100});
+		}
+		else {
+			$('customer_guest_file_file').type = 'file';
+
+		}
+		event.preventDefault();
+	}
+	$('to_text').observe('click', toggleTextArea);
+<% end %>
+</body>
+</html>
