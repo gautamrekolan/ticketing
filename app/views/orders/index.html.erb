@@ -59,7 +59,10 @@
         <td><%= item.quantity_ordered %></td>
         <td><%= item.product.product_type.description %></td>
         <td><%= item.product.product_format.description %></td>
-        <td><%= link_to "Edit guests", item_guest_lists_path(item) %></td>
+        <td>
+            <%= link_to "Edit guests", item_guest_lists_path(item) %><br />
+            <%= item.guests_remaining %> remaining
+        </td>
     </tr>
     <tr>
         <td colspan="3">

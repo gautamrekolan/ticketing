@@ -44,6 +44,10 @@ module Ebay
 			def get_orders(params)
 				commit(Ebay::Requests::GetOrders, params)
 			end		
+			
+			def get_item(params)
+				commit(Ebay::Requests::GetItem, params)
+			end
 
 			def build_xml(request)
 			   result = REXML::Document.new

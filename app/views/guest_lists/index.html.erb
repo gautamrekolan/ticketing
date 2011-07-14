@@ -4,7 +4,7 @@
 
   	<% @item.order.items.each do |item| %>
 		<%= item.product.product_type.description %>
-		<%= check_box_tag "item[guest_attributes][#{i}]item_ids[]", item.id, item.order.items.include?(item) %><br />
+		<%= check_box_tag "item[guests_attributes][#{i}]item_ids[]", item.id, guest.items.include?(item) %><br />
 	<% end %>
   	<p>
 	<%= guests.label :name_on_invitation %>

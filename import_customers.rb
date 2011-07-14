@@ -1,7 +1,7 @@
 require 'net/https'
 require 'pp'
 order = Ebay::API::Trading.new
-cred = order.get_orders(:create_time_from => 1.days.ago.iso8601, :create_time_to => Time.now.iso8601)
+cred = order.get_orders(:create_time_from => 2.hours.ago.iso8601, :create_time_to => Time.now.iso8601)
 result = XmlSimple.xml_in(cred.body, 'ForceArray' => false)
 go = Hash.from_xml(cred.body)
 o = go["GetOrdersResponse"]["OrderArray"]["Order"]
@@ -22,14 +22,17 @@ puts "\n\n**********************************************************************
 	#else
 	#	pp o["TransactionArray"]["Transaction"]["Item"]
 	#end
-	
-	o.each do |k,v|
-		if v.is_a?(Hash)
-			puts "\n"
-		end
-		puts "----- #{k} -----"
-		pp v
-	end
+	item_id = o["TransactionArray"]["Transaction"]["Item"]["ItemID"]
+	item = order.get_item(:item_id => item_id, :detail_level => "ItemReturnDescription", :include_item_specifics => "1")
+item = Hash.from_xml(item.body)
+pp item
+	#o.each do |k,v|
+#		if v.is_a?(Hash)
+#			puts "\n"
+#		end
+#		puts "----- #{k} -----"
+#		pp v
+#	end
 	
 	#if order.new_record?		
 	#	customer.orders << order
