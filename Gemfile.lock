@@ -77,6 +77,8 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.28)
+    xml-mapping (0.9.1)
+    xml-simple (1.1.0)
 
 PLATFORMS
   x86-mingw32
@@ -88,3 +90,5 @@ DEPENDENCIES
   rails (= 3.0.9)
   rake (= 0.8.7)
   sqlite3
+  xml-mapping
+  xml-simple

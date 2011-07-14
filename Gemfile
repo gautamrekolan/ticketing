@@ -7,7 +7,9 @@ gem 'rails', '3.0.9'
 
 gem 'sqlite3'
 gem 'mail'
+gem 'xml-simple', :require => 'xmlsimple'
 gem 'rake', '0.8.7'
+gem 'xml-mapping', :require => 'xml/mapping'
 
 # Use unicorn as the web server
 # gem 'unicorn'

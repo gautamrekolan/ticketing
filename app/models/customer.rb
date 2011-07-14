@@ -4,7 +4,6 @@ require 'pp'
 		has_many :mail_merge_guests
 		accepts_nested_attributes_for :mail_merge_guests
 	validates :name, :presence => true
-	validates :address, :presence => true
 	
 	def new_guest_fields
 		5.times.collect { mail_merge_guests.build }
