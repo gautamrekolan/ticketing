@@ -12,6 +12,7 @@
 
 <% @theme.products.each do |product| %>
   <tr>
+      <td><%= product.id %></td>
     <td><%= product.product_type.description %></td>
     <td><%= product.product_format.description %></td>
     <td><%= product.theme.name %></td>

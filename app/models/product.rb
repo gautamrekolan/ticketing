@@ -8,4 +8,5 @@ def description
 	theme.name + ", " + product_type.description + ", " + product_format.description
 end
 
+
 end

@@ -12,7 +12,6 @@
 <% @customers.each do |customer| %>
   <tr>
     <td><%= customer.name %></td>
-    <td><%= customer.address %></td>
         <td><%= link_to 'Orders', customer_orders_path(customer) %></td>
     <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
     <td><%= link_to 'Destroy', customer, :confirm => 'Are you sure?', :method => :delete %></td>

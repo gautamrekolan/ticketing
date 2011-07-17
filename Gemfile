@@ -20,7 +20,7 @@ gem 'xml-mapping', :require => 'xml/mapping'
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
 # gem 'ruby-debug19', :require => 'ruby-debug'	
-gem 'casamiento_mail_merge', :path => "D://gems_and_plugins/casamiento_mail_merge"
+gem 'casamiento_mail_merge', :path => "E://rails/plugins_and_gems/casamiento_mail_merge"
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'

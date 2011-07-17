@@ -5,7 +5,7 @@ GIT
     auto_migrations (1.0.20080704)
 
 PATH
-  remote: D:/gems_and_plugins/casamiento_mail_merge
+  remote: E:/rails/plugins_and_gems/casamiento_mail_merge
   specs:
     casamiento_mail_merge (0.1)
 
