@@ -5,7 +5,7 @@ GIT
     auto_migrations (1.0.20080704)
 
 PATH
-  remote: E:/rails/plugins_and_gems/casamiento_mail_merge
+  remote: D:/gems_and_plugins/casamiento_mail_merge
   specs:
     casamiento_mail_merge (0.1)
 
@@ -50,6 +50,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mocha (0.9.12)
     polyglot (0.3.1)
     rack (1.2.3)
     rack-mount (0.6.14)
@@ -87,6 +88,7 @@ DEPENDENCIES
   auto_migrations!
   casamiento_mail_merge!
   mail
+  mocha
   rails (= 3.0.9)
   rake (= 0.8.7)
   sqlite3

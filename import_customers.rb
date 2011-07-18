@@ -7,7 +7,7 @@ module Casamiento
 			@ebay_api = Ebay::API::Trading.new
 			response = @ebay_api.get_orders(:mod_time_from => 300.hours.ago.iso8601, :mod_time_to => Time.now.iso8601)
 
-			result = Hash.from_xml(response.body)
+			result = Hash.from_xml(response)
 			result = process_xml(result)
 		end
 		
@@ -22,8 +22,15 @@ module Casamiento
 		end
 		
 		def process_order(o)
-			pp o
 			customer = Customer.find_or_initialize_by_eias_token(o["EIASToken"])
+			if customer.new_record?
+				if o["ShippingAddress"]["Name"].blank?
+					customer.name = o["BuyerUserID"] 
+				else
+					customer.name = o["ShippingAddress"]["Name"]
+				end			
+				customer.ebay_user_id = o["BuyerUserID"]
+			end
 			order = Order.find_or_initialize_by_ebay_order_identifier(o["OrderID"])
 			customer.orders << order
 			if o["TransactionArray"]["Transaction"].is_a?(Array)
@@ -31,13 +38,13 @@ module Casamiento
 			else
 				order.items = [ process_transaction(o["TransactionArray"]["Transaction"]) ]
 			end
-			pp customer.orders
+			customer.save!
 		end
 		
 		def process_transaction(t)
 			item_id = t["Item"]["ItemID"]
 			response = @ebay_api.get_item(:item_id => item_id, :detail_level => "ItemReturnDescription")
-			item = Hash.from_xml(response.body)
+			item = Hash.from_xml(response)
 			matches = item["GetItemResponse"]["Item"]["Description"].scan(/\[\[CASAMIENTO_SKU::(.*)\]\]/).flatten
 			unless matches.first.nil?
 				quantity, product_id = matches.first.split('-')
@@ -53,7 +60,6 @@ module Casamiento
 end
 	
 
-Casamiento::ImportOrders.new
 #go["GetOrdersResponse"]["OrderArray"]["Order"].each do |o|
 #puts "\n\n**************************************************************************\n\n"
 	#customer = Customer.find_or_initialize_by_eias_token(o["EIASToken"])

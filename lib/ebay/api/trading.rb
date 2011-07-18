@@ -32,6 +32,7 @@ module Ebay
 
 				req.use_ssl = true
 				response = req.post(uri.request_uri, payload, headers(request_class))
+				response.body
 			end
 
 			def commit(request_class, params)
