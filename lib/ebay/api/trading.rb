@@ -1,4 +1,3 @@
-
 module Ebay
 	module API
 		class Trading
@@ -32,9 +31,13 @@ module Ebay
 
 				req.use_ssl = true
 				response = req.post(uri.request_uri, payload, headers(request_class))
-				response.body
+				
+				response = Hash.from_xml(response.body)
+        response_root_element = request_class.to_s.demodulize + "Response"
+				raise IOError if response[response_root_element]["Ack"] == "Failure"
+				response
 			end
-
+			
 			def commit(request_class, params)
 				payload = request_class.new(params)
 

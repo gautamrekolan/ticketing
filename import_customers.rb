@@ -5,10 +5,9 @@ module Casamiento
 	class ImportOrders
 		def initialize	
 			@ebay_api = Ebay::API::Trading.new
-			response = @ebay_api.get_orders(:mod_time_from => 300.hours.ago.iso8601, :mod_time_to => Time.now.iso8601)
-
-			result = Hash.from_xml(response)
-			result = process_xml(result)
+			response = @ebay_api.get_orders(:mod_time_from => 600.hours.ago.iso8601, :mod_time_to => Time.now.iso8601)
+		
+			process_xml(response)
 		end
 		
 		def process_xml(result)
@@ -43,8 +42,7 @@ module Casamiento
 		
 		def process_transaction(t)
 			item_id = t["Item"]["ItemID"]
-			response = @ebay_api.get_item(:item_id => item_id, :detail_level => "ItemReturnDescription")
-			item = Hash.from_xml(response)
+			item = @ebay_api.get_item(:item_id => item_id, :detail_level => "ItemReturnDescription")
 			matches = item["GetItemResponse"]["Item"]["Description"].scan(/\[\[CASAMIENTO_SKU::(.*)\]\]/).flatten
 			unless matches.first.nil?
 				quantity, product_id = matches.first.split('-')
@@ -55,11 +53,9 @@ module Casamiento
 			item.price = 20
 			item
 		end
-	
 	end
 end
 	
-
 #go["GetOrdersResponse"]["OrderArray"]["Order"].each do |o|
 #puts "\n\n**************************************************************************\n\n"
 	#customer = Customer.find_or_initialize_by_eias_token(o["EIASToken"])

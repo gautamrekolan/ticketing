@@ -7,15 +7,21 @@ class EbayImportTest < ActiveSupport::TestCase
     assert true
   end
   
+  def setup
+    @customer = Factory.create(:customer)
+  end
+  
   test "mocked object" do 
     xml = File.new(File.join(Rails.root.to_s, 'lib', 'test', 'fixtures', 'get_orders_response.xml'))
     xml = xml.read
+    xml = Hash.from_xml(xml)
+    
     Ebay::API::Trading.any_instance.stubs(:get_orders).returns(xml)
     
     assert_equal Order.count, 0, "Before"
 
-  Casamiento::ImportOrders.new
- pp Customer.first.orders
+        Casamiento::ImportOrders.new
+        assert_equal Order.count, 3, "After"
    end
   
 end
