@@ -10,7 +10,7 @@ gem 'mail'
 gem 'xml-simple', :require => 'xmlsimple'
 gem 'rake', '0.8.7'
 gem 'xml-mapping', :require => 'xml/mapping'
-
+gem 'acts_as_singleton', :git => 'git://github.com/mrdizzy/acts_as_singleton.git', :branch => 'rails3'
 # Use unicorn as the web server
 # gem 'unicorn'
 

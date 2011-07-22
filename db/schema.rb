@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110718211754) do
+ActiveRecord::Schema.define(:version => 20110721215514) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"
@@ -26,7 +26,10 @@ ActiveRecord::Schema.define(:version => 20110718211754) do
     t.string   "address"
     t.integer  "customer_id"
   end
-
+  create_table "ebay_last_imported_times", :force => true do |t|
+    t.datetime "last_import"
+  end
+ 
   create_table "customers", :force => true do |t|
     t.string   "name"
     t.string     "eias_token"

@@ -17,62 +17,130 @@
 	<Order>
 	
 	  <OrderID>219315010</OrderID>
+	  
 	  <OrderStatus>Completed</OrderStatus>
+	  
 	  <AdjustmentAmount currencyID="GBP">0.0</AdjustmentAmount>
+	  
 	  <AmountPaid currencyID="GBP">29.1</AmountPaid>
+	  
 	  <AmountSaved currencyID="GBP">0.0</AmountSaved>
+	  
+	  
+	  
 	  <CheckoutStatus>
+	  
 		<eBayPaymentStatus>NoPaymentFailure</eBayPaymentStatus>
+		
 		<LastModifiedTime>2011-07-15T09:11:15.000Z</LastModifiedTime>
+		
 		<PaymentMethod>CCAccepted</PaymentMethod>
+		
 		<Status>Complete</Status>
+		
 		<IntegratedMerchantCreditCardEnabled>false</IntegratedMerchantCreditCardEnabled>
+		
 	  </CheckoutStatus>
+	  
+	  
+	  
 	  <ShippingDetails>
+	  
+	  
 		<SalesTax>
+		
 		  <SalesTaxPercent>0.0</SalesTaxPercent>
-		  <SalesTaxState>
+		  
+		  <SalesTaxState>		  
 		  </SalesTaxState>
+		  
 		  <ShippingIncludedInTax>false</ShippingIncludedInTax>
+		  
 		  <SalesTaxAmount currencyID="GBP">0.0</SalesTaxAmount>
+		  
 		</SalesTax>
+		
+		
 		<ShippingServiceOptions>
+		
 		  <ShippingService>UK_RoyalMailFirstClassStandard</ShippingService>
+		  
 		  <ShippingServiceCost currencyID="GBP">1.16</ShippingServiceCost>
+		  
 		  <ShippingServicePriority>1</ShippingServicePriority>
+		  
 		  <ExpeditedService>false</ExpeditedService>
+		  
 		  <ShippingTimeMin>1</ShippingTimeMin>
+		  
 		  <ShippingTimeMax>2</ShippingTimeMax>
+		  
 		</ShippingServiceOptions>
+		
 		<SellingManagerSalesRecordNumber>109</SellingManagerSalesRecordNumber>
+		
 		<GetItFast>false</GetItFast>
+		
 	  </ShippingDetails>
+	  
+	  
+	  
 	  <CreatingUserRole>Buyer</CreatingUserRole>
+	  
 	  <CreatedTime>2011-07-15T09:06:46.000Z</CreatedTime>
+	  
 	  <PaymentMethods>CCAccepted</PaymentMethods>
+	  
 	  <PaymentMethods>PayPal</PaymentMethods>
+	  
+	  
 	  <ShippingAddress>
-		<Name>Test User</Name>
+	  
+		<Name>Melanie Sykes</Name>
+		
 		<Street1>address</Street1>
-		<Street2>
+		
+		<Street2>		
 		</Street2>
+		
 		<CityName>city</CityName>
+		
 		<StateOrProvince>BUCKINGHAMSHIRE</StateOrProvince>
+		
 		<Country>GB</Country>
+		
 		<CountryName>United Kingdom</CountryName>
+		
 		<Phone>1 800 111 1111</Phone>
+		
 		<PostalCode>HP19 3EQ</PostalCode>
+		
 		<AddressID>5695388</AddressID>
+		
 		<AddressOwner>eBay</AddressOwner>
+		
 		<ExternalAddressID>
 		</ExternalAddressID>
+		
 	  </ShippingAddress>
+	  
+	  
 	  <ShippingServiceSelected>
+	  
 		<ShippingService>UK_RoyalMailFirstClassStandard</ShippingService>
+		
 		<ShippingServiceCost currencyID="GBP">1.16</ShippingServiceCost>
+		
 	  </ShippingServiceSelected>
+	  
+	  
 	  <Subtotal currencyID="GBP">27.94</Subtotal>
+	  
 	  <Total currencyID="GBP">29.1</Total>
+	  
+	  
+	  
+	  
 	  
 	  <TransactionArray>
 	  
@@ -136,251 +204,22 @@
 		
 	  </TransactionArray>
 	  
+	  
+	  
+	  
+	  
 	  <BuyerUserID>testuser_dizzy</BuyerUserID>
+	  
 	  <IntegratedMerchantCreditCardEnabled>false</IntegratedMerchantCreditCardEnabled>
+	  
 	  <EIASToken>nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4CoAZeCoAqdj6x9nY+seQ==</EIASToken>
+	  
 	  <PaymentHoldStatus>None</PaymentHoldStatus>
+	  
 	  <PaymentHoldDetails />
 	  
 	</Order>
 	
-	<Order>
-	
-	  <OrderID>219393010</OrderID>
-	  <OrderStatus>Completed</OrderStatus>
-	  <AdjustmentAmount currencyID="GBP">0.0</AdjustmentAmount>
-	  <AmountPaid currencyID="GBP">58.68</AmountPaid>
-	  <AmountSaved currencyID="GBP">0.0</AmountSaved>
-	  
-	  <CheckoutStatus>
-		<eBayPaymentStatus>NoPaymentFailure</eBayPaymentStatus>
-		<LastModifiedTime>2011-07-15T22:00:55.000Z</LastModifiedTime>
-		<PaymentMethod>PayPal</PaymentMethod>
-		<Status>Complete</Status>
-		<IntegratedMerchantCreditCardEnabled>false</IntegratedMerchantCreditCardEnabled>
-	  </CheckoutStatus>
-	  
-	  <ShippingDetails>
-	  
-		<SalesTax>
-		  <SalesTaxPercent>0.0</SalesTaxPercent>
-		  <SalesTaxState>
-		  </SalesTaxState>
-		  <ShippingIncludedInTax>false</ShippingIncludedInTax>
-		  <SalesTaxAmount currencyID="GBP">0.0</SalesTaxAmount>
-		</SalesTax>
-		
-		<ShippingServiceOptions>
-		  <ShippingService>UK_RoyalMailFirstClassStandard</ShippingService>
-		  <ShippingServiceCost currencyID="GBP">1.16</ShippingServiceCost>
-		  <ShippingServicePriority>1</ShippingServicePriority>
-		  <ExpeditedService>false</ExpeditedService>
-		  <ShippingTimeMin>1</ShippingTimeMin>
-		  <ShippingTimeMax>2</ShippingTimeMax>
-		</ShippingServiceOptions>
-		
-		<SellingManagerSalesRecordNumber>112</SellingManagerSalesRecordNumber>
-		<GetItFast>false</GetItFast>
-		
-	  </ShippingDetails>
-	  
-	  <CreatingUserRole>Buyer</CreatingUserRole>
-	  <CreatedTime>2011-07-15T21:56:38.000Z</CreatedTime>
-	  <PaymentMethods>CCAccepted</PaymentMethods>
-	  <PaymentMethods>PayPal</PaymentMethods>
-	  
-	  <ShippingAddress>
-		<Name>David Pettifer</Name>
-		<Street1>22 Brook Road</Street1>
-		<Street2>High Street</Street2>
-		<CityName>Shanklin</CityName>
-		<StateOrProvince>ISLE OF WIGHT</StateOrProvince>
-		<Country>GB</Country>
-		<CountryName>United Kingdom</CountryName>
-		<Phone>1 800 111 1111</Phone>
-		<PostalCode>HP19 3EQ</PostalCode>
-		<AddressID>5695388</AddressID>
-		<AddressOwner>eBay</AddressOwner>
-		<ExternalAddressID>
-		</ExternalAddressID>
-	  </ShippingAddress>
-	  
-	  <ShippingServiceSelected>
-		<ShippingService>UK_RoyalMailFirstClassStandard</ShippingService>
-		<ShippingServiceCost currencyID="GBP">1.16</ShippingServiceCost>
-	  </ShippingServiceSelected>
-	  
-	  <Subtotal currencyID="GBP">57.52</Subtotal>
-	  <Total currencyID="GBP">58.68</Total>
-	  
-	  <TransactionArray>
-	  
-		<Transaction>
-		
-		  <Buyer>
-			<Email>david.pettifer@dizzy.co.uk</Email>
-		  </Buyer>
-		  <ShippingDetails>
-			<SellingManagerSalesRecordNumber>110</SellingManagerSalesRecordNumber>
-		  </ShippingDetails>
-		  <CreatedDate>2011-07-15T21:49:00.000Z</CreatedDate>
-		  <Item>
-			<ItemID>110090775646</ItemID>
-			<Site>UK</Site>
-			<Title>30 Personalised Wedding Invitations Simplicity</Title>
-			<ConditionID>1000</ConditionID>
-			<ConditionDisplayName>New</ConditionDisplayName>
-		  </Item>
-		  <QuantityPurchased>1</QuantityPurchased>
-		  <Status>
-			<PaymentHoldStatus>None</PaymentHoldStatus>
-		  </Status>
-		  <TransactionID>0</TransactionID>
-		  <TransactionPrice currencyID="GBP">28.76</TransactionPrice>
-		  <Platform>eBay</Platform>
-		  <Variation />
-		  <OrderLineItemID>110090775646-0</OrderLineItemID>
-		  
-		</Transaction>
-		
-		<Transaction>
-		
-		  <Buyer>
-			<Email>david.pettifer@dizzy.co.uk</Email>
-		  </Buyer>
-		  <ShippingDetails>
-			<SellingManagerSalesRecordNumber>111</SellingManagerSalesRecordNumber>
-		  </ShippingDetails>
-		  <CreatedDate>2011-07-15T21:52:09.000Z</CreatedDate>
-		  <Item>
-			<ItemID>110090775655</ItemID>
-			<Site>UK</Site>
-			<Title>25 Name Place Cards</Title>
-			<ConditionID>1000</ConditionID>
-			<ConditionDisplayName>New</ConditionDisplayName>
-		  </Item>
-		  <QuantityPurchased>1</QuantityPurchased>
-		  <Status>
-			<PaymentHoldStatus>None</PaymentHoldStatus>
-		  </Status>
-		  <TransactionID>0</TransactionID>
-		  <TransactionPrice currencyID="GBP">28.76</TransactionPrice>
-		  <Platform>eBay</Platform>
-		  <Variation />
-		  <OrderLineItemID>110090775655-0</OrderLineItemID>
-		  
-		</Transaction>
-		
-	  </TransactionArray>
-	  
-	  <BuyerUserID>testuser_dizzy</BuyerUserID>
-	  <PaidTime>2011-07-15T21:56:43.000Z</PaidTime>
-	  <IntegratedMerchantCreditCardEnabled>false</IntegratedMerchantCreditCardEnabled>
-	  <EIASToken>nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4CoAZeCoAqdj6x9nY+seQ==</EIASToken>
-	  <PaymentHoldStatus>None</PaymentHoldStatus>
-	  <PaymentHoldDetails />
-	  
-	</Order>
-	
-	<Order>
-	
-	  <OrderID>110090775961-0</OrderID>
-	  <OrderStatus>Active</OrderStatus>
-	  <AdjustmentAmount currencyID="GBP">0.0</AdjustmentAmount>
-	  <AmountPaid currencyID="GBP">29.34</AmountPaid>
-	  <AmountSaved currencyID="GBP">0.0</AmountSaved>
-	  <CheckoutStatus>
-		<eBayPaymentStatus>NoPaymentFailure</eBayPaymentStatus>
-		<LastModifiedTime>2011-07-16T19:58:03.000Z</LastModifiedTime>
-		<PaymentMethod>None</PaymentMethod>
-		<Status>Incomplete</Status>
-		<IntegratedMerchantCreditCardEnabled>false</IntegratedMerchantCreditCardEnabled>
-	  </CheckoutStatus>
-	  <ShippingDetails>
-		<SalesTax>
-		  <SalesTaxPercent>0.0</SalesTaxPercent>
-		  <SalesTaxState>
-		  </SalesTaxState>
-		  <ShippingIncludedInTax>false</ShippingIncludedInTax>
-		  <SalesTaxAmount currencyID="GBP">0.0</SalesTaxAmount>
-		</SalesTax>
-		<ShippingServiceOptions>
-		  <ShippingService>UK_RoyalMailFirstClassStandard</ShippingService>
-		  <ShippingServiceCost currencyID="GBP">0.58</ShippingServiceCost>
-		  <ShippingServicePriority>1</ShippingServicePriority>
-		  <ExpeditedService>false</ExpeditedService>
-		  <ShippingTimeMin>1</ShippingTimeMin>
-		  <ShippingTimeMax>2</ShippingTimeMax>
-		</ShippingServiceOptions>
-		<SellingManagerSalesRecordNumber>113</SellingManagerSalesRecordNumber>
-		<GetItFast>false</GetItFast>
-	  </ShippingDetails>
-	  <CreatedTime>2011-07-16T19:51:06.000Z</CreatedTime>
-	  <PaymentMethods>CCAccepted</PaymentMethods>
-	  <PaymentMethods>PayPal</PaymentMethods>
-	  <ShippingAddress>
-		<Name>
-		</Name>
-		<Street1>
-		</Street1>
-		<Street2>
-		</Street2>
-		<CityName>
-		</CityName>
-		<StateOrProvince>
-		</StateOrProvince>
-		<CountryName>
-		</CountryName>
-		<Phone>
-		</Phone>
-		<PostalCode>
-		</PostalCode>
-		<ExternalAddressID>
-		</ExternalAddressID>
-	  </ShippingAddress>
-	  <ShippingServiceSelected>
-		<ShippingService>UK_RoyalMailFirstClassStandard</ShippingService>
-		<ShippingServiceCost currencyID="GBP">0.58</ShippingServiceCost>
-	  </ShippingServiceSelected>
-	  <Subtotal currencyID="GBP">28.76</Subtotal>
-	  <Total currencyID="GBP">29.34</Total>
-	  
-	  <TransactionArray>
-	  
-		<Transaction>
-		
-		  <Buyer>
-			<Email>david.pettifer@dizzy.co.uk</Email>
-		  </Buyer>
-		  <ShippingDetails>
-			<SellingManagerSalesRecordNumber>113</SellingManagerSalesRecordNumber>
-		  </ShippingDetails>
-		  <CreatedDate>2011-07-16T19:51:06.000Z</CreatedDate>
-		  <Item>
-			<ItemID>110090775961</ItemID>
-			<Site>UK</Site>
-			<Title>30 Personalised Wedding Invitations Simplicity</Title>
-			<ConditionID>1000</ConditionID>
-			<ConditionDisplayName>New</ConditionDisplayName>
-		  </Item>
-		  <QuantityPurchased>1</QuantityPurchased>
-		  <Status>
-			<PaymentHoldStatus>None</PaymentHoldStatus>
-		  </Status>
-		  <TransactionID>0</TransactionID>
-		  <TransactionPrice currencyID="GBP">28.76</TransactionPrice>
-		  <Platform>eBay</Platform>
-		  <Variation />
-		  <OrderLineItemID>110090775961-0</OrderLineItemID>
-		</Transaction>
-	  </TransactionArray>
-	  <BuyerUserID>testuser_dizzy</BuyerUserID>
-	  <IntegratedMerchantCreditCardEnabled>false</IntegratedMerchantCreditCardEnabled>
-	  <EIASToken>nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4CoAZeCoAqdj6x9nY+seQ==</EIASToken>
-	  <PaymentHoldStatus>None</PaymentHoldStatus>
-	  <PaymentHoldDetails />
-	  
-	</Order>
 	
   </OrderArray>
   

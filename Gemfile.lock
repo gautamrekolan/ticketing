@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/mrdizzy/acts_as_singleton.git
+  revision: 4229bec5929a14619abb40a95298dd2291cade01
+  branch: rails3
+  specs:
+    acts_as_singleton (0.0.5)
+      activerecord
+
+GIT
   remote: git://github.com/mrdizzy/auto_migrations.git
   revision: efe9a7aeecaba8d2454f4ba3022f330016393872
   specs:
@@ -90,6 +98,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  acts_as_singleton!
   auto_migrations!
   casamiento_mail_merge!
   factory_girl_rails

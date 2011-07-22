@@ -18,6 +18,8 @@ module Casamiento
 			else
 				process_order(order_array)
 			end
+			ebay_timestamp = result["GetOrdersResponse"]["Timestamp"]
+			EbayLastImportedTime.instance.update_attributes(:last_import => Time.iso8601(ebay_timestamp))
 		end
 		
 		def process_order(o)
