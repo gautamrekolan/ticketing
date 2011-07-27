@@ -2,6 +2,7 @@ Ticketing::Application.routes.draw do
   resources :guests
 
   resources :product_formats
+  resources :papers
   resources :product_types
   resources :products
   resources :items do

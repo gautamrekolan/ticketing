@@ -3,7 +3,7 @@ belongs_to :theme
 belongs_to :product_type
 belongs_to :product_format
 has_many :items
-
+belongs_to :paper
 def description
 	theme.name + ", " + product_type.description + ", " + product_format.description
 end

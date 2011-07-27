@@ -26,15 +26,13 @@ module Ebay
 			end
 
 			def request(payload, request_class)
-
 				req = Net::HTTP.new(uri.host, uri.port)
 
 				req.use_ssl = true
 				response = req.post(uri.request_uri, payload, headers(request_class))
 				
 				response = Hash.from_xml(response.body)
-        response_root_element = request_class.to_s.demodulize + "Response"
-				raise IOError if response[response_root_element]["Ack"] == "Failure"
+        		response_root_element = request_class.to_s.demodulize + "Response"
 				response
 			end
 			

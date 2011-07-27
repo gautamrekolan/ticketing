@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GetItemResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+
+  <Timestamp>2011-07-25T21:33:56.044Z</Timestamp>
+  <Ack>Success</Ack>
+  <Version>729</Version>
+  <Build>E729_INTL_BUNDLED_13521189_R1</Build>
+  
+  
+  <Item>
+  
+  
+	<AutoPay>false</AutoPay>
+	<BuyerProtection>ItemIneligible</BuyerProtection>
+	<BuyItNowPrice currencyID="GBP">0.0</BuyItNowPrice>
+	<Country>GB</Country>
+	<Currency>GBP</Currency>
+	<Description>A beautiful set of invitations for all the family!&lt;br&gt;
+&lt;br&gt;
+[[CASAMIENTO_SKU::30-1]]&lt;br&gt;</Description>
+	<GiftIcon>0</GiftIcon>
+	<HitCounter>NoHitCounter</HitCounter>
+	<ItemID>110090977477</ItemID>
+	
+	
+	<ListingDetails>
+	
+	
+	  <Adult>false</Adult>
+	  <BindingAuction>false</BindingAuction>
+	  <CheckoutEnabled>true</CheckoutEnabled>
+	  <ConvertedBuyItNowPrice currencyID="GBP">0.0</ConvertedBuyItNowPrice>
+	  <ConvertedStartPrice currencyID="GBP">28.76</ConvertedStartPrice>
+	  <ConvertedReservePrice currencyID="GBP">0.0</ConvertedReservePrice>
+	  <HasReservePrice>false</HasReservePrice>
+	  <StartTime>2011-07-24T23:46:25.000Z</StartTime>
+	  <EndTime>2011-07-24T23:50:47.000Z</EndTime>
+	  <ViewItemURL>http://cgi.sandbox.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&amp;item=110090977477&amp;category=98738</ViewItemURL>
+	  <HasUnansweredQuestions>false</HasUnansweredQuestions>
+	  <HasPublicMessages>false</HasPublicMessages>
+	  <ExpressListing>false</ExpressListing>
+	  
+	</ListingDetails>
+	
+	
+	<ListingDesigner>
+	  <LayoutID>310000</LayoutID>
+	  <ThemeID>310</ThemeID>
+	</ListingDesigner>
+	
+	
+	
+	<ListingDuration>Days_7</ListingDuration>
+	<ListingType>Chinese</ListingType>
+	<Location>Newport</Location>
+	<PaymentMethods>PayPal</PaymentMethods>
+	<PaymentMethods>CCAccepted</PaymentMethods>
+	<PayPalEmailAddress>cazza_1310509099_biz@gmail.com</PayPalEmailAddress>
+	
+	
+	<PrimaryCategory>
+	  <CategoryID>98738</CategoryID>
+	  <CategoryName>Home &amp; Garden:Celebrations &amp; Occasions:Wedding Accessories:Invitations</CategoryName>
+	</PrimaryCategory>
+	
+	
+	<PrivateListing>false</PrivateListing>
+	<Quantity>1</Quantity>
+	<ReservePrice currencyID="GBP">0.0</ReservePrice>
+	
+	
+	<ReviseStatus>
+	  <ItemRevised>false</ItemRevised>
+	</ReviseStatus>
+	
+	
+	<Seller>
+	  <AboutMePage>false</AboutMePage>
+	  <Email>casamientoweddingstationery@gmail.com</Email>
+	  <FeedbackScore>500</FeedbackScore>
+	  <PositiveFeedbackPercent>0.0</PositiveFeedbackPercent>
+	  <FeedbackPrivate>false</FeedbackPrivate>
+	  <FeedbackRatingStar>Purple</FeedbackRatingStar>
+	  <IDVerified>true</IDVerified>
+	  <eBayGoodStanding>true</eBayGoodStanding>
+	  <NewUser>false</NewUser>
+	  <RegistrationDate>2005-01-01T00:00:00.000Z</RegistrationDate>
+	  <Site>UK</Site>
+	  <Status>Confirmed</Status>
+	  <UserID>testuser_cazza</UserID>
+	  <UserIDChanged>true</UserIDChanged>
+	  <UserIDLastChanged>2011-07-12T23:01:16.000Z</UserIDLastChanged>
+	  <VATStatus>VATTax</VATStatus>
+	  
+	  
+	  <SellerInfo>
+		<AllowPaymentEdit>true</AllowPaymentEdit>
+		<CheckoutEnabled>true</CheckoutEnabled>
+		<CIPBankAccountStored>false</CIPBankAccountStored>
+		<GoodStanding>true</GoodStanding>
+		<LiveAuctionAuthorized>false</LiveAuctionAuthorized>
+		<MerchandizingPref>OptIn</MerchandizingPref>
+		<QualifiesForB2BVAT>false</QualifiesForB2BVAT>
+		<StoreOwner>false</StoreOwner>
+		<ExpressEligible>false</ExpressEligible>
+		<ExpressWallet>false</ExpressWallet>
+		<SafePaymentExempt>true</SafePaymentExempt>
+	  </SellerInfo>
+	  
+	  
+	  
+	  <MotorsDealer>false</MotorsDealer>
+	  
+	  
+	</Seller>
+	
+	
+	
+	<SellingStatus>
+	
+	
+	  <BidCount>1</BidCount>
+	  <BidIncrement currencyID="GBP">1.0</BidIncrement>
+	  <ConvertedCurrentPrice currencyID="GBP">28.76</ConvertedCurrentPrice>
+	  <CurrentPrice currencyID="GBP">28.76</CurrentPrice>
+	  
+	  
+	  
+	  <HighBidder>
+		<AboutMePage>false</AboutMePage>
+		<EIASToken>nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4CoAZeCoAqdj6x9nY+seQ==</EIASToken>
+		<Email>david.pettifer@dizzy.co.uk</Email>
+		<FeedbackScore>500</FeedbackScore>
+		<PositiveFeedbackPercent>0.0</PositiveFeedbackPercent>
+		<FeedbackPrivate>false</FeedbackPrivate>
+		<FeedbackRatingStar>Purple</FeedbackRatingStar>
+		<IDVerified>true</IDVerified>
+		<eBayGoodStanding>true</eBayGoodStanding>
+		<NewUser>false</NewUser>
+		<RegistrationDate>2010-01-01T00:00:00.000Z</RegistrationDate>
+		<Site>UK</Site>
+		<Status>Confirmed</Status>
+		<UserID>testuser_dizzy</UserID>
+		<UserIDChanged>true</UserIDChanged>
+		<UserIDLastChanged>2011-07-12T12:22:08.000Z</UserIDLastChanged>
+		<VATStatus>VATTax</VATStatus>
+		<UserAnonymized>false</UserAnonymized>
+	  </HighBidder>
+	  
+	  
+	  
+	  <LeadCount>0</LeadCount>
+	  <MinimumToBid currencyID="GBP">29.76</MinimumToBid>
+	  <QuantitySold>1</QuantitySold>
+	  <ReserveMet>true</ReserveMet>
+	  <SecondChanceEligible>false</SecondChanceEligible>
+	  <ListingStatus>Completed</ListingStatus>
+	</SellingStatus>
+	
+	
+	
+	<ShippingDetails>
+	  <ApplyShippingDiscount>false</ApplyShippingDiscount>
+	  
+	  
+	  <SalesTax>
+		<SalesTaxPercent>0.0</SalesTaxPercent>
+		<ShippingIncludedInTax>false</ShippingIncludedInTax>
+	  </SalesTax>
+	  
+	  
+	  <ShippingServiceOptions>
+		<ShippingService>UK_RoyalMailFirstClassStandard</ShippingService>
+		<ShippingServiceCost currencyID="GBP">0.58</ShippingServiceCost>
+		<ShippingServicePriority>1</ShippingServicePriority>
+		<ExpeditedService>false</ExpeditedService>
+		<ShippingTimeMin>1</ShippingTimeMin>
+		<ShippingTimeMax>2</ShippingTimeMax>
+	  </ShippingServiceOptions>
+	  
+	  
+	  <ShippingType>Flat</ShippingType>
+	  <ThirdPartyCheckout>false</ThirdPartyCheckout>
+	  <SellerExcludeShipToLocationsPreference>false</SellerExcludeShipToLocationsPreference>
+	</ShippingDetails>
+	
+	
+	
+	<ShipToLocations>GB</ShipToLocations>
+	<Site>UK</Site>
+	<StartPrice currencyID="GBP">28.76</StartPrice>
+	<TimeLeft>PT0S</TimeLeft>
+	<Title>66 Personalised Wedding Invitations Simplicity</Title>
+	<HitCount>0</HitCount>
+	<LocationDefaulted>true</LocationDefaulted>
+	<GetItFast>false</GetItFast>
+	<PostalCode>PO301SP</PostalCode>
+	
+	<PictureDetails>
+	  <PhotoDisplay>None</PhotoDisplay>
+	</PictureDetails>
+	
+	<DispatchTimeMax>1</DispatchTimeMax>
+	<ProxyItem>false</ProxyItem>
+	<BuyerGuaranteePrice currencyID="GBP">20000.0</BuyerGuaranteePrice>
+	
+	<ReturnPolicy>
+	  <ReturnsAcceptedOption>ReturnsAccepted</ReturnsAcceptedOption>
+	  <ReturnsAccepted>Returns Accepted</ReturnsAccepted>
+	</ReturnPolicy>
+	
+	<PaymentAllowedSite>UK</PaymentAllowedSite>
+	<PaymentAllowedSite>Ireland</PaymentAllowedSite>
+	<ConditionID>1000</ConditionID>
+	<ConditionDisplayName>New</ConditionDisplayName>
+	<PostCheckoutExperienceEnabled>false</PostCheckoutExperienceEnabled>
+  </Item>
+</GetItemResponse>

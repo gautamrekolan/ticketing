@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110721215514) do
+ActiveRecord::Schema.define(:version => 20110725203606) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"
@@ -38,12 +38,15 @@ ActiveRecord::Schema.define(:version => 20110721215514) do
   
   create_table "customer_addresses", :force => true do |t|
     t.belongs_to :customer
+    t.string :name
+    t.string :company
     t.string :address_1
     t.string :address_2
     t.string :town
     t.string :county
     t.string :country
     t.string :postcode
+    t.string :ebay_address_id
   end
 
   create_table "guests", :force => true do |t|
@@ -80,10 +83,17 @@ ActiveRecord::Schema.define(:version => 20110721215514) do
   create_table "orders", :force => true do |t|
     t.integer  "monogram"
     t.integer  "customer_id"
+    t.integer "customer_address_id"
     t.string "ebay_order_identifier"
     t.string   "status"
     t.text     "notes"
     t.timestamps
+  end
+  
+  create_table "papers", :force => true do |t|
+    t.integer "weight"
+    t.string "texture"
+    t.string "colour"
   end
 
   create_table "product_formats", :force => true do |t|
@@ -102,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20110721215514) do
     t.integer "product_type_id"
     t.integer "product_format_id"
     t.integer "theme_id"
+    t.integer "paper_id"
     t.integer "price"
   end
 

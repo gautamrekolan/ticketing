@@ -1,0 +1,29 @@
+<%= form_for(@paper) do |f| %>
+  <% if @paper.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
+
+      <ul>
+      <% @paper.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :colour %><br />
+    <%= f.text_field :colour %>
+  </div>
+    <div class="field">
+    <%= f.label :texture %><br />
+    <%= f.select :texture, ["Smooth", "Hammered", "Linen"] %>
+  </div>
+    <div class="field">
+    <%= f.label :weight %><br />
+    <%= f.select :weight, [80,100,120,160,180,200,220,240,280,300,320,330,350,380,400]   %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

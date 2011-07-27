@@ -98,14 +98,13 @@
 	  
 		<Name>Melanie Sykes</Name>
 		
-		<Street1>address</Street1>
+		<Street1>116 Kents Hill Road</Street1>
 		
-		<Street2>		
-		</Street2>
+		<Street2>Off High Street</Street2>
 		
-		<CityName>city</CityName>
+		<CityName>South Benfleet</CityName>
 		
-		<StateOrProvince>BUCKINGHAMSHIRE</StateOrProvince>
+		<StateOrProvince>ESSEX</StateOrProvince>
 		
 		<Country>GB</Country>
 		
@@ -113,7 +112,7 @@
 		
 		<Phone>1 800 111 1111</Phone>
 		
-		<PostalCode>HP19 3EQ</PostalCode>
+		<PostalCode>SS7 5PJ</PostalCode>
 		
 		<AddressID>5695388</AddressID>
 		

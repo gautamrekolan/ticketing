@@ -19,6 +19,10 @@
     <%= f.label :product_format_id %><br />
     <%= f.collection_select :product_format_id, ProductFormat.all, :id, :description %>
   </div>
+    <div class="field">
+    <%= f.label :paper_id %><br />
+    <%= f.collection_select :paper_id, Paper.all, :id, :description %>
+  </div>
   <div class="field">
     <%= f.label :theme_id %><br />
     <%= f.collection_select :theme_id, Theme.all, :id, :name %>

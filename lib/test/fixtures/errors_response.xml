@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetItemResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+  <Timestamp>2011-07-26T21:12:28.076Z</Timestamp>
+  <Ack>Failure</Ack>
+  <Errors>
+	<ShortMessage>No &lt;ItemID&gt; exists or &lt;ItemID&gt; is specified as an empty tag.</ShortMessage>
+	<LongMessage>No &lt;ItemID&gt; exists or &lt;ItemID&gt; is specified as an empty tag in the request.</LongMessage>
+	<ErrorCode>10009</ErrorCode>
+	<SeverityCode>Error</SeverityCode>
+	<ErrorParameters ParamID="0">
+	  <Value>ItemID</Value>
+	</ErrorParameters>
+	<ErrorClassification>RequestError</ErrorClassification>
+  </Errors>
+  <Version>729</Version>
+  <Build>E729_INTL_BUNDLED_13521189_R1</Build>
+</GetItemResponse>
