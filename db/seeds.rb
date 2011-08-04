@@ -6,5 +6,4 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-CustomerEmail.create(:address => "billing@dreamhost.com")
-CustomerEmail.create(:address => "ronald1015@gmail.com")
+EbayLastImportedTime.instance.update_attributes(:last_import => 12.hours.ago.iso8601)
