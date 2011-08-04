@@ -19,19 +19,20 @@ GIT
     casamiento_mail_merge (0.1)
 
 GIT
-  remote: git://github.com/timcharper/spork-testunit.git
-  revision: 7ba2cfe33afe2b6c8050ca5f84a24b0571e11e4d
-  specs:
-    spork-testunit (0.0.5)
-      spork (>= 0.6.0)
-
-PATH
-  remote: E:/rails/plugins_and_gems/ebay_api_trading
+  remote: git://github.com/mrdizzy/ebay_trading_api.git
+  revision: 2172357ec61d5d995a2f67ad08e999595177b29c
   specs:
     ebay_api_trading (0.0.1)
       activesupport
       builder
       i18n
+
+GIT
+  remote: git://github.com/timcharper/spork-testunit.git
+  revision: 7ba2cfe33afe2b6c8050ca5f84a24b0571e11e4d
+  specs:
+    spork-testunit (0.0.5)
+      spork (>= 0.6.0)
 
 GEM
   remote: http://rubygems.org/

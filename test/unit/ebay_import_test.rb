@@ -155,17 +155,4 @@ class EbayImportTest < ActiveSupport::TestCase
     
   end
   
-  test "several orders" do
-    theme = FactoryGirl.create(:theme)
-    product = FactoryGirl.create(:product)
-    product2 = FactoryGirl.create(:product)
-    
-    bad_item = mock_xml_response("get_item_response.xml")
-    bad_item.gsub!("[[CASAMIENTO_SKU::30-1]]", "")
-    @order_response = mock_xml_response("3_orders_8_items_2_buyers.xml")
-    register_xml_files(@order_response, bad_item, @item_response, @item_response, @item_response, @item_response, @item_response, @item_response, @item_response)
-    Casamiento::ImportOrders.new 
-
-  end
-
 end
