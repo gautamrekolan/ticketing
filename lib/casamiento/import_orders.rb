@@ -1,7 +1,5 @@
 require 'net/https'
 require 'builder'
-require 'openssl'
-OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 module Casamiento
 	class ImportOrders
 		def initialize	
