@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetOrdersResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+  <Timestamp>2011-08-03T12:07:52.006Z</Timestamp>
+  <Ack>Failure</Ack>
+  <Errors>
+	<ShortMessage>Input data missing</ShortMessage>
+	<LongMessage>Either Order ID, Creation time range, Modified time range or Number of days must be provided.</LongMessage>
+	<ErrorCode>21917149</ErrorCode>
+	<SeverityCode>Error</SeverityCode>
+	<ErrorClassification>RequestError</ErrorClassification>
+  </Errors>
+  <Version>731</Version>
+  <Build>E731_INTL_BUNDLED_13564081_R1</Build>
+</GetOrdersResponse>

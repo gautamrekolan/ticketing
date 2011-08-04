@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GetItemResponse xmlns="urn:ebay:apis:eBLBaseComponents">
-  <Timestamp>2011-07-26T21:12:28.076Z</Timestamp>
+  <Timestamp>2011-08-02T00:15:29.431Z</Timestamp>
   <Ack>Failure</Ack>
   <Errors>
 	<ShortMessage>No &lt;ItemID&gt; exists or &lt;ItemID&gt; is specified as an empty tag.</ShortMessage>
@@ -12,6 +12,6 @@
 	</ErrorParameters>
 	<ErrorClassification>RequestError</ErrorClassification>
   </Errors>
-  <Version>729</Version>
-  <Build>E729_INTL_BUNDLED_13521189_R1</Build>
+  <Version>731</Version>
+  <Build>E731_INTL_BUNDLED_13564081_R1</Build>
 </GetItemResponse>
