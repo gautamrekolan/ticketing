@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(:version => 20110725203606) do
   
   create_table "mail_merge_guests", :force => true do |t|
     t.belongs_to "customer"
-    t.text "address", :limit => 1000
+    t.text "address"
     t.boolean "hand" 
   end
 
