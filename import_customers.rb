@@ -88,5 +88,3 @@ module Casamiento
 	
 	end
 end
-
-Casamiento::ImportOrders.new

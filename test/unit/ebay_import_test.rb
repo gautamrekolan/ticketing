@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require Rails.root.to_s + '/import_customers.rb'
+require Rails.root.to_s + '/lib/casamiento/import_orders'
 require 'fakeweb'
 
 class EbayImportTest < ActiveSupport::TestCase
@@ -149,10 +149,10 @@ class EbayImportTest < ActiveSupport::TestCase
     assert_equal 2, Order.count
     assert_equal 2, Item.count
     order_response = mock_xml_response("get_orders_response_4_items_same_buyer_paid.xml")
-    register_xml_files(order_response, @item_response, @item_response, @item_response, @item_response)
-    
+    register_xml_files(order_response, @item_response, @item_response, @item_response, @item_response)    
     Casamiento::ImportOrders.new
-    
+    assert_equal 2, Order.count
+    assert_equal 4, Item.count
   end
   
 end

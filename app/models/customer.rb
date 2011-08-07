@@ -1,9 +1,9 @@
 class Customer < ActiveRecord::Base
-require 'pp'
+
 	has_many :orders, :dependent => :destroy
-		has_many :mail_merge_guests
-		accepts_nested_attributes_for :mail_merge_guests
-		has_many :customer_addresses
+	has_many :mail_merge_guests
+	accepts_nested_attributes_for :mail_merge_guests
+	has_many :customer_addresses, :dependent => :destroy
 	validates :name, :presence => true
 	
 	def new_guest_fields

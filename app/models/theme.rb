@@ -1,4 +1,4 @@
 class Theme < ActiveRecord::Base
-	validates :name, :uniqueness => true
-has_many :products
+	validates :name, :presence => true, :uniqueness => true
+	has_many :products
 end

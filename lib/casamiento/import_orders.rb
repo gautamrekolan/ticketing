@@ -1,5 +1,6 @@
 require 'net/https'
 require 'builder'
+
 module Casamiento
 	class ImportOrders
 		def initialize	
@@ -42,7 +43,9 @@ module Casamiento
 			
 			order = Order.find_or_initialize_by_ebay_order_identifier(o["OrderID"])
 			order.items << items
+			customer.save!
 			customer.orders << order
+			
 			customer.save!
 		end
 		
