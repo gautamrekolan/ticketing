@@ -33,19 +33,23 @@ module Casamiento
 					customer.customer_addresses << process_address(o["ShippingAddress"])
 				end			
 				customer.ebay_user_id = o["BuyerUserID"]
+				customer.save!
 			end
 			items = []
 			if o["TransactionArray"]["Transaction"].is_a?(Array)				
-				items << o["TransactionArray"]["Transaction"].map { |t| process_transaction(t, o) }
+				items << o["TransactionArray"]["Transaction"].map { |t| process_transaction(t, o, customer) }
 			else
-				items << [ process_transaction(o["TransactionArray"]["Transaction"], o) ]
+				items << [ process_transaction(o["TransactionArray"]["Transaction"], o, customer) ]
 			end
 			
 			order = Order.find_or_initialize_by_ebay_order_identifier(o["OrderID"])
 			order.items << items
 			customer.save!
+			pp Customer.all
+			pp CustomerEmail.all
+			pp CustomerAddress.all
+			puts "\n\n\n\n\n"
 			customer.orders << order
-			
 			customer.save!
 		end
 		
@@ -63,9 +67,13 @@ module Casamiento
 			customer_address
 		end	
 		
-		def process_transaction(t, o)		
+		def process_transaction(t, o, c)		
 			item_id = t["Item"]["ItemID"]
-
+			email = t["Buyer"]["Email"]
+			email = CustomerEmail.find_or_initialize_by_address(email)
+			email.save! if email.new_record?
+			c.customer_emails << email
+			
 			item = @ebay_api.request(:GetItem, :ItemID => item_id, :DetailLevel => "ItemReturnDescription")
 
 			quantity = item["GetItemResponse"]["Item"]["SellingStatus"]["QuantitySold"]

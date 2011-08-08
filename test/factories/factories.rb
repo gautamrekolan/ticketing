@@ -5,14 +5,20 @@ FactoryGirl.define do
 end
 
 FactoryGirl.define do 
+
 	factory :customer do
 		name "David Pettifer"
 		ebay_user_id "mister-dizzy"
 		eias_token "abcdefghijklmnopqrstuvwxyz"
+		customer_addresses { |a| [a.association(:customer_address)] }
+		customer_emails { |e| [ e.association(:customer_email) ] }
+	end
+	
+	factory :customer_email do 
+		address "david.p@dizzy.co.uk"
 	end
 	
 	factory :customer_address do
-		customer
 		name "David Pettifer"
 		company "Dizzy New Media Ltd"
 		address_1 "40 Grange Road"
@@ -21,6 +27,7 @@ FactoryGirl.define do
 		country "United Kingdom"
 		postcode "ME2 4DA"
 	end
+	
 	factory :theme do
 		name
 	end
@@ -39,9 +46,11 @@ FactoryGirl.define do
 		items { |items| [ items.association(:item), items.association(:item) ] }
 		notes "These are some notes about the order from a customer"
 	end
+	
 	factory :monogram do
 		description "Three Squares"
 	end
+	
 	factory :paper do
 	 weight "280"
 		colour "White"
@@ -67,4 +76,5 @@ FactoryGirl.define do
 		theme
 		price 20
 	end
+
 end

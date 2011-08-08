@@ -34,7 +34,7 @@ group :development, :test do
 
 	gem 'auto_migrations', :git => 'git://github.com/mrdizzy/auto_migrations.git'
 	gem 'factory_girl_rails'
-		gem 'spork'
+		gem 'spork', :git => 'git://github.com/timcharper/spork.git'
 		gem 'spork-testunit', :git => 'git://github.com/timcharper/spork-testunit.git'#
 		gem 'mocha', :require => false
 		gem 'fakeweb'

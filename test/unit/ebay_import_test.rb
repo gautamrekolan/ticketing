@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 require Rails.root.to_s + '/lib/casamiento/import_orders'
 require 'fakeweb'
 
@@ -25,6 +25,7 @@ class EbayImportTest < ActiveSupport::TestCase
     
     @customer = FactoryGirl.create(:customer, :eias_token => "abcdefghijklmnopqrstuvwxyz")
     @product = FactoryGirl.create(:product)
+    pp @customer.customer_addresses
 
     @item_response = mock_xml_response('get_item_response.xml')
     @order_response = mock_xml_response('get_orders_response.xml')

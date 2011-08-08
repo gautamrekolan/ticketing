@@ -4,6 +4,7 @@ class Customer < ActiveRecord::Base
 	has_many :mail_merge_guests
 	accepts_nested_attributes_for :mail_merge_guests
 	has_many :customer_addresses, :dependent => :destroy
+	has_many :customer_emails, :dependent => :destroy
 	validates :name, :presence => true
 	
 	def new_guest_fields
