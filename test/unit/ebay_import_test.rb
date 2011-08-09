@@ -1,5 +1,4 @@
 require 'test_helper'
-require Rails.root.to_s + '/lib/casamiento/import_orders'
 require 'fakeweb'
 
 class EbayImportTest < ActiveSupport::TestCase
