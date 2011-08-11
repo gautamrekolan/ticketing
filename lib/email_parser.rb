@@ -54,7 +54,7 @@ attr_reader :ticket_id, :body, :attachments
 			if p.multipart?
 				process_multipart(p)
 			elsif p.content_disposition =~ /attachment/
-				@attachments << p.content_type
+				@attachments << p
 			else
 				process_body(p)
 			end

@@ -10,11 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110811175735) do
+ActiveRecord::Schema.define(:version => 20110811192142) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"
     t.string  "filename"
+	t.binary "content"
     t.string  "content_type"
   end
 

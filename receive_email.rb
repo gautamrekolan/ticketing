@@ -9,25 +9,39 @@
 require 'pp'
 require 'email_parser'
 
-alternative_1 = Mail.read("test/fixtures/incoming/multipart_mixed.eml")
+alternative_1 = Mail.read("test/fixtures/incoming/gmail.eml")
 email = EmailParser.new(alternative_1)
 
-begin
-conversation = Conversation.find(email.ticket_id) 
-rescue ActiveRecord::RecordNotFound
-conversation = Conversation.new
-end
-conversation.messages << Message.new(:content => email.body)
-customer_email = CustomerEmail.find_or_initialize_by_address(email.from.first)
+if !email.ticket_id.blank?
 
-if customer_email.new_record? && conversation.new_record?
+	begin
+		conversation = Conversation.find(email.ticket_id) 
+	rescue ActiveRecord::RecordNotFound
+		conversation = Conversation.new
+	end
+else
+	conversation = Conversation.new
+end
+
+message = Message.new(:content => email.body)
+email.attachments.each do |a|
+	message.attachments.build(:content_type => a.mime_type, :content => a.decoded, :filename => a.filename)
+end
+
+conversation.messages << message
+
+from_addresses = email.from.map do |address|
+	CustomerEmail.find_or_initialize_by_address(address)
+end
+
+if from_addresses.all? { |e| e.new_record? } && conversation.new_record?
 	customer = Customer.new(:name => email.from.first)
-	customer.customer_emails << customer_email
+	customer.customer_emails << from_addresses
 	customer.conversations << conversation
 	customer.save!
-elsif !customer_email.new_record? && conversation.new_record?
+elsif !from_addresses.all? { |e| e.new_record? } && conversation.new_record?
 	customer_email.customer.conversations << conversation
-elsif !conversation.new_record? && customer_email.new_record?
-	conversation.customer.customer_emails << customer_email
+elsif !conversation.new_record? && from_addresses.all? { |e| e.new_record? }
+	conversation.customer.customer_emails << from_addresses
 end
-puts customer_email.address
+

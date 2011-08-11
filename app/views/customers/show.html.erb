@@ -1,0 +1,16 @@
+<html>
+<h1>Customer</h1>
+<p>
+<%= @customer.name %>
+</p>
+
+<h1>Messages</h1>
+
+<% @customer.conversations.each do |c| %>
+
+	<% c.messages.each do |m| %>
+		<%= m.content %>
+	<% end %>
+<% end %>
+
+</html>
