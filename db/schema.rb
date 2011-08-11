@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725203606) do
+ActiveRecord::Schema.define(:version => 20110811175735) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20110725203606) do
 
   create_table "conversations", :force => true do |t|
     t.integer "customer_id"
+    t.boolean "status"
   end
 
   create_table "customer_emails", :force => true do |t|

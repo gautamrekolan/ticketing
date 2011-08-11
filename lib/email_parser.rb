@@ -1,5 +1,7 @@
 class EmailParser
 
+attr_reader :ticket_id, :body, :attachments
+
 	def initialize(email)
 		@email = email
 		@attachments = []
@@ -9,22 +11,16 @@ class EmailParser
 			process_body(@email)
 		end	
 	end
-
-	def body
-		@body
-	end
 	
-
 	def from
 		@email.from
 	end
 	
-	def ticket_id
-		@ticket_id
+	def subject
+		@email.subject
 	end
-
+	
 	def process_multipart(mail)
-
 		if mail.content_type =~ /alternative/
 			process_multipart_alternative(mail.parts)
 		elsif mail.multipart?
@@ -52,11 +48,7 @@ class EmailParser
 			@ticket_id = $1
 		end
 	end
-
-	def attachments
-		@attachments
-	end
-
+	
 	def process_parts(parts)
 		parts.each do |p|
 			if p.multipart?
@@ -69,3 +61,7 @@ class EmailParser
 		end
 	end	
 end
+
+
+#alternative_1 = Mail.read("../test/fixtures/incoming/multipart_mixed.eml")
+#email = EmailParser.new(alternative_1)

@@ -8,7 +8,7 @@ class EbayImportTest < ActiveSupport::TestCase
   end
   
   def mock_xml_response(file)
-    xml_file = File.new(File.join(Rails.root.to_s, 'lib', 'test', 'fixtures', file))
+    xml_file = File.new(File.join(Rails.root.to_s, 'test', 'fixtures', 'ebay_api', file))
     xml = xml_file.read
   end
   
@@ -24,7 +24,6 @@ class EbayImportTest < ActiveSupport::TestCase
     
     @customer = FactoryGirl.create(:customer, :eias_token => "abcdefghijklmnopqrstuvwxyz")
     @product = FactoryGirl.create(:product)
-    pp @customer.customer_addresses
 
     @item_response = mock_xml_response('get_item_response.xml')
     @order_response = mock_xml_response('get_orders_response.xml')
@@ -60,7 +59,7 @@ class EbayImportTest < ActiveSupport::TestCase
     assert_equal "219315010", order.ebay_order_identifier     
   end
 
-  test "adds new address to customer" do 
+  test "adds new address to customer if address doesn't exist" do 
       register_xml_files(@order_response, @item_response, @item_response)
     assert_difference 'CustomerAddress.count', 1 do
             Casamiento::ImportOrders.new
@@ -76,7 +75,7 @@ class EbayImportTest < ActiveSupport::TestCase
     assert_equal "United Kingdom", address.country
     assert_equal "SS7 5PJ", address.postcode
   end 
-
+  
   test "doesn't add existing address" do 
       register_xml_files(@order_response, @item_response, @item_response)
       @customer.customer_addresses.build(:name => "David", :postcode => "PO37 7LU", :ebay_address_id => "5695388")
@@ -155,4 +154,19 @@ class EbayImportTest < ActiveSupport::TestCase
     assert_equal 4, Item.count
   end
   
+  test "adds new address to new order" do 
+    register_xml_files(@order_response, @item_response, @item_response) 
+    Casamiento::ImportOrders.new
+    order = Order.find_by_ebay_order_identifier("219315010")
+    assert_equal 2, order.customer_address.customer_id
+  end
+  
+  test "adds new address to existing customer" do 
+    
+  @order_response.gsub!("nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4CoAZeCoAqdj6x9nY+seQ==", "abcdefghijklmnopqrstuvwxyz") 
+    register_xml_files(@order_response, @item_response, @item_response) 
+    Casamiento::ImportOrders.new
+    order = Order.find_by_ebay_order_identifier("219315010")
+    assert_equal 1, order.customer_address.customer_id
+  end
 end

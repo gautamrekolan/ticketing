@@ -32,12 +32,14 @@ module Casamiento
 						customer.name = o["BuyerUserID"] 
 					else
 						customer.name = o["ShippingAddress"]["Name"]
-						customer.customer_addresses << process_address(o["ShippingAddress"])
 					end			
 				customer.ebay_user_id = o["BuyerUserID"]
 				customer.save!
 				end
+				address = process_address(o["ShippingAddress"])
+				address.customer = customer
 				order.customer = customer
+				order.customer_address = address
 			end
 			items = []
 			if o["TransactionArray"]["Transaction"].is_a?(Array)				

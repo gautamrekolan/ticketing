@@ -13,24 +13,21 @@ alternative_1 = Mail.read("test/fixtures/incoming/multipart_mixed.eml")
 email = EmailParser.new(alternative_1)
 
 begin
-	conversation = Conversation.find(email.ticket_id)
-	customer_email = CustomerEmail.find_or_initialize_by_address(email.from)
+conversation = Conversation.find(email.ticket_id) 
 rescue ActiveRecord::RecordNotFound
-	conversation = nil
+conversation = Conversation.new
 end
+conversation.messages << Message.new(:content => email.body)
+customer_email = CustomerEmail.find_or_initialize_by_address(email.from.first)
 
-if conversation.nil? && !customer_email.nil? && !customer_email.customer.nil?
-	conversation = Conversation.new
-	customer_email.customer.conversations << conversation	
-elsif conversation.nil? && customer_email.nil?
-	conversation = Conversation.new
-	customer_email = CustomerEmail.new(:address => email.from)
-	customer = Customer.new(:name => alternative_1[:from].display_names)
+if customer_email.new_record? && conversation.new_record?
+	customer = Customer.new(:name => email.from.first)
 	customer.customer_emails << customer_email
 	customer.conversations << conversation
 	customer.save!
+elsif !customer_email.new_record? && conversation.new_record?
+	customer_email.customer.conversations << conversation
+elsif !conversation.new_record? && customer_email.new_record?
+	conversation.customer.customer_emails << customer_email
 end
-
-conversation.messages << Message.new(:content => email.body)
-pp customer
-pp customer.conversations
+puts customer_email.address
