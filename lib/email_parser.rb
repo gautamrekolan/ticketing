@@ -1,4 +1,4 @@
-class IncomingMailProcessor
+class EmailParser
 
 	def initialize(email)
 		@email = email
@@ -69,10 +69,3 @@ class IncomingMailProcessor
 		end
 	end	
 end
-puts "Starting"
-
-puts email.attachments
-puts email.body
-puts email.ticket_id
-puts email.from
-

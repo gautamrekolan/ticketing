@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: git://github.com/mrdizzy/ebay_trading_api.git
-  revision: 0fe3e06a3ce4640fc9d1e1e1099854b9f9730389
+  revision: d2f662f8d32d9e3db915a7ee82686394e812ebfd
   specs:
     ebay_api_trading (0.0.1)
       activesupport

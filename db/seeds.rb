@@ -6,7 +6,7 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-EbayLastImportedTime.instance.update_attributes(:last_import => 5.days.ago.iso8601)
+EbayLastImportedTime.instance.update_attributes(:last_import => 6.days.ago.iso8601)
 simplicity = Theme.create(:name => "Simplicity")
 day_invitation = ProductType.create(:description => "Day Invitation")
 a6_flat = ProductFormat.create(:width => 105, :height => 148, :description => "A6 flat", :style => "FLAT")
