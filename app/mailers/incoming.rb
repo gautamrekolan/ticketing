@@ -3,40 +3,56 @@ class Incoming < ActionMailer::Base
 
   def receive(email)
     @attachments = []
-	  if email.multipart?
+    process_email(email)
+		 
+    message = Message.new(:content => @body, :datetime => email.date)
+    @conversation.messages << message
+    message.attachments = @attachments
+
+	  from_addresses = email[:from].addresses.map do |address|
+		  CustomerEmail.find_or_initialize_by_address(address)
+	  end
+
+    unless email[:reply_to].nil? 
+      reply_to_addresses = email[:reply_to].addresses.map do |address|
+        CustomerEmail.find_or_initialize_by_address(address)
+      end
+    end
+
+    if reply_to_addresses.nil?
+      all_addresses = from_addresses
+    else
+      all_addresses = reply_to_addresses + from_addresses
+    end 
+
+	  if all_addresses.all? { |e| e.new_record? } && @conversation.new_record?
+		  customer = Customer.new(:name => email[:from].display_names.first)
+	  	customer.customer_emails << all_addresses
+		  customer.conversations << @conversation
+	  	customer.save!
+	  elsif !all_addresses.all? { |e| e.new_record? } && @conversation.new_record?
+		  new_email_addresses = all_addresses.select { |e| e.new_record? }
+	  	existing_addresses = all_addresses.select { |e| !e.new_record? }
+		  existing_addresses.first.customer.conversations << @conversation
+	  	existing_addresses.first.customer.customer_emails << new_email_addresses		
+		
+	  elsif !@conversation.new_record? && all_addresses.all? { |e| e.new_record? }
+		  @conversation.customer.customer_emails << all_addresses
+	  end
+    
+    message.reply_to_addresses << reply_to_addresses unless reply_to_addresses.nil?
+    message.from_addresses << from_addresses
+
+  end
+  
+  def process_email(email)  
+  	if email.multipart?
 			process_multipart(email)
 		else
 			process_body(email)
 		end	
-		 
-    message = Message.new(:content => @body)
-    @conversation.messages << message
-    message.attachments = @attachments
-
-	  from_addresses = email.from.map do |address|
-		  CustomerEmail.find_or_initialize_by_address(address)
-	  end
-
-	  if from_addresses.all? { |e| e.new_record? } && @conversation.new_record?
-		  customer = Customer.new(:name => email.from.first)
-	  	customer.customer_emails << from_addresses
-		  customer.conversations << @conversation
-	  	customer.save!
-	  elsif !from_addresses.all? { |e| e.new_record? } && @conversation.new_record?
-		  new_email_addresses = from_addresses.select { |e| e.new_record? }
-	  	existing_addresses = from_addresses.select { |e| !e.new_record? }
-		  existing_addresses.first.customer.conversations << @conversation
-	  	existing_addresses.first.customer.customer_emails << new_email_addresses		
-		
-	  elsif !@conversation.new_record? && from_addresses.all? { |e| e.new_record? }
-		  @conversation.customer.customer_emails << from_addresses
-	  end
   end
-  
-  def start_or_find_conversation
-  	  
-  end
-  
+
 	def process_multipart(mail)
 		if mail.content_type =~ /alternative/
 			process_multipart_alternative(mail.parts)

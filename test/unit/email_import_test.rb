@@ -36,5 +36,11 @@ class EmailImportTest < ActiveSupport::TestCase
 		assert_equal 1, Conversation.count
 		assert_equal 1, Message.count
 	end
+
+	def test_reply_to_addresses
+		email = File.read(Rails.root.to_s + "/test/fixtures/incoming/multipart_alternative_topman.eml")
+		Incoming.receive(email)
+		pp Message.first.reply_to_addresses		
+	end
   
 end

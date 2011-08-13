@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110813113350) do
+ActiveRecord::Schema.define(:version => 20110813172704) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(:version => 20110813113350) do
     t.integer "item_id"
   end
 
+  create_table "messages_reply_to_addresses", :id => false, :force => true do |t|
+    t.integer "reply_to_address_id"
+    t.integer "customer_email_id"
+  end
+
+  create_table "messages_from_addresses", :id => false, :force => true do |t|
+    t.integer "from_address_id"
+    t.integer "customer_email_id"
+  end
+
   create_table "items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "price"
@@ -76,7 +86,6 @@ ActiveRecord::Schema.define(:version => 20110813113350) do
     t.text    "content"
     t.integer "conversation_id"
     t.date    "datetime"
-    t.integer "reply_to_address_id"
   end
 
   create_table "monograms", :force => true do |t|
