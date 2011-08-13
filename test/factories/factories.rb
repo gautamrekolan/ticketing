@@ -13,6 +13,7 @@ FactoryGirl.define do
 		customer_addresses { |a| [a.association(:customer_address)] }
 		customer_emails { |e| [ e.association(:customer_email) ] }
 	end
+
 	
 	factory :customer_email do 
 		address "david.p@dizzy.co.uk"

@@ -1,0 +1,71 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: david.pettifer@gmail.com
+Received: by 10.229.45.141 with SMTP id e13cs43818qcf;
+        Thu, 11 Aug 2011 19:46:57 -0700 (PDT)
+Received: from mr.google.com ([10.227.206.145])
+        by 10.227.206.145 with SMTP id fu17mr347057wbb.108.1313117217571 (num_hops = 1);
+        Thu, 11 Aug 2011 19:46:57 -0700 (PDT)
+Received: by 10.227.206.145 with SMTP id fu17mr272133wbb.108.1313117119999;
+        Thu, 11 Aug 2011 19:45:19 -0700 (PDT)
+Return-Path: <shopperemailfailures@worldpay.com>
+Received: from smtp-in-110.livemail.co.uk (smtp-in-110.livemail.co.uk [213.171.216.171])
+        by mx.google.com with ESMTP id fo4si7080152wbb.2.2011.08.11.19.45.19;
+        Thu, 11 Aug 2011 19:45:19 -0700 (PDT)
+Received-SPF: neutral (google.com: 213.171.216.171 is neither permitted nor denied by best guess record for domain of shopperemailfailures@worldpay.com) client-ip=213.171.216.171;
+Authentication-Results: mx.google.com; spf=neutral (google.com: 213.171.216.171 is neither permitted nor denied by best guess record for domain of shopperemailfailures@worldpay.com) smtp.mail=shopperemailfailures@worldpay.com
+Received: from Postfix filter 42a77884ce2a0a03efc6bb50a6dcdb21 (localhost.localdomain [127.0.0.1])
+	by smtp-in-110.livemail.co.uk (Postfix) with SMTP id 62E41D805B
+	for <david.pettifer@dizzy.co.uk>; Fri, 12 Aug 2011 03:45:19 +0100 (BST)
+Received: from mm2imsmr1p.rbsworldpay.com (mm2imsmr1p.rbsworldpay.com [155.136.16.169])
+	by smtp-in-110.livemail.co.uk (Postfix) with ESMTP id 55453D805B
+	for <david.pettifer@dizzy.co.uk>; Fri, 12 Aug 2011 03:45:19 +0100 (BST)
+Received: from [11.246.32.30] (helo=mm2imscs1p)
+	by mm2imsmr1p.rbsworldpay.com with esmtp (Exim 4.69)
+	(envelope-from <shopperemailfailures@worldpay.com>)
+	id 1QrhkN-00047M-0f
+	for david.pettifer@dizzy.co.uk; Fri, 12 Aug 2011 02:45:19 +0000
+Received: from [127.0.0.1] (helo=localhost)
+	by mm2imscs1p with smtp (Exim 4.69)
+	(envelope-from <shopperemailfailures@worldpay.com>)
+	id 1QrhkM-0006wz-Tn
+	for david.pettifer@dizzy.co.uk; Fri, 12 Aug 2011 02:45:18 +0000
+Content-Type: text/plain; charset=UTF-8
+To: david.pettifer@dizzy.co.uk
+Subject: FuturePay Payment Failure                             
+MIME-Version: 1.0
+Reply-To: enquiries@nusextra.co.uk
+From: shopper@worldpay.com
+Date: Fri, 12 Aug 2011 02:45:18 GMT
+Cc: 
+Message-Id: <20110812024519.55453D805B@smtp-in-110.livemail.co.uk>
+X-Original-To: david.pettifer@dizzy.co.uk
+
+IMPORTANT: The following transaction has been rejected, so we are unable to process the payment.
+
+Agreement ID:                                               8415552
+
+
+Merchant reference:                                         EXT10197
+
+
+Merchant Name:                                              NUS Extra
+Payment number:                                             2
+
+Reason for payment failure: Card failed
+
+The most common reasons for payment failure are that:
+
+* Your card has expired/been cancelled.
+* The credit limit on your card has been reached.
+* Your card details have changed but your agreement has not been updated
+
+Visit our Shopper Help page at http://www.worldpay.com/shopper if:
+
+* You have a query regarding the billing of your agreement
+* You want to login to the Shopper Management System to check your FuturePay agreement details, cancel the agreement, or make changes to your card, contact or username/password details.
+
+If you have forgotten your username and password, check the confirmation email we sent to you when this agreement was set up. Alternatively, use the "Forgotten your password?" link on the Shopper Help page to request a replacement. 
+
+Thank you for using WorldPay, processing payments securely on behalf of NUS Extra. 
+
+
