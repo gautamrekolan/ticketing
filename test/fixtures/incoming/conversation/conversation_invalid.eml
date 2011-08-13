@@ -1,0 +1,26 @@
+Content-Type: multipart/alternative; boundary=20cf301af45d95564f04aa42251a
+Content-Transfer-Encoding: binary
+MIME-Version: 1.0
+From: DreamHost Billing Team <billing@dreamhost.com>, "Lisa Lashes" <lashes@noble.com>
+To: david.pettifer@dizzy.co.uk, lewis@dizzy.co.uk, jamie@dizzy.co.uk
+Cc: cc@dizzy.co.uk, nocc@dizzy.co.uk
+Reply-To: Gary Cooley <rebelcoo7@hotmail.com>
+Subject: This is a test email
+Message-Id: <20110520085113.694294828D@pokey.sd.dreamhost.com>
+Date: Fri, 20 May 2011 01:51:13 -0700 (PDT)
+
+This is a multi-part message in MIME format...
+
+--20cf301af45d95564f04aa42251a
+Content-Type: text/plain; charset=ISO-8859-1
+
+Blah blah blah
+
+--20cf301af45d95564f04aa42251a
+Content-Type: text/html; charset=ISO-8859-1
+
+
+CASAMIENTO[100]
+<br>Blah blah blah<br>
+
+--20cf301af45d95564f04aa42251a--

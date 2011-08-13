@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110813172704) do
+ActiveRecord::Schema.define(:version => 20110813222012) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20110813172704) do
   create_table "messages", :force => true do |t|
     t.text    "content"
     t.integer "conversation_id"
-    t.date    "datetime"
+    t.datetime    "datetime"
   end
 
   create_table "monograms", :force => true do |t|

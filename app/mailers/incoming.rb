@@ -80,7 +80,7 @@ class Incoming < ActionMailer::Base
 		if @body =~ /CASAMIENTO\[(.*)\]/
 			conversation_id = $1
 		end
-		
+
     begin
 	    @conversation = Conversation.find(conversation_id) 
     rescue ActiveRecord::RecordNotFound
