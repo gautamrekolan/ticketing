@@ -50,51 +50,55 @@ class Incoming < ActionMailer::Base
 
   end
   
-  def process_email(email) 
+  def process_email(email)  
+	puts email.text_part.decoded
   	if email.multipart?
-		process_body(email)
-		process_multipart(email)
-	else
-		@body = email.body.decoded
-		decode(email.charset)
-	end
+			process_multipart(email)
+		else
+			process_body(email)
+		end	
   end
 
 	def process_multipart(mail)
-		if mail.multipart?
+
+		if mail.content_type =~ /alternative/ && mail.content_type !~ /related/
+			process_multipart_alternative(mail.parts)
+		elsif mail.multipart?
 			process_parts(mail.parts)
 		else
 			raise Exception, "Unknown content_type: #{mail.content_type}"
 		end
 	end
 
-	def decode(charset)
-		
-		if @body.encoding.to_s == "ASCII-8BIT"
-			@body.force_encoding(charset).encode!('utf-8')
-		end	
-		@body.strip!
-		@body.gsub!("\r\n", "\n")
-if @body =~ /CASAMIENTO\[(.*)\]/
-			conversation_id = $1
-		end    
-		begin
-		    @conversation = Conversation.find(conversation_id) 
-	 	  rescue ActiveRecord::RecordNotFound
-		    @conversation = Conversation.new
-	    	end	
+	def process_multipart_alternative(parts)
+		parts.each do |p|
+			if p.content_type =~ /plain/
+				process_body(p)
+				break
+			elsif p.content_type =~ /html/
+				process_body(p)
+				break
+			end
+		end
 	end
 
 	def process_body(mail)
 
-		if mail.text_part
-			charset = mail.text_part.charset
-			@body = mail.text_part.decoded 
-		elsif mail.html_part
-			charset = mail.html_part.charset
-			@body = mail.html_part.decoded
+		@body = mail.body.decoded
+
+		if @body =~ /CASAMIENTO\[(.*)\]/
+			conversation_id = $1
+		end
+
+		if @body.encoding.to_s == "ASCII-8BIT"
+			@body.force_encoding(mail.charset).encode!('utf-8')
 		end	
-		decode(charset)	
+
+    begin
+	    @conversation = Conversation.find(conversation_id) 
+    rescue ActiveRecord::RecordNotFound
+	    @conversation = Conversation.new
+    end
 	end
 	
 	def process_parts(parts)
@@ -103,7 +107,8 @@ if @body =~ /CASAMIENTO\[(.*)\]/
 				process_multipart(p)
 			elsif p.content_disposition =~ /attachment/
 				@attachments << Attachment.new(:content_type => p.mime_type, :content => p.decoded, :filename => p.filename)
-			
+			else
+				process_body(p)
 			end
 		end
 	end	

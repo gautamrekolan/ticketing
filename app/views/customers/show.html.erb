@@ -9,7 +9,9 @@
 <% @customer.conversations.each do |c| %>
 
 	<% c.messages.each do |m| %>
-		<%= m.content %>
+<p>
+		<textarea rows="20" cols="100"><%= m.content %></textarea></p>
+<hr/>
 	<% end %>
 <% end %>
 
