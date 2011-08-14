@@ -7,11 +7,9 @@ class Incoming < ActionMailer::Base
     process_email(email)
 		 
     message = Message.new(:content => @body, :datetime => email.date)
-	begin
+
     @conversation.messages << message
-	rescue
-		
-	end
+
     message.attachments = @attachments
 
 	  from_addresses = email[:from].addresses.map do |address|
@@ -52,12 +50,12 @@ class Incoming < ActionMailer::Base
   
   def process_email(email) 
   	if email.multipart?
-		process_body(email)
-		process_multipart(email)
-	else
-		@body = email.body.decoded
-		decode(email.charset)
-	end
+	  	process_body(email)
+		  process_multipart(email)
+	  else
+		  @body = email.body.decoded
+	  	decode(email.charset)
+	  end
   end
 
 	def process_multipart(mail)
@@ -68,32 +66,31 @@ class Incoming < ActionMailer::Base
 		end
 	end
 
-	def decode(charset)
-		
+	def decode(charset)	
+
 		if @body.encoding.to_s == "ASCII-8BIT"
 			@body.force_encoding(charset).encode!('utf-8')
 		end	
+
 		@body.strip!
 		@body.gsub!("\r\n", "\n")
-if @body =~ /CASAMIENTO\[(.*)\]/
+
+    if @body =~ /CASAMIENTO\[(.*)\]/
 			conversation_id = $1
 		end    
+
 		begin
-		    @conversation = Conversation.find(conversation_id) 
-	 	  rescue ActiveRecord::RecordNotFound
-		    @conversation = Conversation.new
-	    	end	
+	    @conversation = Conversation.find(conversation_id) 
+ 	  rescue ActiveRecord::RecordNotFound
+	    @conversation = Conversation.new
+   	end	
+
 	end
 
 	def process_body(mail)
-
-		if mail.text_part
-			charset = mail.text_part.charset
-			@body = mail.text_part.decoded 
-		elsif mail.html_part
-			charset = mail.html_part.charset
-			@body = mail.html_part.decoded
-		end	
+    mail = mail.text_part || mail.html_part
+			charset = mail.charset
+			@body = mail.decoded 
 		decode(charset)	
 	end
 	
