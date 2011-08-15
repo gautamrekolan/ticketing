@@ -55,7 +55,7 @@ class Incoming < ActionMailer::Base
 	  else
 		  @body = email.body.decoded
 	  	decode(email.charset)
-	  end
+	  endcat 
   end
 
 	def process_multipart(mail)
