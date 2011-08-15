@@ -1,4 +1,4 @@
-require 'pp'
+
 class Incoming < ActionMailer::Base
   default :from => "from@example.com"
 
@@ -82,7 +82,7 @@ puts @body
 		end    
 
 		begin
-	    @conversation = Conversation.find(conversation_id) 
+	    @conversation = Conversation.find(conversation_igid) 
  	  rescue ActiveRecord::RecordNotFound
 	    @conversation = Conversation.new
    	end	
