@@ -73,7 +73,7 @@ puts charset
 			@body.force_encoding(charset).encode!('utf-8')
 		end	
   puts @body.encoding
-puts @body
+
 		@body.strip!
 		@body.gsub!("\r\n", "\n")
 
@@ -93,7 +93,7 @@ puts @body
     mail = mail.text_part || mail.html_part
 			charset = mail.charset
 			@body = mail.decoded 
-puts @body
+puts charset
 		decode(charset)	
 	end
 	
