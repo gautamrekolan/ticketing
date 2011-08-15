@@ -67,6 +67,7 @@ class Incoming < ActionMailer::Base
 	end
 
 	def decode(charset)	
+puts "--------------------------------------------------------------------------"
 puts charset
 		if @body.encoding.to_s == "ASCII-8BIT"
 			@body.force_encoding(charset).encode!('utf-8')
