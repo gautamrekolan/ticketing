@@ -93,6 +93,7 @@ puts @body
     mail = mail.text_part || mail.html_part
 			charset = mail.charset
 			@body = mail.decoded 
+puts @body
 		decode(charset)	
 	end
 	
