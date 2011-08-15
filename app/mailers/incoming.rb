@@ -82,7 +82,7 @@ puts charset
 		end    
 
 		begin
-	    @conversation = Conversation.find(conversation_igid) 
+	    @conversation = Conversation.find(conversation_id) 
  	  rescue ActiveRecord::RecordNotFound
 	    @conversation = Conversation.new
    	end	
