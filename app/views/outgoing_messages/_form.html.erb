@@ -1,0 +1,28 @@
+<%= form_for(@outgoing_message) do |f| %>
+  <% if @outgoing_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@outgoing_message.errors.count, "error") %> prohibited this outgoing_message from being saved:</h2>
+
+      <ul>
+      <% @outgoing_message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% @outgoing_message.sent_to_addresses do |s| %>
+    <%= s.address %>
+    <% end %>
+  <%= f.collection_select :sent_to_address_ids, @outgoing_message.sent_to_addresses, :id, :address, {}, { :multiple => true } %>
+  <div class="field">
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

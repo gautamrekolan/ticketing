@@ -1,4 +1,6 @@
 Ticketing::Application.routes.draw do
+  resources :outgoing_messages
+
   resources :guests
 
   resources :product_formats
@@ -30,7 +32,9 @@ Ticketing::Application.routes.draw do
   resources :customer_emails
 
   resources :conversations
-  resources :messages
+  resources :messages do
+    resources :outgoing_messages
+  end
   resources :attachments
 
   # The priority is based upon order of creation:

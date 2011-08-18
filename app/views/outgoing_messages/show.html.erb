@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Subject:</b>
+  <%= @outgoing_message.content %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @outgoing_message.subject %>
+</p>
+
+
+<%= link_to 'Edit', edit_outgoing_message_path(@outgoing_message) %> |
+<%= link_to 'Back', outgoing_messages_path %>

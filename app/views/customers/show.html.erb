@@ -5,14 +5,9 @@
 </p>
 
 <h1>Messages</h1>
-
-<% @customer.conversations.each do |c| %>
-
-	<% c.messages.each do |m| %>
-<p>
-		<textarea rows="20" cols="100"><%= m.content %></textarea></p>
-<hr/>
-	<% end %>
+<ul>
+<% @customer.conversations.each do |conversation| %>
+  <li><%= link_to conversation.subject, conversation %></li>
 <% end %>
-
+</ul>
 </html>

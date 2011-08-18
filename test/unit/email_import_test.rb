@@ -61,6 +61,13 @@ class EmailImportTest < ActiveSupport::TestCase
     assert_equal "DreamHost Billing Team", Customer.first.name    
   end
 
+  def test_store_large_email_correctly
+    mail = Mail.read(Rails.root.to_s + "/test/fixtures/incoming/long_email_with_attachment.eml")
+	  raw_source = mail.raw_source
+    Incoming.receive(mail.raw_source)
+    assert_equal raw_source, RawEmail.first.content, "Not identical"
+  end 
+
   def test_create_message_with_attachments
 
   end

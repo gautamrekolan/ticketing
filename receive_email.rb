@@ -7,20 +7,22 @@
 #end
 #class ReceiveEmail
 #	def self.import
-#Mail.defaults do
-#   retriever_method :imap, { :address => "imap.googlemail.com",
-#   :port => 993,
-#   :user_name => 'casamientoweddingstationery@gmail.com',
-#   :password => 'world667',
-#   :enable_ssl => true }
- #  end
+Mail.defaults do
+   retriever_method :imap, { :address => "imap.googlemail.com",
+   :port => 993,
+   :user_name => 'casamientoweddingstationery@gmail.com',
+   :password => 'world667',
+   :enable_ssl => true }
+  end
 
-#mail = Mail.find(:what => :first, :count => 42, :order => :asc) 
 
-#mail.each do |m|
-#	Incoming.receive(m)
-#end
-#end
-m = Mail.read(Rails.root.to_s + "/test/fixtures/incoming/dear.eml")
-Incoming.receive(m)
+
+mail = Mail.find(:count => 100, :order => :desc, :mailbox => '[Gmail]/All Mail') 
+
+mail.each do |m|
+	Incoming.receive(m)
+end
+
+#m = Mail.read(Rails.root.to_s + "/test/fixtures/incoming/dear.eml")
+#Incoming.receive(m)
 #end

@@ -1,0 +1,25 @@
+<h1>Listing outgoing_messages</h1>
+
+<table>
+  <tr>
+    <th>String</th>
+    <th>Integer</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @outgoing_messages.each do |outgoing_message| %>
+  <tr>
+    <td><%= outgoing_message.string %></td>
+    <td><%= outgoing_message.integer %></td>
+    <td><%= link_to 'Show', outgoing_message %></td>
+    <td><%= link_to 'Edit', edit_outgoing_message_path(outgoing_message) %></td>
+    <td><%= link_to 'Destroy', outgoing_message, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Outgoing message', new_outgoing_message_path %>

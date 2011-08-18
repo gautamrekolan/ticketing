@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110813222012) do
+ActiveRecord::Schema.define(:version => 20110816133036) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"
@@ -62,6 +62,11 @@ ActiveRecord::Schema.define(:version => 20110813222012) do
     t.integer "guest_id"
     t.integer "item_id"
   end
+  
+  create_table "customer_emails_outgoing_messages", :id => false, :force => true do |t|
+    t.integer "outgoing_message_id"
+    t.integer "customer_email_id"
+  end
 
   create_table "messages_reply_to_addresses", :id => false, :force => true do |t|
     t.integer "reply_to_address_id"
@@ -72,7 +77,13 @@ ActiveRecord::Schema.define(:version => 20110813222012) do
     t.integer "from_address_id"
     t.integer "customer_email_id"
   end
+  
+  create_table "outgoing_messages", :force => true do |t|
+    t.string "subject"
+    t.text "content"
 
+  end
+  
   create_table "items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "price"
@@ -84,12 +95,18 @@ ActiveRecord::Schema.define(:version => 20110813222012) do
 
   create_table "messages", :force => true do |t|
     t.text    "content"
+    t.string "subject"
     t.integer "conversation_id"
     t.datetime    "datetime"
   end
 
   create_table "monograms", :force => true do |t|
     t.string   "description"
+  end
+
+	create_table "raw_emails", :force => true do |t|
+    t.string "content"
+    t.belongs_to "message"
   end
 
   create_table "orders", :force => true do |t|
@@ -107,7 +124,12 @@ ActiveRecord::Schema.define(:version => 20110813222012) do
     t.string "texture"
     t.string "colour"
   end
-
+  create_table "outgoing_messages", :force => true do |t|
+    t.string "subject"
+    t.text "content"
+    t.belongs_to :message
+    t.timestamps
+  end
   create_table "product_formats", :force => true do |t|
     t.string   "description"
     t.integer  "height"
