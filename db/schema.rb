@@ -69,12 +69,12 @@ ActiveRecord::Schema.define(:version => 20110816133036) do
   end
 
   create_table "messages_reply_to_addresses", :id => false, :force => true do |t|
-    t.integer "reply_to_address_id"
+    t.integer "message_id"
     t.integer "customer_email_id"
   end
 
   create_table "messages_from_addresses", :id => false, :force => true do |t|
-    t.integer "from_address_id"
+    t.integer "message_id"
     t.integer "customer_email_id"
   end
   

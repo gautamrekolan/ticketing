@@ -1,35 +1,27 @@
 class Incoming < ActionMailer::Base
-
+require 'pp'
   def receive(email)
     @attachments = []
     @email = email
     @subject = email.subject.gsub(/Re:/i, '').strip
-    
+    	  
+    @all_addresses = @email[:from].addresses + @email[:reply_to].addresses unless @email[:reply_to].nil?
+	  @all_addresses ||= @email[:from].addresses
     process_addresses
     process_email
-    find_conversation
+    
+    begin
+      find_conversation
+    rescue ActiveRecord::RecordNotFound
+	    @conversation = @customer.conversations.build
+   	end	
     
     message = @conversation.messages.build(:content => @body, :datetime => email.date, :subject => @subject, :attachments => @attachments)
+    message.from_addresses = @from_addresses
+    message.reply_to_addresses = @reply_to_addresses unless @reply_to_addresses.nil?
     message.build_raw_email(:content => email.raw_source)
-
-	  if @all_addresses.all? { |e| e.new_record? } && @conversation.new_record?
-		  customer = Customer.new(:name => email[:from].display_names.first || email[:from].addresses.first )
-	  	customer.customer_emails << @all_addresses
-		  customer.conversations << @conversation
-	  	customer.save!
-	  	
-	  elsif !@all_addresses.all? { |e| e.new_record? } && @conversation.new_record?
-		  new_email_addresses = @all_addresses.select { |e| e.new_record? }
-	  	existing_addresses = @all_addresses.select { |e| !e.new_record? }
-		  existing_addresses.first.customer.conversations << @conversation
-	  	existing_addresses.first.customer.customer_emails << new_email_addresses		
-		
-	  elsif !@conversation.new_record? && @all_addresses.all? { |e| e.new_record? }
-		  @conversation.customer.customer_emails << @all_addresses
-	  end
-    
-    message.reply_to_addresses << @reply_to_addresses unless @reply_to_addresses.nil?
-    message.from_addresses << @from_addresses
+    @customer.save! if @customer.new_record?
+    @conversation.save!
   end
   
   def process_email
@@ -41,44 +33,34 @@ class Incoming < ActionMailer::Base
 	  end
   end
   
-  def process_addresses
-    @from_addresses = @email[:from].addresses.map do |address|
-		  CustomerEmail.find_or_initialize_by_address(address)
-	  end
+  def process_addresses      
+      @customer = Customer.joins(:customer_emails).where(:customer_emails => { :address => @all_addresses }).first
 
-    unless @email[:reply_to].nil? 
-      @reply_to_addresses = @email[:reply_to].addresses.map do |address|
-        CustomerEmail.find_or_initialize_by_address(address)
+      if @customer.blank?
+        @customer = Customer.new(:name => @email[:from].display_names.first || @email[:from].addresses.first)
       end
+      @from_addresses = CustomerEmail.where(:address => @email[:from].addresses)
+      addresses_to_create = @email[:from].addresses - @from_addresses.map(&:address)
+      @from_addresses = @from_addresses + addresses_to_create.collect { |a| CustomerEmail.new(:address => a, :customer => @customer) }
+
+    if @email[:reply_to]
+      @reply_to_addresses = CustomerEmail.where(:address => @email[:reply_to].addresses)
+      addresses_to_create = @email[:reply_to].addresses - @reply_to_addresses.map(&:address)
+      @reply_to_addresses = @reply_to_addresses + addresses_to_create.collect { |a| CustomerEmail.new(:address => a, :customer => @customer) }
     end
 
-    if @reply_to_addresses.nil?
-      @all_addresses = @from_addresses
-    else
-      @all_addresses = @reply_to_addresses + @from_addresses
-    end 
   end
 
 	def find_conversation
-    if @body =~ /CASAMIENTO\[(.*)\]/
+    if @body =~ /CASAMIENTO\[(.*)\]/ # find on ticket
 			conversation_id = $1
-	  else
-	    related = Message.find_all_by_subject(@subject)	 
-	    related.each do |r|
-	      addresses = r.all_addresses + @all_addresses unless related.blank?
-	      if addresses && addresses.uniq!
-	        conversation_id = r.conversation_id
-	        break
-	      end
-	    end
+			@conversation = Conversation.find(conversation_id) 
+	  else # on subject
+	  @conversation = Conversation.includes(:messages => :from_addresses).where(:customer_emails => { :address => @all_addresses }).where(:messages => { :subject => @subject } ).first
 		end    
-
-		begin
-	    @conversation = Conversation.find(conversation_id) 
- 	  rescue ActiveRecord::RecordNotFound
-	    @conversation = Conversation.new
-   	end	
-
+		if @conversation.blank?
+		  @conversation = @customer.conversations.build
+		end
 	end
 
 	def process_body

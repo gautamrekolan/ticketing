@@ -13,3 +13,15 @@ a6_flat = ProductFormat.create(:width => 105, :height => 148, :description => "A
 paper = Paper.new(:texture => "Smooth", :colour => "White", :weight => 80)
 product = Product.new(:theme => simplicity, :product_format => a6_flat, :product_type => day_invitation, :paper => paper, :price => 10)
 simplicity.products << product
+
+customer = Customer.create!(:name => "David Pettifer")
+address1 = customer.customer_emails.create(:address => "david.pettifer@dizzy.co.uk")
+address2 = customer.customer_emails.create(:address => "happyhele@gmail.com")
+address3 = customer.customer_emails.create(:address => "davinaj3000@yahoo.com")
+address4 = customer.customer_emails.create(:address => "david.p@casamiento-cards.co.uk")
+address5 = customer.customer_emails.create(:address => "rebelcoo7@hotmail.com")
+conversation = customer.conversations.create
+message = conversation.messages.create(:subject => "This is the first subject!")
+message.from_addresses << [ address1, address2, address3 ]
+message.reply_to_addresses << [ address4, address5 ]
+
