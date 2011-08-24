@@ -31,7 +31,7 @@ gem "casamiento_mail_merge", :git => "git://github.com/mrdizzy/casamiento_mail_m
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-
+  gem 'annotate'
 	gem 'auto_migrations', :git => 'git://github.com/mrdizzy/auto_migrations.git'
 	gem 'factory_girl_rails'
 		gem 'spork', :git => 'git://github.com/timcharper/spork.git'

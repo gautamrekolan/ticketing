@@ -9,3 +9,13 @@ class MailMergeGuest < ActiveRecord::Base
     address.split("\n")
    end
 end
+# == Schema Information
+#
+# Table name: mail_merge_guests
+#
+#  id          :integer         not null, primary key
+#  customer_id :integer
+#  address     :text
+#  hand        :boolean
+#
+

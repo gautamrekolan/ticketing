@@ -5,7 +5,8 @@ class Customer < ActiveRecord::Base
 	accepts_nested_attributes_for :mail_merge_guests
 	has_many :customer_addresses, :dependent => :destroy
 	has_many :customer_emails, :dependent => :destroy
-	has_many :conversations, :dependent => :destroy
+	has_many :conversations, :dependent => :destroy, :inverse_of => :customer
+	
 	validates :name, :presence => true
 	
 	def new_guest_fields
@@ -25,3 +26,14 @@ class Customer < ActiveRecord::Base
 		end
 	end
 end
+
+# == Schema Information
+#
+# Table name: customers
+#
+#  id           :integer         not null, primary key
+#  name         :string(255)
+#  eias_token   :string(255)
+#  ebay_user_id :string(255)
+#
+

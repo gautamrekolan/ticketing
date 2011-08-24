@@ -9,3 +9,14 @@ class Paper < ActiveRecord::Base
 	end
 
 end
+
+# == Schema Information
+#
+# Table name: papers
+#
+#  id      :integer         not null, primary key
+#  weight  :integer
+#  texture :string(255)
+#  colour  :string(255)
+#
+

@@ -70,6 +70,7 @@ GEM
       activemodel (= 3.0.9)
       activesupport (= 3.0.9)
     activesupport (3.0.9)
+    annotate (2.4.0)
     arel (2.0.10)
     builder (2.1.2)
     erubis (2.6.6)
@@ -121,6 +122,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_singleton!
+  annotate
   auto_migrations!
   casamiento_mail_merge!
   ebay_api_trading!

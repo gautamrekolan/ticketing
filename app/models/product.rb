@@ -10,3 +10,16 @@ end
 
 
 end
+
+# == Schema Information
+#
+# Table name: products
+#
+#  id                :integer         not null, primary key
+#  product_type_id   :integer
+#  product_format_id :integer
+#  theme_id          :integer
+#  paper_id          :integer
+#  price             :integer
+#
+

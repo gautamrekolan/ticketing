@@ -17,7 +17,7 @@ Mail.defaults do
 
 
 
-mail = Mail.find(:count => 100, :order => :desc, :mailbox => '[Gmail]/All Mail') 
+mail = Mail.find(:count => 500, :order => :desc, :mailbox => '[Gmail]/All Mail') 
 
 mail.each do |m|
 	Incoming.receive(m)

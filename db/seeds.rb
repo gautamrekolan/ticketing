@@ -15,6 +15,7 @@ product = Product.new(:theme => simplicity, :product_format => a6_flat, :product
 simplicity.products << product
 
 customer = Customer.create!(:name => "David Pettifer")
+customer.orders.create(:notes => "Order notes here!")
 address1 = customer.customer_emails.create(:address => "david.pettifer@dizzy.co.uk")
 address2 = customer.customer_emails.create(:address => "happyhele@gmail.com")
 address3 = customer.customer_emails.create(:address => "davinaj3000@yahoo.com")
@@ -24,4 +25,12 @@ conversation = customer.conversations.create
 message = conversation.messages.create(:subject => "This is the first subject!")
 message.from_addresses << [ address1, address2, address3 ]
 message.reply_to_addresses << [ address4, address5 ]
+customer = Customer.create!(:name => "Christine Hannam")
+address6 = customer.customer_emails.create(:address => "christine.hannam@yahoo.com")
+address7 = customer.customer_emails.create(:address => "julie.hannam@yahoo.com")
+address8 = customer.customer_emails.create(:address => "wally.hannam@yahoo.com")
+conversation = customer.conversations.create
+message = conversation.messages.create(:subject => "This is the Hannam email")
+message.from_addresses << [ address6 ]
+message.reply_to_addresses << [ address7, address8 ]
 

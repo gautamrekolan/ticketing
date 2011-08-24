@@ -16,7 +16,7 @@ FactoryGirl.define do
 
 	
 	factory :customer_email do 
-		address "david.p@dizzy.co.uk"
+		address "david.pettifer@dizzy.co.uk"
 	end
 	
 	factory :customer_address do

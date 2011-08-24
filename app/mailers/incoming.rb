@@ -3,24 +3,27 @@ require 'pp'
   def receive(email)
     @attachments = []
     @email = email
-    @subject = email.subject.gsub(/Re:/i, '').strip
-    	  
+    @subject = email.subject.gsub(/Re:/i, '').strip if email.subject
+    @subject ||= "NO SUBJECT"
     @all_addresses = @email[:from].addresses + @email[:reply_to].addresses unless @email[:reply_to].nil?
 	  @all_addresses ||= @email[:from].addresses
-    process_addresses
+
     process_email
     
     begin
       find_conversation
     rescue ActiveRecord::RecordNotFound
-	    @conversation = @customer.conversations.build
+	    find_conversation_by_subject
    	end	
+   	
+   	handle_empty_conversations   	   
+    process_addresses
     
     message = @conversation.messages.build(:content => @body, :datetime => email.date, :subject => @subject, :attachments => @attachments)
     message.from_addresses = @from_addresses
     message.reply_to_addresses = @reply_to_addresses unless @reply_to_addresses.nil?
     message.build_raw_email(:content => email.raw_source)
-    @customer.save! if @customer.new_record?
+    @conversation.customer.save! if @conversation.customer && @conversation.customer.new_record?
     @conversation.save!
   end
   
@@ -34,19 +37,15 @@ require 'pp'
   end
   
   def process_addresses      
-      @customer = Customer.joins(:customer_emails).where(:customer_emails => { :address => @all_addresses }).first
-
-      if @customer.blank?
-        @customer = Customer.new(:name => @email[:from].display_names.first || @email[:from].addresses.first)
-      end
-      @from_addresses = CustomerEmail.where(:address => @email[:from].addresses)
-      addresses_to_create = @email[:from].addresses - @from_addresses.map(&:address)
-      @from_addresses = @from_addresses + addresses_to_create.collect { |a| CustomerEmail.new(:address => a, :customer => @customer) }
+     
+      @from_addresses = CustomerEmail.where(:address => @email[:from].addresses.uniq)
+      addresses_to_create = @email[:from].addresses.uniq - @from_addresses.map(&:address)
+      @from_addresses = @from_addresses + addresses_to_create.collect { |a| CustomerEmail.create!(:address => a, :customer => @customer) }
 
     if @email[:reply_to]
       @reply_to_addresses = CustomerEmail.where(:address => @email[:reply_to].addresses)
       addresses_to_create = @email[:reply_to].addresses - @reply_to_addresses.map(&:address)
-      @reply_to_addresses = @reply_to_addresses + addresses_to_create.collect { |a| CustomerEmail.new(:address => a, :customer => @customer) }
+      @reply_to_addresses = @reply_to_addresses + addresses_to_create.collect { |a| CustomerEmail.create!(:address => a, :customer => @customer) }
     end
 
   end
@@ -56,11 +55,24 @@ require 'pp'
 			conversation_id = $1
 			@conversation = Conversation.find(conversation_id) 
 	  else # on subject
-	  @conversation = Conversation.includes(:messages => :from_addresses).where(:customer_emails => { :address => @all_addresses }).where(:messages => { :subject => @subject } ).first
-		end    
-		if @conversation.blank?
+	    find_conversation_by_subject
+		end
+	end
+	
+	def find_conversation_by_subject
+	  @conversation ||= Conversation.includes(:customer, :messages => [ :from_addresses, :reply_to_addresses ]).where("customer_emails.address in(?) or reply_to_addresses_messages.address in (?)", @all_addresses, @all_addresses).where(:messages => { :subject => @subject } ).limit(1).first
+	end
+	
+	def handle_empty_conversations
+	if @conversation.blank?
+		  @customer = Customer.joins(:customer_emails).where(:customer_emails => { :address => @all_addresses }).first
+
+      if @customer.blank?
+        @customer = Customer.new(:name => @email[:from].display_names.first || @email[:from].addresses.first)
+      end
 		  @conversation = @customer.conversations.build
 		end
+		
 	end
 
 	def process_body
