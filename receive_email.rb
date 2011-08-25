@@ -17,10 +17,11 @@ Mail.defaults do
 
 
 
-mail = Mail.find(:count => 500, :order => :desc, :mailbox => '[Gmail]/All Mail') 
+mail = Mail.find(:count => 1000, :order => :desc, :mailbox => '[Gmail]/All Mail') 
 
 mail.each do |m|
 	Incoming.receive(m)
+	puts "Parsed.... {m.subject}"
 end
 
 #m = Mail.read(Rails.root.to_s + "/test/fixtures/incoming/dear.eml")

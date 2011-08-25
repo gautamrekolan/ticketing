@@ -7,7 +7,7 @@ class Conversation < ActiveRecord::Base
 	scope :open, where(:status => false) 
 
   def subject
-    @subject ||= messages.first.subject
+    @subject ||= messages.first.subject unless messages.first.nil?
     @subject = "NO SUBJECT" if @subject.blank?
     @subject
   end

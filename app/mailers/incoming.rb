@@ -3,14 +3,20 @@ require 'pp'
   def receive(email)
     @attachments = []
     @email = email
-    @subject = email.subject.gsub(/Re:/i, '').strip if email.subject
-    @subject ||= "NO SUBJECT"
-    @all_addresses = @email[:from].addresses + @email[:reply_to].addresses unless @email[:reply_to].nil?
-	  @all_addresses ||= @email[:from].addresses
-
+    @subject = email.subject.gsub(/Re:/i, '').strip unless email.subject.nil?
+    @all_addresses = @email[:from].addresses + @email[:reply_to].addresses unless @email[:reply_to].nil? || @email[:from].nil?
+	  @all_addresses ||= @email[:from].addresses unless @email[:from].nil?
+	  begin # WARNING this will rescue from any errors so errors will fail silently. Remove begin/rescue to debug!
+	    process
+	  rescue
+	    RawUnimportedEmail.create!(:content => email.raw_source)
+	  end
+  end
+  
+  def process  
     process_email
     
-    begin
+    begin 
       find_conversation
     rescue ActiveRecord::RecordNotFound
 	    find_conversation_by_subject
@@ -18,13 +24,15 @@ require 'pp'
    	
    	handle_empty_conversations   	   
     process_addresses
-    
-    message = @conversation.messages.build(:content => @body, :datetime => email.date, :subject => @subject, :attachments => @attachments)
+
+    message = @conversation.messages.build(:content => @body, :datetime => @email.date, :subject => @subject, :attachments => @attachments)
+
     message.from_addresses = @from_addresses
     message.reply_to_addresses = @reply_to_addresses unless @reply_to_addresses.nil?
-    message.build_raw_email(:content => email.raw_source)
+    message.build_raw_email(:content => @email.raw_source)
     @conversation.customer.save! if @conversation.customer && @conversation.customer.new_record?
     @conversation.save!
+  
   end
   
   def process_email

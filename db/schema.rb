@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110816133036) do
+ActiveRecord::Schema.define(:version => 20110824232909) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"
@@ -78,12 +78,6 @@ ActiveRecord::Schema.define(:version => 20110816133036) do
     t.integer "customer_email_id"
   end
   
-  create_table "outgoing_messages", :force => true do |t|
-    t.string "subject"
-    t.text "content"
-
-  end
-  
   create_table "items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "price"
@@ -105,8 +99,13 @@ ActiveRecord::Schema.define(:version => 20110816133036) do
   end
 
 	create_table "raw_emails", :force => true do |t|
-    t.string "content"
+    t.text "content"
     t.belongs_to "message"
+  end
+
+  create_table "raw_unimported_emails", :force => true do |t|
+    t.text "content"
+    t.timestamps
   end
 
   create_table "orders", :force => true do |t|
@@ -117,6 +116,11 @@ ActiveRecord::Schema.define(:version => 20110816133036) do
     t.string   "status"
     t.text     "notes"
     t.timestamps
+  end
+  
+  create_table "template_emails", :force => true do |t|
+    t.text "content"
+    t.string "subject"
   end
   
   create_table "papers", :force => true do |t|
