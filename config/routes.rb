@@ -2,7 +2,7 @@ Ticketing::Application.routes.draw do
   resources :outgoing_messages
 
   resources :guests
-
+  resources :raw_unimported_emails
   resources :product_formats
   resources :papers
   resources :product_types

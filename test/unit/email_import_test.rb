@@ -169,12 +169,19 @@ class EmailImportTest < ActiveSupport::TestCase
     message = Message.first
     assert_equal "Here is the subject line with some white space", message.subject
   end
+  
+  def test_bad_email
+    mail = File.read("bad_email.eml") { |f| f.read }
+    Incoming.receive(mail)
+  end
 
   def test_invalid_email
     mail = Mail.read(Rails.root.to_s + "/test/fixtures/incoming/invalid.eml") 
     assert_difference "RawUnimportedEmail.count" do
       Incoming.receive(mail)
     end
+    
+    pp RawUnimportedEmail.first.error
   end
   
 end

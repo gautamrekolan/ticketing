@@ -26,7 +26,7 @@ require 'pp'
 #message_ids.each do |id| 
 
 #  rfc = source.uid_fetch(id, ["RFC822"])[0].attr['RFC822']
-#  File.open("emails/#{id}.eml", "wb") { |f| f.write(rfc) }
+ # File.open("emails/#{id}.eml", "wb") { |f| f.write(rfc) }
 #end
 
 Dir.foreach("emails") do |email|
