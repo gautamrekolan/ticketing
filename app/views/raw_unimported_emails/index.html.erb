@@ -1,0 +1,7 @@
+<ul>
+<% @raw_unimported_emails.each do |email| %>
+
+<li><%= link_to "View #{email.id}", raw_unimported_email_path(email, :txt) %> - <%= email.error %></li>
+
+<% end %>
+</ul>

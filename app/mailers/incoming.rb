@@ -4,12 +4,13 @@ require 'pp'
     @attachments = []
     @email = email
     @subject = email.subject.gsub(/Re:/i, '').strip unless email.subject.nil?
+    @subject = "NO SUBJECT" if @subject.nil? || @subject.blank?
     @all_addresses = @email[:from].addresses + @email[:reply_to].addresses unless @email[:reply_to].nil? || @email[:from].nil?
 	  @all_addresses ||= @email[:from].addresses unless @email[:from].nil?
 	  begin # WARNING this will rescue from any errors so errors will fail silently. Remove begin/rescue to debug!
-	    process
-	  rescue
-	    RawUnimportedEmail.create!(:content => email.raw_source)
+	   process
+	  rescue Exception => error
+	    RawUnimportedEmail.create!(:content => email.raw_source, :error => error.message)
 	  end
   end
   

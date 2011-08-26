@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110824232909) do
+ActiveRecord::Schema.define(:version => 20110825182016) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20110824232909) do
 
   create_table "raw_unimported_emails", :force => true do |t|
     t.text "content"
+    t.string "error"
     t.timestamps
   end
 
