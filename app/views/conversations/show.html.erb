@@ -1,22 +1,42 @@
 <p id="notice"><%= notice %></p>
 
+<% @conversation.messages.each do |m| %>
+  <h2><%= m.subject %></h2>
+  <p><%= m.datetime.to_s(:long) %>, <%= time_ago_in_words(m.datetime) %> ago</p>
 
-	<% @conversation.messages.each do |m| %>
-<h2><%= m.subject %></h2>
-<p><%= time_ago_in_words(m.datetime) %> ago</p>
+  <table>
+    <tr>
+      <td>Reply to addresses:</td>
+      <td>
+        <% m.reply_to_addresses.each do |addy| %> 
+          <%= addy.address %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>From addresses:</td>
+      <td>
+        <% m.from_addresses.each do |addy| %>
+          <%= addy.address %>
+        <% end %> </p>
+      </td>
+    </tr>
+    <tr>
+      <td>Attachments:</td>
+      <td>
+        <ul>
+          <% m.attachments.each do |a| %>
+	          <li><%= a.filename %></li>
+          <% end %>
+        </ul>
+      </td>
+    </tr>
+   </table>
+<p><%= link_to "Reply!", new_message_outgoing_message_path(m) %></p>
 
-<p><% m.reply_to_addresses.each do |addy| %>
-<%= addy.address %>
-<% end %> </p>
-<p><% m.from_addresses.each do |addy| %>
-<%= addy.address %>
-<% end %> </p>
-<ul>
-<% m.attachments.each do |a| %>
-	<%= a.filename %>
-<% end %>
-</ul>
-<%= link_to "Reply!", new_message_outgoing_message_path(m) %>
-		<textarea rows="10" cols="100"><%= m.content %></textarea></p>
+<%= form_for m do |f| %>
+<p><%= f.text_area :content %></p>
+<p><%= f.submit %></p>
 <hr/>
-	<% end %>
+<% end %>
+<% end %>

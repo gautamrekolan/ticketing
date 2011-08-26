@@ -1,8 +1,22 @@
 <html>
-<h1>Customer</h1>
+<h1><%= @customer.name %></h1>
+<table>
+  <tr>
+    <td>EIAS token:</td><td><%= @customer.eias_token %></td>
+  </tr>
+  <tr>
+    <td>Ebay user id</td><td><%= @customer.ebay_user_id %></td>
+  </tr>
+  <tr>
+    <td>Email addresses</td>
+    <td>
+      <% @customer.customer_emails.each do |email| %>
+        <%= email.address %>
+      <% end %>
+    </td>
+  </tr>
+</table
 <p>
-<%= @customer.name %>
-</p>
 
 <h1>Messages</h1>
 <ul>
