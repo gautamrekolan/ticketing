@@ -7,7 +7,7 @@ gem 'rails', '3.0.9'
 
 gem 'sqlite3'
 gem 'mail'
-gem "ebay_api_trading", :git => 'git://github.com/mrdizzy/ebay_trading_api.git'
+gem "ebay_api_trading", :path => "~/ebay_trading_api"
 gem 'rake', '0.8.7'
 gem 'acts_as_singleton', :git => 'git://github.com/mrdizzy/acts_as_singleton.git', :branch => 'rails3'
 # Use unicorn as the web server
@@ -38,4 +38,5 @@ group :development, :test do
 		gem 'spork-testunit', :git => 'git://github.com/timcharper/spork-testunit.git'#
 		gem 'mocha', :require => false
 		gem 'fakeweb'
+		gem 'webmock'
 end

@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'fakeweb'
 require 'pp'
 
 class EbayImportTest < ActiveSupport::TestCase
@@ -8,25 +7,25 @@ class EbayImportTest < ActiveSupport::TestCase
     assert true
   end
   
-  def mock_xml_response(file)
+  def mock_xml(file)
     xml_file = File.new(File.join(Rails.root.to_s, 'test', 'fixtures', 'ebay_api', 'messages', file))
-    xml = xml_file.read
+    xml = xml_file.read.strip!
   end
   
   def register_xml_files(*responses)
       responses.collect! do |r|
-        {:body => r }
+        { :body => r }
       end
-      FakeWeb.register_uri(:post, "https://api.ebay.com/ws/api.dll", responses)
+    stub_request(:post, "https://api.ebay.com/ws/api.dll").with(:body => mock_xml("get_my_messages_return_headers.xml")).to_return(:body => @get_my_messages_response)
   end
   
   def setup
     EbayLastImportedTime.instance.update_attributes(:last_import => Time.now)
     
     @customer = FactoryGirl.create(:customer, :eias_token => "abcdefghijklmnopqrstuvwxyz")
-
-    @get_my_messages_response = mock_xml_response('get_my_messages_response.xml')
-    @return_messages_response = mock_xml_response('get_return_messages_response.xml')
+    
+    @get_my_messages_response = mock_xml('get_my_messages_response.xml')
+    @return_messages_response = mock_xml('get_return_messages_response.xml')
   end
 
   test "adds message to existing customer when matching user ID" do
