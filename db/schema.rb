@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110828112957) do
+ActiveRecord::Schema.define(:version => 20110828220621) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"
@@ -88,15 +88,14 @@ ActiveRecord::Schema.define(:version => 20110828112957) do
   end
 
   create_table "ebay_messages", :force => true do |t|
-    t.belongs_to :customer
     t.string :item_number
+    t.integer :ebay_message_identifier
+    t.belongs_to :customer_email
     t.string :subject
     t.text :content
     t.datetime :date
-
     t.belongs_to :conversation
   end
-  
 
   create_table "messages", :force => true do |t|
     t.text    "content"

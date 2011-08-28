@@ -1,6 +1,6 @@
 class EbayMessage < ActiveRecord::Base
 	belongs_to :conversation, :inverse_of => :ebay_messages
-	
+	belongs_to :customer_email, :inverse_of => :ebay_messages
 	#validates :subject, :presence => true
 	#validates :conversation, :presence => true
 	#validates :datetime, :presence => true

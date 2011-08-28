@@ -7,41 +7,38 @@ class ImportEbayMessages
   end
   
   def import!
-    get_my_messages = @ebay_api.request(:GetMyMessages, :DetailLevel => "ReturnHeaders"  )
-  
-    get_my_messages["GetMyMessagesResponse"]["Messages"]["Message"].each do |message| 
-      message = @ebay_api.request(:GetMyMessages, :DetailLevel => "ReturnMessages", :MessageIDs => [ message["MessageID"] ])
-      message = message["GetMyMessagesResponse"]["Messages"]["Message"]
-      receive_date = message["ReceiveDate"]
-      response_enabled = message["ResponseDetails"]["ResponseEnabled"]
-      response_url = message["ResponseDetails"]["ResponseURL"]
-      replied = message["Replied"]
-      item_id = message["ItemID"]
-      subject = message["Subject"]
-      sender = message["Sender"]
-      sending_user_id = message["SendingUserID"]
-      content = message["Content"]
-      
-      conversation = find_conversation_by_ebay_user(sender, subject)
+    get_member_messages = @ebay_api.request(:GetMemberMessages, :MailMessageType => "All")
+    messages = get_member_messages["GetMemberMessagesResponse"]["MemberMessage"]["MemberMessageExchange"]
+    messages.each do |m|
+      item = m["Item"]
+      item_number = item["ItemID"] unless item.blank?
+      receive_date = m["CreationDate"]
+      status = m["MessageStatus"]
+
+      q = m["Question"]
+        message_id = q["MessageID"]    
+        subject = q["Subject"]
+        ebay_user_id = q["SenderID"]
+        sender_email = q["SenderEmail"]
+        content = q["Body"]
+        
+      email = CustomerEmail.find_or_initialize_by_address(sender_email)
+      conversation = find_conversation_by_ebay_user_and_subject(ebay_user_id, subject, sender_email)
       if !conversation.blank?
-        conversation.ebay_messages.build(:subject => subject, :item_number => item_id, :content => content)
+        conversation.ebay_messages.build(:subject => subject, :content => content, :date => receive_date, :ebay_message_identifier => message_id, :item_number => item_number, :customer_email => email)
         conversation.save!
       else
-        customer = find_customer_by_ebay_user(sender)
-        customer = Customer.new(:name => sender, :ebay_user_id => sender) if customer.blank?
+        customer = Customer.find_or_initialize_by_ebay_user_id(ebay_user_id)
+        customer.name = ebay_user_id
         conversation = customer.conversations.build
-        conversation.ebay_messages.build(:subject => subject, :item_number => item_id, :content => content)
+        conversation.ebay_messages.build(:subject => subject, :content => content, :date => receive_date, :ebay_message_identifier => message_id, :item_number => item_number, :customer_email => email)
         conversation.save!
         customer.save!
       end
     end
   end
-    
-    def find_conversation_by_ebay_user(sender, subject)
-      Conversation.includes(:customer, :messages).where(:customers => { :ebay_user_id => sender }).where(:messages => { :subject => subject } ).limit(1).first
+      def find_conversation_by_ebay_user_and_subject(ebay_user_id, subject, address)
+      Conversation.includes(:messages, :ebay_messages, :customer => :customer_emails).where("customers.ebay_user_id = ? or customer_emails.address = ? and messages.subject = ? or ebay_messages.subject = ?", ebay_user_id, address, subject,  subject).limit(1).first
     end
     
-    def find_customer_by_ebay_user(sender)
-      Customer.where(:ebay_user_id => sender).limit(1).first
-    end
 end
