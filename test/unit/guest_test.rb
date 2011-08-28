@@ -6,3 +6,15 @@ class GuestTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: guests
+#
+#  id                 :integer         not null, primary key
+#  name_on_envelope   :string(255)
+#  name_on_invitation :string(255)
+#  address            :string(255)
+#  postcode           :string(255)
+#
+

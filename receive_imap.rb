@@ -16,29 +16,36 @@ require 'pp'
 #   :password => 'world667',
 #   :enable_ssl => true }
 #  end
-#source = Net::IMAP.new("imap.googlemail.com", 993, true)
+imap = Net::IMAP.new("imap.googlemail.com", 993, true)
 
-#source.login("casamientoweddingstationery@gmail.com", "world667")
-#source.select("[Gmail]/All Mail")
+imap.login("checkout.charlie.1980@gmail.com", "12thjuly1995")
+imap.select("Inbox")
 
+message_ids = imap.uid_search('ALL')
+imap.uid_fetch(message_ids, ["RFC822"]).each do |msg|
+  uid = msg.attr['UID']
+  Incoming.receive(msg.attr['RFC822'])  
+  
+  Rails.logger.info("IMPORTED EMAIL: uid " + uid.to_s)
 
-#message_ids = source.uid_search('ALL')
-#message_ids.each do |id| 
-
-#  rfc = source.uid_fetch(id, ["RFC822"])[0].attr['RFC822']
- # File.open("emails/#{id}.eml", "wb") { |f| f.write(rfc) }
-#end
-
-Dir.foreach("emails") do |email|
-if email == "." || email == ".."
-
-else
-  email = File.open('emails/' + email,'rb') { |f| f.read }
-  Incoming.receive(email)
-  puts "Parsing ..."
-  end
+  #File.open("emails/#{id}.eml", "wb") { |f| f.write(rfc) }
+  #imap.uid_copy(uid, "[Gmail]/All Mail")
+   imap.uid_store(uid, "+FLAGS", [:Deleted])
+   
+  Rails.logger.info("DELETED EMAIL: uid " + uid.to_s)
+   #imap.expunge
+   
 end
 
+#Dir.foreach("emails") do |email|
+#if email == "." || email == ".."
+
+#else
+#  email = File.open('emails/' + email,'rb') { |f| f.read }
+#  Incoming.receive(email)
+#  puts "Parsing ..."
+#  end
+#end
 
 #mail = Mail.find(:count => 1000, :order => :desc, :mailbox => '[Gmail]/All Mail') 
 

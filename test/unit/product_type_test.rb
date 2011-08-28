@@ -6,3 +6,13 @@ class ProductTypeTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: product_types
+#
+#  id          :integer         not null, primary key
+#  description :string(255)
+#  envelope    :boolean
+#
+

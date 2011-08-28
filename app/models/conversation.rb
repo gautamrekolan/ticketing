@@ -1,6 +1,7 @@
 class Conversation < ActiveRecord::Base
 	belongs_to :customer, :inverse_of => :conversations
 	has_many :messages, :inverse_of => :conversation
+	has_many :ebay_messages, :inverse_of => :conversation
 	
 	validates :customer, :presence => true
 	

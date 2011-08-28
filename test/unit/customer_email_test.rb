@@ -6,3 +6,13 @@ class CustomerEmailTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: customer_emails
+#
+#  id          :integer         not null, primary key
+#  address     :string(255)
+#  customer_id :integer
+#
+

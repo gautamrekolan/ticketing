@@ -6,3 +6,12 @@ class ThemeTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: themes
+#
+#  id   :integer         not null, primary key
+#  name :string(255)
+#
+

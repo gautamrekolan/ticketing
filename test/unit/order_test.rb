@@ -17,3 +17,19 @@ class OrderTest < ActiveSupport::TestCase
   end
 
 end
+
+# == Schema Information
+#
+# Table name: orders
+#
+#  id                    :integer         not null, primary key
+#  monogram              :integer
+#  customer_id           :integer
+#  customer_address_id   :integer
+#  ebay_order_identifier :string(255)
+#  status                :string(255)
+#  notes                 :text
+#  created_at            :datetime
+#  updated_at            :datetime
+#
+

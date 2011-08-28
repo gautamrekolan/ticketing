@@ -6,3 +6,12 @@ class MonogramTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: monograms
+#
+#  id          :integer         not null, primary key
+#  description :string(255)
+#
+

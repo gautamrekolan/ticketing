@@ -16,3 +16,16 @@ class OutgoingMessageTest < ActiveSupport::TestCase
   
   end
 end
+
+# == Schema Information
+#
+# Table name: outgoing_messages
+#
+#  id         :integer         not null, primary key
+#  subject    :string(255)
+#  content    :text
+#  message_id :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

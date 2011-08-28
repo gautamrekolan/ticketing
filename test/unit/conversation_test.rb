@@ -6,3 +6,13 @@ class ConversationTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: conversations
+#
+#  id          :integer         not null, primary key
+#  customer_id :integer
+#  status      :boolean
+#
+
