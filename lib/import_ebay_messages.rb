@@ -23,22 +23,19 @@ class ImportEbayMessages
         content = q["Body"]
         
       email = CustomerEmail.find_or_initialize_by_address(sender_email)
-      conversation = find_conversation_by_ebay_user_and_subject(ebay_user_id, subject, sender_email)
-      if !conversation.blank?
-        conversation.ebay_messages.build(:subject => subject, :content => content, :date => receive_date, :ebay_message_identifier => message_id, :item_number => item_number, :customer_email => email)
-        conversation.save!
-      else
+      conversation = find_conversation_by_ebay_user_or_email_address_and_subject(ebay_user_id, subject, sender_email)
+      if conversation.blank?
         customer = Customer.find_or_initialize_by_ebay_user_id(ebay_user_id)
         customer.name = ebay_user_id
-        conversation = customer.conversations.build
-        conversation.ebay_messages.build(:subject => subject, :content => content, :date => receive_date, :ebay_message_identifier => message_id, :item_number => item_number, :customer_email => email)
-        conversation.save!
         customer.save!
+        conversation = customer.conversations.build
       end
+      conversation.ebay_messages.build(:subject => subject, :content => content, :date => receive_date, :ebay_message_identifier => message_id, :item_number => item_number, :customer_email => email)
+      conversation.save!
     end
   end
-      def find_conversation_by_ebay_user_and_subject(ebay_user_id, subject, address)
-      Conversation.includes(:messages, :ebay_messages, :customer => :customer_emails).where("customers.ebay_user_id = ? or customer_emails.address = ? and messages.subject = ? or ebay_messages.subject = ?", ebay_user_id, address, subject,  subject).limit(1).first
+      def find_conversation_by_ebay_user_or_email_address_and_subject(ebay_user_id, subject, address)
+      Conversation.includes(:messages, :ebay_messages, :customer => :customer_emails).where("(customers.ebay_user_id = ? and ebay_messages.subject = ?) OR (customer_emails.address = ? AND ebay_messages.subject = ?)", ebay_user_id, subject, address,  subject).limit(1).first
     end
     
 end

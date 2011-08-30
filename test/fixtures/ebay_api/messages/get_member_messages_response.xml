@@ -27,17 +27,11 @@
         <MessageType>ContactTransactionPartner</MessageType>
         <QuestionType>None</QuestionType>
         <DisplayToPublic>false</DisplayToPublic>
-        <SenderID>mister_dizzy</SenderID>
-        <SenderEmail>sandbox@dizzy.co.uk</SenderEmail>
-        <RecipientID>casamiento-wedding-stationery</RecipientID>
-        <Subject>Where is my item?: mister_dizzy sent a message about 20 x Personalised Name Place Cards Simplicity #110091219777</Subject>
-        <Body>Hi there,
-
-I would like to know what is going on with my product please? Can you let me know the situation as soon as is humanely possible. Thank you!
-
-Kind regards,
-
-David</Body>
+        <SenderID>SenderID_1</SenderID>
+        <SenderEmail>SenderEmail_1</SenderEmail>
+        <RecipientID>RecipientID_1</RecipientID>
+        <Subject>Subject_1</Subject>
+        <Body>Body_1</Body>
         <MessageID>1053033010</MessageID>
       </Question>
       <MessageStatus>Unanswered</MessageStatus>
@@ -49,17 +43,11 @@ David</Body>
         <MessageType>ContactEbayMember</MessageType>
         <QuestionType>None</QuestionType>
         <DisplayToPublic>false</DisplayToPublic>
-        <SenderID>mister_dizzy</SenderID>
-        <SenderEmail>sandbox@dizzy.co.uk</SenderEmail>
-        <RecipientID>casamiento-wedding-stationery</RecipientID>
-        <Subject>Where is my item?: mister_dizzy sent a message about 20 x Personalised Name Place Cards Simplicity #110091219777</Subject>
-        <Body>HI there,
-
-Can you please tell me what the consequences of this are please?
-
-Thank you very much.,
-
-Lewis Hamilton Alice Bordenhunger.</Body>
+        <SenderID>SenderID_2</SenderID>
+        <SenderEmail>SenderEmail_2</SenderEmail>
+        <RecipientID>RecipientID_2</RecipientID>
+        <Subject>Subject_2</Subject>
+        <Body>Body_2</Body>
         <MessageID>1053035010</MessageID>
       </Question>
       <MessageStatus>Unanswered</MessageStatus>
@@ -71,11 +59,11 @@ Lewis Hamilton Alice Bordenhunger.</Body>
         <MessageType>ContactEbayMember</MessageType>
         <QuestionType>None</QuestionType>
         <DisplayToPublic>false</DisplayToPublic>
-        <SenderID>christine-hannam-1940</SenderID>
-        <SenderEmail>christine.hannam@yahoo.com</SenderEmail>
-        <RecipientID>casamiento-wedding-stationery</RecipientID>
-        <Subject>christine-hannam-1940 has sent a message</Subject>
-        <Body>I have a certain message to ask you, and I would much appreciate a reply. This is not about an item!</Body>
+        <SenderID>SenderID_3</SenderID>
+        <SenderEmail>SenderEmail_3</SenderEmail>
+        <RecipientID>RecipientID_3</RecipientID>
+        <Subject>Subject_3</Subject>
+        <Body>Body_3</Body>
         <MessageID>1053124010</MessageID>
       </Question>
       <MessageStatus>Unanswered</MessageStatus>
