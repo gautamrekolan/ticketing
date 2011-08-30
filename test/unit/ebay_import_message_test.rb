@@ -6,13 +6,30 @@ class EbayImportTest < ActiveSupport::TestCase
   test "the truth" do
     assert true
   end
+
+  def question(builder)
+    builder.SenderID "mister_dizzy"
+    builder.SenderEmail "david.p@dizzy.co.uk"
+    builder.Subject "This is the subject"
+    builder.Body "This is the body"
+  end
   
   def build_xml
-    XmlSimple.xml_out({ "MemberMessage" =>
-        { "MemberMessageExchange" => 
-          [  "Item" => {}, "Item" => {} ] 
-        }
-    })
+    builder = Builder::XmlMarkup.new
+    builder.instruct!
+    builder.GetMemberMessagesResponse do 
+      builder.MemberMessage do
+        builder.MemberMessageExchange do
+          builder.Question do
+            question(builder)
+            question(builder)
+            question(builder)
+          end
+        end
+      end
+    end
+    puts builder.target!
+    
   end
 
   def change_xml_attributes(xml, attributes)
