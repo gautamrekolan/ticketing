@@ -120,6 +120,7 @@ GEM
     webmock (1.7.5)
       addressable (> 2.2.5, ~> 2.2)
       crack (>= 0.1.7)
+    xml-simple (1.1.0)
 
 PLATFORMS
   ruby
@@ -140,3 +141,4 @@ DEPENDENCIES
   spork-testunit!
   sqlite3
   webmock
+  xml-simple

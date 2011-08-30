@@ -6,6 +6,14 @@ class EbayImportTest < ActiveSupport::TestCase
   test "the truth" do
     assert true
   end
+  
+  def build_xml
+    XmlSimple.xml_out({ "MemberMessage" =>
+        { "MemberMessageExchange" => 
+          [  "Item" => {}, "Item" => {} ] 
+        }
+    })
+  end
 
   def change_xml_attributes(xml, attributes)
     attributes.each do |k, v|
@@ -26,6 +34,10 @@ class EbayImportTest < ActiveSupport::TestCase
     @get_member_messages_response = mock_xml('get_member_messages_response.xml')
     
         stub_request(:post, "https://api.ebay.com/ws/api.dll").with(:body => @get_member_messages_request).to_return(:body => @get_member_messages_response)
+  end
+  
+  test "build xml object" do 
+    puts build_xml
   end
 
   test "adds messages to existing customer when matching user ID" do

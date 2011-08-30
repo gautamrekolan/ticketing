@@ -39,4 +39,5 @@ group :development, :test do
 		gem 'mocha', :require => false
 		gem 'fakeweb'
 		gem 'webmock'
+		gem 'xml-simple', :require => "xmlsimple"
 end
