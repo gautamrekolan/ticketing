@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110828220621) do
+ActiveRecord::Schema.define(:version => 20110831204525) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"

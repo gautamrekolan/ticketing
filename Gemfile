@@ -32,12 +32,17 @@ gem "casamiento_mail_merge", :git => "git://github.com/mrdizzy/casamiento_mail_m
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'annotate'
-	gem 'auto_migrations', :git => 'git://github.com/mrdizzy/auto_migrations.git'
-	gem 'factory_girl_rails'
+	gem 'auto_migrations', :git => 'git://github.com/mrdizzy/auto_migrations.git'	
+  gem 'xml-simple', :require => "xmlsimple"
+
+end
+
+group :test do 
+
+		gem 'factory_girl_rails'
 		gem 'spork', :git => 'git://github.com/timcharper/spork.git'
 		gem 'spork-testunit', :git => 'git://github.com/timcharper/spork-testunit.git'#
 		gem 'mocha', :require => false
-		gem 'fakeweb'
-		gem 'webmock'
-		gem 'xml-simple', :require => "xmlsimple"
+		  gem 'webmock'
+		#gem 'fakeweb'
 end

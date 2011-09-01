@@ -67,10 +67,12 @@ module Casamiento
 		
 		def process_transaction(t, o, c)		
 			item_id = t["Item"]["ItemID"]
-			email = t["Buyer"]["Email"]
-			email = CustomerEmail.find_or_initialize_by_address(email)
-			email.save! if email.new_record?
-			c.customer_emails << email
+			email = t["Buyer"]["Email"] unless t["Buyer"]["Email"] == "Invalid Request"
+			if !email.blank?
+			  email = CustomerEmail.find_or_initialize_by_address(email)
+			  email.save! if email.new_record?
+			  c.customer_emails << email
+			end
 			
 			item = @ebay_api.request(:GetItem, :ItemID => item_id, :DetailLevel => "ItemReturnDescription")
 
@@ -83,6 +85,7 @@ module Casamiento
 			end
 			product = Product.find(product_id)
 
+      # Delete order if it has been combined
 			if order = Order.find_by_ebay_order_identifier(t["OrderLineItemID"])
 				@orders_to_be_deleted << order.id
 			end
