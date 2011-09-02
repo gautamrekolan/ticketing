@@ -32,6 +32,7 @@ Ticketing::Application.routes.draw do
   resources :customer_emails
 
   resources :conversations
+  resources :ebay_messages
   resources :messages do
     resources :outgoing_messages
   end

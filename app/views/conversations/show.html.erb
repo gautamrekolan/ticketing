@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<% @conversation.messages.each do |m| %>
+<% @conversation.all_messages.each do |m| %>
   <h2><%= m.subject %></h2>
   <p><%= m.datetime.to_s(:long) %>, <%= time_ago_in_words(m.datetime) %> ago</p>
-
+   
+    <% unless m.is_a?(EbayMessage) %>
   <table>
     <tr>
       <td>Reply to addresses:</td>
@@ -32,6 +33,7 @@
       </td>
     </tr>
    </table>
+   <% end %>
 <p><%= link_to "Reply!", new_message_outgoing_message_path(m) %></p>
 
 <%= form_for m do |f| %>

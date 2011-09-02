@@ -6,10 +6,17 @@ class Conversation < ActiveRecord::Base
 	validates :customer, :presence => true
 	
 	scope :open, where(:status => false) 
+	
+	def all_messages
+	  (ebay_messages + messages).sort_by { |m| m.datetime } 
+	end
 
   def subject
-    @subject ||= messages.first.subject unless messages.first.nil?
-    @subject = "NO SUBJECT" if @subject.blank?
+    if messages.first.nil?
+      @subject = ebay_messages.first.subject
+    else
+      @subject = messages.first.subject
+    end
     @subject
   end
 end

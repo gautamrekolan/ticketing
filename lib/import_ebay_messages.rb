@@ -3,8 +3,7 @@ require 'pp'
 class ImportEbayMessages
 
   def initialize
-  			@ebay_api = Ebay::Api::Trading.new("https://api.sandbox.ebay.com/ws/api.dll", "AgAAAA**AQAAAA**aAAAAA**kRoiTg**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4CoAZeCpQ6dj6x9nY+seQ**JpMBAA**AAMAAA**oZA6Ywa6Ma6zNlkw3cqilP+685HQPlP4Bf1XAf+2Rt9V77dU94zFnoj4nhflnUipahn1Fy2roxApfA5ELDRgedWuspTUBirBQ5bAsuq9Btysg3p4KCq5+vsLLi3gyElWAOOOEvjTe24GHXDyHxrJsci0Ht3gMvOQ0rllbdiplsymNRY0+lXrS4jGrLRV3VCwbA2rAuhDhEaJbBH0GNP+YRO2GEerOQUGmA1/zeGYOfa/ZyU/7vQYZoBFG+v+31rxfqlOVo53o9lOo2QVfI1TDRtlsQBaBe159Shbe686AdRod5zAlimUtpzV9/9OqeMDGHqjWi39CsCjTDctOsLm3Ck/h8nJcOkOHCa2aDvW1ney+77L8HljBIBCNBkNookq13s51zRjQh+vekwBi2ja0hZgIlKULFp3QZdF8np9qlhPjWT90udSQiy2hczfFQmK/vCW2dY8OD+6bcPLQa/ruTVMMLQKga3Hdi4oFxJlhLcH3hpi4Z4vunOYnxGhtva2iQpLUfRBwHpCNr2swDQDT8Y4BLkn0GpNAqaOBX700f+uywf0BnOwYwdyL7+kx/8TMR0lwTJvmlPguukEY/zMtrTIChiX6sDAAXTep9H5plEvUKmBwwqxo+Jy15kIkkmMQh5eq58I+/Zw+PWF7sNn7rWLTQyqexrPImWG3hqQlNF2O4F29DWQCfKtiD+Y+RzOF3vngtgeQmCbdWKnP9OXaxIitTuRsDagj5ebjU0DNWkX5/6eQlDScp3fVMNi0pgf", "Casmient-2aff-4dab-9163-50f440216b96", "454dd9f0-47d0-4871-ab91-ab0038a59cd3", "c8d4d396-f869-44d9-8798-df4c2de90717", "727")
-    #@ebay_api = Ebay::Api::Trading.new("https://api.ebay.com/ws/api.dll", "AgAAAA**AQAAAA**aAAAAA**Xsj9TQ**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wAkIKmDpaCogudj6x9nY+seQ**oy4BAA**AAMAAA**7G9IaBQ1Eyr+vFVt0tC6qS15Xkq7ooTmGQ2mn6ZwBerzeIyGHYbU2QV8W5Z44rzoABqCTdSGXLgNC1nrI9bm5fr8owxtt8S0QmYazfHnQWbrpcJol5Z7yMVXX8nl45oN0x3F0dVhHNOYzWnyO3agwQwxSBEJ+puIV421bzMd2XlIzNTb7UsZMabi5Xiw94fqzRkp1YZsKYLcsCxRzYOyh8xOQ5HElSkKsGRRaFrHgGQzVUbOij7PTOpv+BaExKwUXlW4UuuWxXCr3HnmXVDVbeRamFP3nAoGH8UgxNMQTgVEPgN0NFOPf6uUNbKA75Vj5cKSMie/qtM+RbTi1RIdbwWIpS4eK3RSOJDEpg4YFGeHlBm2y436vXgC1yavCnrYaSBKthamhU1Gd+Dw+Ps0ZdM13HlE4gF3oCvk8BGA30jTlsExTpU3kYL+8JJILvlrGWX+ei3uIYopH8AHhZ6DD/YZz7+Id9SiMkhV+Ad9wz5r2t+hLH4ts4Y/jpznjp3m4iAdhgwxVaN/XLEzALvQ08ranvSy7mK78ddRAaCyJq/okHqv6nKn5vVhoHzJDJKdZryR7otqyj6OgqediAcy8PiMFuRFAB/lMOfxTWOYGLG/kIjC0nOaKse177UfM2jAnn+dTYxeE6i4hjpxsa/2T4tamUHYle3hXn5GtuTdnXDTCOxHvJuCajfHmwcAZ29jZUBwULIpl8RELRx3MGaMH5pY/eTWqyeIZuGFZHvzIEKxT9cieDnGi1thHvw+EpHo", "Casmient-178b-402d-98a6-51e19780d9a0", "c0cf2bdb-6ae9-4430-964d-16115594c412", "c8d4d396-f869-44d9-8798-df4c2de90717", "727")
+  	@ebay_api = EbayApiConnection.connection
   end
   
   def import!
@@ -12,53 +11,125 @@ class ImportEbayMessages
     messages = get_member_messages["GetMemberMessagesResponse"]["MemberMessage"]["MemberMessageExchange"]
 
     messages.each do |m|
-     
-
-        account_email = get_user(item_number, ebay_user_id, q) unless item_number.blank?
+      message = ImportedEbayMessage.new(m)
       
-      email = CustomerEmail.find_or_initialize_by_address(sender_email) unless sender_email.blank?
-      account_email = CustomerEmail.find_or_initialize_by_address(account_email) unless account_email == "Invalid Request"
-      conversation = find_conversation_by_ebay_user_or_email_address_and_subject(ebay_user_id, subject, sender_email)
-
-      if conversation.blank?
-        customer = Customer.find_or_initialize_by_ebay_user_id(ebay_user_id)
-        conversation = customer.conversations.build
-        customer.name = ebay_user_id if customer.new_record?
+      static_email = CustomerEmail.find_or_initialize_by_address(message.static_email) unless message.static_email.blank?
+          
+      if message.has_related_item?
+      puts true
+        user = EbayUser.new(@ebay_api.request(:GetUser, :ItemID => message.item_number, :UserID => message.ebay_user_id))         
+        account_email = CustomerEmail.find_or_initialize_by_address(user.account_email) if user.has_account_email?
+      else
+        user = EbayUser.new(@ebay_api.request(:GetUser, :UserID => message.ebay_user_id))
       end
-      conversation.ebay_messages.build(:subject => subject, :content => content, :date => receive_date, :ebay_message_identifier => message_id, :item_number => item_number, :customer_email => email)
-      
-      conversation.customer.customer_emails << email if !email.blank? && email.new_record?
-      conversation.customer.customer_emails << account_email if !account_email.blank? && account_email.new_record?
-      customer.save!
+      conversation = find_conversation(user, message, static_email, account_email)
+      puts user.account_email
+      puts message.static_email
+      puts message.subject
+      puts "\n\n"
+      if conversation.blank?
+        customer = Customer.find_by_eias_token(user.eias_token)
+        if customer.blank?
+          customer = find_customer(message.static_email, user.account_email)
+        end        
+        if customer.blank?
+          customer = Customer.new(:ebay_user_id => message.ebay_user_id, :name => message.ebay_user_id, :eias_token => user.eias_token)
+        end
+        conversation = customer.conversations.build
+      end
+      conversation.ebay_messages.build(:subject => message.subject, :content => message.body, :datetime => message.creation_date, :ebay_message_identifier => message.message_id, :item_number => message.item_number, :customer_email => static_email)
+      conversation.save!
+      conversation.customer.customer_emails << static_email if !static_email.blank? && static_email.new_record?
+      conversation.customer.customer_emails << account_email if !account_email.nil? && account_email.new_record?
+      conversation.customer.save!
     end
   end
   
-  def find_conversation_by_ebay_user_or_email_address_and_subject(ebay_user_id, subject, address)
-    Conversation.includes(:messages, :ebay_messages, :customer => :customer_emails).where("(customers.ebay_user_id = ? and (ebay_messages.subject = ? or messages.subject =? )) OR (customer_emails.address = ? AND (ebay_messages.subject = ? or messages.subject = ?))", ebay_user_id, subject, subject, address, subject, subject).limit(1).first
+  def find_customer(static_email, account_email)
+    Customer.includes(:customer_emails).where("customer_emails.address IN (?)", [static_email, account_email]).limit(1).first
+  end
+  
+  def find_conversation(user, message, static_email, account_email)
+    Conversation.includes(:messages, :ebay_messages, :customer => :customer_emails).where("(customers.eias_token = ? and (ebay_messages.subject = ? or messages.subject = ? )) OR (customer_emails.address IN (?) AND (ebay_messages.subject = ? or messages.subject = ?))", user.eias_token, message.subject, message.subject, [static_email, account_email], message.subject, message.subject).limit(1).first
   end
     
 end
 
-class ImportedEbayMessage
+class EbayApiConnection
+  def self.connection
+    @@connection ||= connect!
+  end
+  
+  def self.connect!
+    config = YAML::load(File.open(Rails.root.to_s + "/config/ebay_trading_api.yml"))
+    config = config["production"]
+    Ebay::Api::Trading.new(config["url"], config["auth_token"], config["app_name"], config["cert_name"], config["dev_name"], config["compatibility_level"].to_s)  
+  end
+end
+
+class EbayTradingResponse
   def initialize(response)
     @response = response
+  end
+  
+  def connection
+    @connection ||= EbayApiConnection.connection
+  end
+  
+end
+
+class EbayUser < EbayTradingResponse
+
+  def user
+    @response["GetUserResponse"]["User"]
+  end
+
+  def has_account_email?
+    !account_email == "Invalid Request"
+  end
+  
+  def eias_token
+    user["EIASToken"]
+  end
+  
+  def account_email
+    user["Email"]
+  end
+  
+  def feedback_score
+    user["FeedbackScore"]
+  end
+  
+  def user_id
+    user["UserID"]
+  end
+  
+  def user_id_changed?
+    user["UserIDChanged"] == "true"
+  end
+end
+
+class ImportedEbayMessage < EbayTradingResponse
+  
+  def creation_date
+    @response["CreationDate"]
   end
   
   def item
     @response["Item"]
   end
   
-  def item_number
-    item["ItemID"]
+  def has_related_item?
+    !item.nil?
   end
   
-  def creation_date
-    item["CreationDate"]
+  def item_number
+    item["ItemID"] unless item.nil?
   end
   
   def question
     @response["Question"]
-  end
+  end  
   
   def message_id
     question["MessageID"]    
@@ -76,16 +147,8 @@ class ImportedEbayMessage
     question["Body"]
   end
   
-  def sender_email
-    q["SenderEmail"] unless q["SenderEmail"] == "Invalid Request"
-  end
-  
-  def get_user
-    user = @connection.request(:GetUser, :ItemID => item_number, :UserID => user_id)
-  end
-  
-  def connection
-    @connection ||= Ebay::Api::Trading.new("https://api.sandbox.ebay.com/ws/api.dll", "AgAAAA**AQAAAA**aAAAAA**kRoiTg**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4CoAZeCpQ6dj6x9nY+seQ**JpMBAA**AAMAAA**oZA6Ywa6Ma6zNlkw3cqilP+685HQPlP4Bf1XAf+2Rt9V77dU94zFnoj4nhflnUipahn1Fy2roxApfA5ELDRgedWuspTUBirBQ5bAsuq9Btysg3p4KCq5+vsLLi3gyElWAOOOEvjTe24GHXDyHxrJsci0Ht3gMvOQ0rllbdiplsymNRY0+lXrS4jGrLRV3VCwbA2rAuhDhEaJbBH0GNP+YRO2GEerOQUGmA1/zeGYOfa/ZyU/7vQYZoBFG+v+31rxfqlOVo53o9lOo2QVfI1TDRtlsQBaBe159Shbe686AdRod5zAlimUtpzV9/9OqeMDGHqjWi39CsCjTDctOsLm3Ck/h8nJcOkOHCa2aDvW1ney+77L8HljBIBCNBkNookq13s51zRjQh+vekwBi2ja0hZgIlKULFp3QZdF8np9qlhPjWT90udSQiy2hczfFQmK/vCW2dY8OD+6bcPLQa/ruTVMMLQKga3Hdi4oFxJlhLcH3hpi4Z4vunOYnxGhtva2iQpLUfRBwHpCNr2swDQDT8Y4BLkn0GpNAqaOBX700f+uywf0BnOwYwdyL7+kx/8TMR0lwTJvmlPguukEY/zMtrTIChiX6sDAAXTep9H5plEvUKmBwwqxo+Jy15kIkkmMQh5eq58I+/Zw+PWF7sNn7rWLTQyqexrPImWG3hqQlNF2O4F29DWQCfKtiD+Y+RzOF3vngtgeQmCbdWKnP9OXaxIitTuRsDagj5ebjU0DNWkX5/6eQlDScp3fVMNi0pgf", "Casmient-2aff-4dab-9163-50f440216b96", "454dd9f0-47d0-4871-ab91-ab0038a59cd3", "c8d4d396-f869-44d9-8798-df4c2de90717", "727")
+  def static_email
+    question["SenderEmail"] unless question["SenderEmail"] == "Invalid Request"
   end
   
 end

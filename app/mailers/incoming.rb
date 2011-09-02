@@ -69,7 +69,10 @@ require 'pp'
 	end
 	
 	def find_conversation_by_subject
-	  @conversation ||= Conversation.includes(:customer, :messages => [ :from_addresses, :reply_to_addresses ]).where("customer_emails.address in(?) or reply_to_addresses_messages.address in (?)", @all_addresses, @all_addresses).where(:messages => { :subject => @subject } ).limit(1).first
+	
+	  #@conversation ||= Conversation.includes(:customer, :messages => [ :from_addresses, :reply_to_addresses ]).where("customer_emails.address in(?) or reply_to_addresses_messages.address in (?)", @all_addresses, @all_addresses).where(:messages => { :subject => @subject } ).limit(1).first
+	
+	  @conversation ||= Conversation.includes(:customer => :customer_emails, :messages, :ebay_messages).where("customer_emails.address in(?) and (messages.subject = ? or ebay_messages.subject = ?)", @all_addresses, @subject, @subject).limit(1).first
 	end
 	
 	def handle_empty_conversations
