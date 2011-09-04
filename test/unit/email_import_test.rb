@@ -170,6 +170,23 @@ class EmailImportTest < ActiveSupport::TestCase
     assert_equal "Here is the subject line with some white space", message.subject
   end
   
+  def test_adds_to_existing_conversation_with_ebay_message
+    customer = FactoryGirl.create(:customer, :name => "David Pettifer", :customer_emails => [ CustomerEmail.new(:address => "david.pettifer@dizzy.co.uk"), CustomerEmail.new(:address => "melanie.sykes@hotmail.com") ])
+    conversation = customer.conversations.create!
+    ebay_message = conversation.ebay_messages.create!(:subject => "Here is another lovely subject line", :datetime => 30.days.ago, :content => "Here is the main body of the message")
+    @mail.subject = "Here is another lovely subject line"
+    Incoming.receive(@mail)
+    
+    @mail.subject = "RE: Here is another lovely subject line "
+    @mail.from = "melanie.sykes@hotmail.com"
+    @mail.body = "This has a different body to it"
+    Incoming.receive(@mail)
+    pp Conversation.all
+    pp Customer.all
+    pp EbayMessage.all
+    pp Message.all
+  end
+  
   def test_bad_email
     mail = File.read("bad_email.eml") { |f| f.read }
     Incoming.receive(mail)

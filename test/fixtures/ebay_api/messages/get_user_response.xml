@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetUserResponse xmlns="urn:ebay:apis:eBLBaseComponents">
+  <Timestamp>2011-09-03T14:31:16.146Z</Timestamp>
+  <Ack>Success</Ack>
+  <Version>735</Version>
+  <Build>E735_INTL_BUNDLED_13708594_R1</Build>
+  <User>
+    <AboutMePage>false</AboutMePage>
+    <EIASToken>nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4CoAZaBpA6dj6x9nY+seQ==</EIASToken>
+    <Email>Invalid Request</Email>
+    <FeedbackScore>500</FeedbackScore>
+    <UniqueNegativeFeedbackCount>0</UniqueNegativeFeedbackCount>
+    <UniquePositiveFeedbackCount>0</UniquePositiveFeedbackCount>
+    <PositiveFeedbackPercent>0.0</PositiveFeedbackPercent>
+    <FeedbackPrivate>false</FeedbackPrivate>
+    <FeedbackRatingStar>Purple</FeedbackRatingStar>
+    <IDVerified>true</IDVerified>
+    <eBayGoodStanding>true</eBayGoodStanding>
+    <NewUser>false</NewUser>
+    <RegistrationDate>1999-01-01T00:00:00.000Z</RegistrationDate>
+    <Site>UK</Site>
+    <Status>Confirmed</Status>
+    <UserID>testuser_casamiento</UserID>
+    <UserIDChanged>false</UserIDChanged>
+    <UserIDLastChanged>2011-06-18T21:01:46.000Z</UserIDLastChanged>
+    <VATStatus>VATTax</VATStatus>
+    <SellerInfo>
+      <AllowPaymentEdit>true</AllowPaymentEdit>
+      <CheckoutEnabled>true</CheckoutEnabled>
+      <CIPBankAccountStored>false</CIPBankAccountStored>
+      <GoodStanding>true</GoodStanding>
+      <LiveAuctionAuthorized>false</LiveAuctionAuthorized>
+      <MerchandizingPref>OptIn</MerchandizingPref>
+      <QualifiesForB2BVAT>false</QualifiesForB2BVAT>
+      <SellerGuaranteeLevel>NotEligible</SellerGuaranteeLevel>
+      <SchedulingInfo>
+        <MaxScheduledMinutes>30240</MaxScheduledMinutes>
+        <MinScheduledMinutes>0</MinScheduledMinutes>
+        <MaxScheduledItems>3000</MaxScheduledItems>
+      </SchedulingInfo>
+      <StoreOwner>false</StoreOwner>
+      <SellerBusinessType>Commercial</SellerBusinessType>
+      <ExpressEligible>false</ExpressEligible>
+      <ExpressWallet>false</ExpressWallet>
+      <CharityRegistered>false</CharityRegistered>
+      <SafePaymentExempt>true</SafePaymentExempt>
+      <TransactionPercent>83.3</TransactionPercent>
+      <RecoupmentPolicyConsent />
+      <DomesticRateTable>false</DomesticRateTable>
+      <InternationalRateTable>false</InternationalRateTable>
+    </SellerInfo>
+    <eBayWikiReadOnly>false</eBayWikiReadOnly>
+    <MotorsDealer>false</MotorsDealer>
+    <UniqueNeutralFeedbackCount>0</UniqueNeutralFeedbackCount>
+    <EnterpriseSeller>false</EnterpriseSeller>
+  </User>
+</GetUserResponse>

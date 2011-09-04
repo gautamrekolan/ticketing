@@ -7,41 +7,43 @@ class ImportEbayMessages
   end
   
   def import!
-    get_member_messages = @ebay_api.request(:GetMemberMessages, :MailMessageType => "All", :StartCreationTime => "2011-07-01T00:00:00Z")
+    get_member_messages = @ebay_api.request(:GetMemberMessages, :MailMessageType => "All")
+    #:StartCreationTime => "2011-07-01T00:00:00Z")
     messages = get_member_messages["GetMemberMessagesResponse"]["MemberMessage"]["MemberMessageExchange"]
 
     messages.each do |m|
+    
       message = ImportedEbayMessage.new(m)
-      
       static_email = CustomerEmail.find_or_initialize_by_address(message.static_email) unless message.static_email.blank?
-          
+
       if message.has_related_item?
-      puts true
+    
         user = EbayUser.new(@ebay_api.request(:GetUser, :ItemID => message.item_number, :UserID => message.ebay_user_id))         
+        
         account_email = CustomerEmail.find_or_initialize_by_address(user.account_email) if user.has_account_email?
+        
       else
         user = EbayUser.new(@ebay_api.request(:GetUser, :UserID => message.ebay_user_id))
       end
       conversation = find_conversation(user, message, static_email, account_email)
-      puts user.account_email
-      puts message.static_email
-      puts message.subject
-      puts "\n\n"
+
       if conversation.blank?
         customer = Customer.find_by_eias_token(user.eias_token)
         if customer.blank?
           customer = find_customer(message.static_email, user.account_email)
         end        
         if customer.blank?
-          customer = Customer.new(:ebay_user_id => message.ebay_user_id, :name => message.ebay_user_id, :eias_token => user.eias_token)
+          customer = Customer.create!(:ebay_user_id => message.ebay_user_id, :name => message.ebay_user_id, :eias_token => user.eias_token)
         end
         conversation = customer.conversations.build
       end
       conversation.ebay_messages.build(:subject => message.subject, :content => message.body, :datetime => message.creation_date, :ebay_message_identifier => message.message_id, :item_number => message.item_number, :customer_email => static_email)
-      conversation.save!
-      conversation.customer.customer_emails << static_email if !static_email.blank? && static_email.new_record?
+      
+      conversation.customer.customer_emails << static_email if !static_email.blank? && static_email.new_record?      
       conversation.customer.customer_emails << account_email if !account_email.nil? && account_email.new_record?
+      
       conversation.customer.save!
+      conversation.save!
     end
   end
   
@@ -85,7 +87,7 @@ class EbayUser < EbayTradingResponse
   end
 
   def has_account_email?
-    !account_email == "Invalid Request"
+    !(account_email == "Invalid Request")
   end
   
   def eias_token
