@@ -3,6 +3,7 @@
   require File.expand_path('../../config/environment', __FILE__)
   require 'rails/test_help'
   require 'webmock/test_unit'
+  require 'pp'
 #end
 
 class ActiveSupport::TestCase

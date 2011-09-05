@@ -90,7 +90,7 @@ class EbayImportTest < ActiveSupport::TestCase
     assert_equal @before_ebay_messages +3, EbayMessage.count, "EbayMessages should have changed"
   end
   
-  test "5 adds ebay message to existing conversation when ebay message subject matches message subject and static email matches" do 
+  test "5 adds ebay message to existing conversation when ebay message subject matches message subject and static email matches but eias token different" do 
     conversation = @customer.conversations.build
     message = conversation.messages.build(:subject => "This is a fabulous choice of subject!", :datetime => Time.now, :content => "Body of message")
     conversation.save!
@@ -98,22 +98,62 @@ class EbayImportTest < ActiveSupport::TestCase
     @question1[:SenderID] = @question2[:SenderID] = @question3[:SenderID] = "rahrahrah"
     @question1[:Subject] = @question2[:Subject] = @question3[:Subject] = "This is a fabulous choice of subject!"
     @question3[:SenderEmail] = "david.pettifer@dizzy.co.uk"
+    @item3[:ItemID] = "1234567"
 
     get_member_messages_response = build_xml_from_hash(@get_member_messages_response)
     stub_request(:post, "https://api.ebay.com/ws/api.dll").to_return({:body => get_member_messages_response}, {:body => build_xml_from_hash(@user1)}, {:body => build_xml_from_hash(@user2)}, {:body => build_xml_from_hash(@user3)})
     
     count_before 
     ImportEbayMessages.new.import!
-    pp Message.all
-    pp Customer.all
-    pp EbayMessage.all
-    pp CustomerEmail.all
-    pp Conversation.all
  
     assert_equal @before_conversations + 0, Conversation.count, "Conversations should not have changed"
     assert_equal @before_customers + 0, Customer.count, "Customers should not have changed"
     assert_equal @before_ebay_messages + 3, EbayMessage.count, "EbayMessages should have changed"
     assert_equal @before_messages + 0, Message.count, "Messages should not have changed"
+  end
+  
+  test "6 adds EbayMessage to existing conversation when eias token matches but static email does not" do
+   conversation = @customer.conversations.build
+    message = conversation.messages.build(:subject => "This is a fabulous choice of subject!", :datetime => Time.now, :content => "Body of message")
+    conversation.save!
+    
+    @question1[:SenderID] = @question2[:SenderID] = @question3[:SenderID] = "rahrahrah"
+    @question1[:Subject] = @question2[:Subject] = @question3[:Subject] = "This is a fabulous choice of subject!"
+    @question3[:SenderEmail] = "legless@oozy.co.uk"
+    @user3[:GetUserResponse][:User][:Email] = "rahrah@gho.com"
+    @user3[:GetUserResponse][:User][:EIASToken] = "abcdefghijklmnopqrstuvwxyz"
+    @item3[:ItemID] = "1234567"
+
+    get_member_messages_response = build_xml_from_hash(@get_member_messages_response)
+    stub_request(:post, "https://api.ebay.com/ws/api.dll").to_return({:body => get_member_messages_response}, {:body => build_xml_from_hash(@user1)}, {:body => build_xml_from_hash(@user2)}, {:body => build_xml_from_hash(@user3)})
+    
+    count_before 
+    ImportEbayMessages.new.import!
+    assert_equal @before_conversations + 0, Conversation.count, "Conversations should not have changed"
+    assert_equal @before_customers + 0, Customer.count, "Customers should not have changed"
+    assert_equal @before_ebay_messages + 3, EbayMessage.count, "EbayMessages should have changed"
+    assert_equal @before_messages + 0, Message.count, "Messages should not have changed"
+  end
+  
+  test "7 adds EbayMessage to existing conversation when eias token doesn't match but subject matches and email matches" do
+    helena = @customer.customer_emails.create!(:address => "helena.betts@yahoo.com")
+    sophie = @customer.customer_emails.create!(:address => "sophie_moorman@ryde.com")
+    conversation = @customer.conversations.create!
+    conversation.messages.create!(:subject => "The wonderful world of Harry Potter", :datetime => Time.now, :content => "Dumbledore who is he?")
+    
+    @question1[:SenderEmail] = @question2[:SenderEmail] = @question3[:SenderEmail] = "helena.betts@yahoo.com"
+    @question1[:Subject] = @question2[:Subject] = @question3[:Subject] = "The wonderful world of Harry Potter"
+     get_member_messages_response = build_xml_from_hash(@get_member_messages_response)
+    stub_request(:post, "https://api.ebay.com/ws/api.dll").to_return({:body => get_member_messages_response}, {:body => build_xml_from_hash(@user1)}, {:body => build_xml_from_hash(@user2)}, {:body => build_xml_from_hash(@user3)})
+    
+    count_before 
+    ImportEbayMessages.new.import!
+    pp Customer.all
+    pp Conversation.all
+    pp CustomerEmail.all
+    pp EbayMessage.all
+    pp Message.all
+    
   end
 
 end

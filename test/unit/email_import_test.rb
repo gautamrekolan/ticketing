@@ -32,14 +32,6 @@ class EmailImportTest < ActiveSupport::TestCase
     assert_equal "david.pettifer@dizzy.co.uk", Customer.first.name
   end
 
-  def test_add_to_existing_conversation_with_valid_conversation_id
-		customer = FactoryGirl.create(:customer, :name => "David Pettifer", :customer_emails => [ CustomerEmail.new(:address => "david.pettifer@dizzy.co.uk")], :conversations => [ Conversation.new ])
-		@mail.body = "This is the body of the email CASAMIENTO[1]"
-    assert_no_difference 'Conversation.count' do    
-      Incoming.receive(@mail)
-    end
-  end 
-
   def test_create_conversation_and_add_to_existing_customer_with_valid_email_and_invalid_conversation_id
     customer = FactoryGirl.create(:customer, :name => "David Pettifer", :customer_emails => [ CustomerEmail.new(:address => "rebelcoo7@hotmail.com") ])
     @mail.from = "rebelcoo7@hotmail.com"
@@ -181,10 +173,6 @@ class EmailImportTest < ActiveSupport::TestCase
     @mail.from = "melanie.sykes@hotmail.com"
     @mail.body = "This has a different body to it"
     Incoming.receive(@mail)
-    pp Conversation.all
-    pp Customer.all
-    pp EbayMessage.all
-    pp Message.all
   end
   
   def test_bad_email

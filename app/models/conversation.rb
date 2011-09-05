@@ -7,6 +7,18 @@ class Conversation < ActiveRecord::Base
 	
 	scope :open, where(:status => false) 
 	
+	def self.with_matching_subject(subject = "")
+	  includes(:messages, :ebay_messages).where("messages.subject = ? or ebay_messages.subject = ?", subject, subject)
+	end
+	
+	def self.with_matching_eias_token(token = "")
+	  includes(:customer).where(:customer => { :eias_token => token })
+	end
+	
+	def self.with_matching_email_addresses(emails = [])
+	  includes(:customer => :customer_emails).where(:customer_emails => { :address => emails })
+	end
+	
 	def all_messages
 	  (ebay_messages + messages).sort_by { |m| m.datetime } 
 	end

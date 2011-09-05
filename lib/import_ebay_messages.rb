@@ -7,8 +7,7 @@ class ImportEbayMessages
   end
   
   def import!
-    get_member_messages = @ebay_api.request(:GetMemberMessages, :MailMessageType => "All")
-    #:StartCreationTime => "2011-07-01T00:00:00Z")
+    get_member_messages = @ebay_api.request(:GetMemberMessages, :MailMessageType => "All", :StartCreationTime => "2011-06-10T00:00:00Z")
     messages = get_member_messages["GetMemberMessagesResponse"]["MemberMessage"]["MemberMessageExchange"]
 
     messages.each do |m|
@@ -52,7 +51,12 @@ class ImportEbayMessages
   end
   
   def find_conversation(user, message, static_email, account_email)
-    Conversation.includes(:messages, :ebay_messages, :customer => :customer_emails).where("(customers.eias_token = ? and (ebay_messages.subject = ? or messages.subject = ? )) OR (customer_emails.address IN (?) AND (ebay_messages.subject = ? or messages.subject = ?))", user.eias_token, message.subject, message.subject, [static_email, account_email], message.subject, message.subject).limit(1).first
+    if account_email.blank? 
+      emails = [ static_email.address ]
+    else
+      emails = [ account_email.address, static_email.address ]
+    end
+    Conversation.includes(:messages, :ebay_messages, :customer => :customer_emails).where("(customers.eias_token = ? and (ebay_messages.subject = ? or messages.subject = ? )) OR (customer_emails.address IN (?) AND (ebay_messages.subject = ? or messages.subject = ?))", user.eias_token, message.subject, message.subject, emails, message.subject, message.subject).limit(1).first
   end
     
 end
