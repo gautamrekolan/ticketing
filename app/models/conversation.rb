@@ -11,6 +11,10 @@ class Conversation < ActiveRecord::Base
 	  includes(:messages, :ebay_messages).where("messages.subject = ? or ebay_messages.subject = ?", subject, subject)
 	end
 	
+	def self.with_matching_email_addresses_or_eias_token(emails, eias_token)
+	  includes(:customer => :customer_emails).where("customer_emails.address IN (?) or customers.eias_token = ?", emails, eias_token)
+	end
+	
 	def self.with_matching_eias_token(token = "")
 	  includes(:customer).where(:customer => { :eias_token => token })
 	end

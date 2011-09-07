@@ -10,7 +10,7 @@ class Customer < ActiveRecord::Base
 	validates :name, :presence => true
 	
 	def self.where_email_addresses_match(emails)
-	  joins(:customer_emails).where(:customer_emails => { :address => emails })
+	  includes(:customer_emails).where(:customer_emails => { :address => emails })
 	end
 	
 	def new_guest_fields
