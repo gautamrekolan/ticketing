@@ -2,7 +2,7 @@ class DefaultMailFilter
 
   def initialize(email)
     @email = email
-    
+
     @customer_attributes = {}
   end
   
@@ -95,8 +95,25 @@ class DefaultMailFilter
   
   def find_or_create_customer
     if @customer.blank?
-      @customer = Customer.where_email_addresses_match(addresses_to_match).limit(1).first
+      @customer = Customer.where_email_addresses_or_eias_token_match(addresses_to_match, eias_token)
+
+      if @customer.many?
+        first_customer = @customer.first
+        second_customer = @customer.last
+        first_customer.conversations << second_customer.conversations
+        first_customer.customer_emails << second_customer.customer_emails
+      
+       second_customer.reload
+       
+               second_customer.destroy
+        first_customer.save!
+               @customer = first_customer
+               
+      elsif @customer.first
+        @customer = @customer.first
+      else
       @customer = Customer.new(:name => display_name, :ebay_user_id => ebay_user_id, :eias_token => eias_token) if @customer.blank?
+      end
     end
   end
 	
@@ -110,9 +127,9 @@ class DefaultMailFilter
   def content
    if @email.multipart?
       new_body = @email.text_part || @email.html_part
-		  return new_body.decoded.force_encoding(new_body.charset).encode!('utf-8')
+		  return new_body.decoded.force_encoding(@email.text_part.charset).encode!('utf-8')
 		else
-		  return @email.body.decoded.force_encoding(@email.body.charset).encode!('utf-8')
+		  return @email.body.decoded.force_encoding(@email.charset).encode!('utf-8')
 		end  
   end
 

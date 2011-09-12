@@ -7,12 +7,10 @@ class PayPalMailFilter < DefaultMailFilter
   
   def filter!
     if paypal_notification?
-
       @customer_attributes = { :eias_token => eias_token, :ebay_user_id => ebay_user_id }
       process!
       return true
     else
-
       return false
     end
   end
@@ -48,6 +46,7 @@ class PayPalMailFilter < DefaultMailFilter
   def display_name
      b = content.gsub("\r\n", "\n")
      b =~ /Buyer:\n(.+?)\n/m
+    
      result = $1.titleize
      result
   end

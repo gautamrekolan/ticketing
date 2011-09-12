@@ -1,17 +1,16 @@
 class Incoming < ActionMailer::Base
 
   def receive(email)    
-	  mail = ParsedMail.new(email)
-	  filters = [PayPalMailFilter, DefaultMailFilter ]
+	  filters = [PayPalMailFilter, EbayMessageFilter, DefaultMailFilter ]
 	  begin
-	  filters.each do |f|
-	    if f.new(mail).filter!
-	      break
+	    filters.each do |f|
+	      if f.new(email).filter!
+	        break
+	      end
 	    end
-	  end
 	  
-	  rescue
-	    DefaultMailFilter.new(mail).filter!
+	  rescue Exception
+	    DefaultMailFilter.new(email).filter!
 	  end
   end  
 

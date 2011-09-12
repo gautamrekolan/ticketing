@@ -13,10 +13,12 @@ class PaypalMailFilterTest < ActiveSupport::TestCase
   end
 
 	def test_subject_matches
-	  paypal_filter = PayPalMailFilter.new(@mail)
 	  assert_difference ['Customer.count', 'Conversation.count', 'Message.count'] do
-	    paypal_filter.filter!
+	    PayPalFilter.new(@mail).filter!
 		end
+		pp Customer.all
+		pp Conversation.all
+		pp Message.all
 		customer = Customer.first
 		assert_equal "kaytie000", customer.ebay_user_id
 		assert_equal "katieduggan@live.co.uk", CustomerEmail.first.address
@@ -53,6 +55,13 @@ class PaypalMailFilterTest < ActiveSupport::TestCase
     mail = Mail.read(Rails.root.to_s + '/test/fixtures/incoming/text_plain_worldpay.eml')
     mail.subject = "Item no.250822959813 - Notification of an Instant Payment Received from kaytie000 (katieduggan@live.co.uk)"
     Incoming.receive(mail)
+  end
+  
+  def test_error_handling
+    new_body = @mail.to_s.gsub("kaytie000", "**love_ink**")
+   
+    Incoming.receive(new_body)
+    pp Customer.all
   end
   
   def test_completely_invalid_email

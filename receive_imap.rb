@@ -36,15 +36,20 @@ require 'pp'
    #imap.expunge
    
 #end
+#Dir.foreach("../emails") do |email|
+#if email == "." || email == ".."
 
-Dir.foreach("../emails") do |email|
-if email == "." || email == ".."
+#else
+#  email = File.open("../emails/" + email,'rb') { |f| f.read }
+  #Incoming.receive(email)
+#  EmailToImport.create!(:content => email)
+#  puts "Parsing..."
+#  end
+#end
 
-else
-  email = File.open("../emails/" + email,'rb') { |f| f.read }
-  Incoming.receive(email)
-  puts "Parsing ..."
-  end
+EmailToImport.all.each do |email|
+  Incoming.receive(email.content)
+  puts "Parsing...."
 end
 
 #mail = Mail.find(:count => 1000, :order => :desc, :mailbox => '[Gmail]/All Mail') 

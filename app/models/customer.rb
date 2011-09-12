@@ -8,6 +8,12 @@ class Customer < ActiveRecord::Base
 	has_many :conversations, :dependent => :destroy, :inverse_of => :customer
 	
 	validates :name, :presence => true
+	validates :eias_token, :uniqueness => true, :allow_blank => true
+	validates :ebay_user_id, :uniqueness => true, :allow_blank => true
+	
+	def self.where_email_addresses_or_eias_token_match(emails, eias_token)
+	  includes(:customer_emails).where("customer_emails.address IN (?) or customers.eias_token = ?", emails, eias_token)
+	end
 	
 	def self.where_email_addresses_match(emails)
 	  includes(:customer_emails).where(:customer_emails => { :address => emails })
