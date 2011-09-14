@@ -73,10 +73,6 @@ class EmailImportTest < ActiveSupport::TestCase
     assert_equal 1, customer_emails
   end
   
-  def test_from_addresses_duplicates_not_added
-    @mail.from = ["david.p@dizzy.co.uk", "rebelcoo7@.com"]
-  end
-
   def test_conversation_subject_is_valid
     Incoming.receive(@mail.to_s)
     conversation = Conversation.first
@@ -162,11 +158,11 @@ class EmailImportTest < ActiveSupport::TestCase
     mail = Mail.read(Rails.root.to_s + "/test/fixtures/incoming/invalid.eml") 
     assert_difference "RawUnimportedEmail.count" do
       Incoming.receive(mail)
-    endm
+    end
   end
   
   def test_z_merge_customer
-      WebMock.allow_net_connect! 
+    WebMock.allow_net_connect! 
     Incoming.receive(@mail.to_s)
     new_ebay_message = @mail.dup
     new_ebay_message.from = '"eBay Member: casamiento-wedding-stationery" <lewis@dizzy.co.uk>'

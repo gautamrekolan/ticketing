@@ -1,10 +1,10 @@
-#Spork.prefork do 
+Spork.prefork do 
   ENV["RAILS_ENV"] = "test"
   require File.expand_path('../../config/environment', __FILE__)
   require 'rails/test_help'
   require 'webmock/test_unit'
   require 'pp'
-#end
+end
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
