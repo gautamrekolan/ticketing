@@ -1,15 +1,13 @@
-require 'net/https'
-require 'builder'
-
-
+require 'import_ebay_messages'
 class EbayOrdersResponse < EbayTradingResponse
   def total_entries
-    @response["GetOrdersResponse"]["PaginationResult"]["TotalNumberOfEntries"]
+    @response["GetOrdersResponse"]["PaginationResult"]["TotalNumberOfEntries"].to_i
   end
   
   def timestamp
     @response["GetOrdersResponse"]["Timestamp"]
   end
+  
   def no_entries?
     total_entries == 0
   end
@@ -31,10 +29,33 @@ class EbayOrdersResponse < EbayTradingResponse
 end
 
 class EbayTransaction < EbayTradingResponse
+  
+  def initialize(response)
+    super(response)
+    process_item_description
+  end
+  
+  def price
+    ((BigDecimal.new(@response["TransactionPrice"]) / quantity_purchased)*100).to_i
+  end
+  
   def item
     @response["Item"]
   end
   
+  def process_item_description
+  	item = connection.request(:GetItem, :ItemID => item_id, :DetailLevel => "ItemReturnDescription")			
+		item_description = item["GetItemResponse"]["Item"]["Description"]
+		matches = item_description.scan(/\[\[CASAMIENTO_SKU::(.*)\]\]/).flatten
+		unless matches.first.nil?
+			@sub_quantity, @product_id = matches.first.split('-')
+		end
+  end
+  
+  def product_id
+    @product_id.to_i
+  end
+
   def buyer
     @response["Buyer"]
   end
@@ -48,7 +69,7 @@ class EbayTransaction < EbayTradingResponse
   end
   
   def quantity_purchased
-    @response["QuantityPurchased"].to_i
+    @response["QuantityPurchased"].to_i * @sub_quantity.to_i
   end
   
   def order_line_item_id
@@ -134,6 +155,7 @@ class ImportOrders
 	def import!
 	  response = @ebay_api.request(:GetOrders, :ModTimeFrom => EbayLastImportedTime.instance.last_import.iso8601, :ModTimeTo => Time.now.iso8601)
 	  orders_response = EbayOrdersResponse.new(response)
+	  puts orders_response.no_entries?
 		exit if orders_response.no_entries?
 		
 		orders_response.orders.each do |order|
@@ -162,10 +184,8 @@ class ImportOrders
 			address.customer = customer
 			order.customer = customer
 			order.customer_address = address
-		end
-		items = []
-	  items << o.transactions.map { |t| process_transaction(t, o, customer) }
-		order.items << items
+		end 
+	  order.items << o.transactions.map { |t| process_transaction(t, o, customer) }
 		order.save!
 	end
 	
@@ -190,14 +210,6 @@ class ImportOrders
 		  email.save! if email.new_record?
 		  c.customer_emails << email
 		end
-		
-		item = @ebay_api.request(:GetItem, :ItemID => transaction.item_id, :DetailLevel => "ItemReturnDescription")			
-		matches = item["GetItemResponse"]["Item"]["Description"].scan(/\[\[CASAMIENTO_SKU::(.*)\]\]/).flatten
-
-		unless matches.first.nil?
-			sub_quantity, product_id = matches.first.split('-')
-		end
-		product = Product.find(product_id)
 
     # Delete order if it has been combined
 		if order = Order.find_by_ebay_order_identifier(transaction.order_line_item_id)
@@ -205,9 +217,10 @@ class ImportOrders
 		end
 		
 		item = Item.find_or_initialize_by_ebay_order_line_item_token(transaction.order_line_item_id)
-		item.quantity_ordered = transaction.quantity_purchased * sub_quantity.to_i
+		item.quantity_ordered = transaction.quantity_purchased
+		product = Product.find(transaction.product_id)
 		item.product = product
-		item.price = 20
+		item.price = transaction.price
 		item
 	end
 

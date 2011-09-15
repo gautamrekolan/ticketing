@@ -6,7 +6,11 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-EbayLastImportedTime.instance.update_attributes(:last_import => 27.days.ago.iso8601)
+EbayLastImportedTime.instance.update_attributes(:last_import => 29.days.ago.iso8601)
+
+Monogram.create!(:description => "Three Squares")
+Monogram.create!(:description => "Black Square")
+
 simplicity = Theme.create(:name => "Simplicity")
 day_invitation = ProductType.create(:description => "Day Invitation")
 evening_invitation = ProductType.create(:description => "Evening Invitation")
@@ -15,6 +19,11 @@ paper = Paper.new(:texture => "Smooth", :colour => "White", :weight => 80)
 product = Product.new(:theme => simplicity, :product_format => a6_flat, :product_type => day_invitation, :paper => paper, :price => 10)
 product2 = Product.new(:theme => simplicity, :product_format => a6_flat, :product_type => evening_invitation, :paper => paper, :price => 15)
 simplicity.products << product << product2
+
+rose = Theme.create!(:name => "Rose")
+product = Product.new(:theme => rose, :product_format => a6_flat, :product_type => day_invitation, :paper => paper, :price => 20)
+product2 = Product.new(:theme => rose, :product_format => a6_flat, :product_type => evening_invitation, :paper => paper, :price => 25)
+rose.products << product << product2
 
 customer = Customer.create!(:name => "David Pettifer")
 customer.orders.create(:notes => "Order notes here!")

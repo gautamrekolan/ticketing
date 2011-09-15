@@ -16,8 +16,8 @@ class EbayImportTest < ActiveSupport::TestCase
 
     @item_response = { :GetItemResponse => { :Item => { :Description => "A beautiful set of invitations for all the family!&lt;br&gt; &lt;br&gt; [[CASAMIENTO_SKU::30-1]]&lt;br&gt;", :ItemID => "110090977477" } } }
     
-    @transaction1 = { :Transaction => { :Buyer => { :Email => "david.pettifer@dizzy.co.uk" }, :CreatedDate => "2011-07-14T16:36:27.000Z", :Item => { :ItemID => "110090767031" }, :QuantityPurchased => "1", :OrderLineItemID => "110090767031-0" } }
-    @transaction2 = { :Transaction => { :Buyer => { :Email => "david.pettifer@dizzy.co.uk" }, :CreatedDate => "2011-07-14T16:36:27.000Z", :Item => { :ItemID => "110090769997" }, :QuantityPurchased => "1", :OrderLineItemID => "110090769997-0" } }
+    @transaction1 = { :Transaction => { :Buyer => { :Email => "david.pettifer@dizzy.co.uk" }, :TransactionPrice => "12.60", :CreatedDate => "2011-07-14T16:36:27.000Z", :Item => { :ItemID => "110090767031" }, :QuantityPurchased => "2", :OrderLineItemID => "110090767031-0" } }
+    @transaction2 = { :Transaction => { :Buyer => { :Email => "david.pettifer@dizzy.co.uk" }, :TransactionPrice => "18.90", :CreatedDate => "2011-07-14T16:36:27.000Z", :Item => { :ItemID => "110090769997" }, :QuantityPurchased => "3", :OrderLineItemID => "110090769997-0" } }
     
     @order1 = { :Order => { :OrderID => "219315010", :OrderStatus => "Completed", :CheckoutStatus => { :LastModifiedTime => "2011-07-15T09:11:15.000Z", :Status => "Completed" }, :ShippingAddress => shipping_address, :EIASToken => "nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4CoAZeCoAqdj6x9nY+seQ==", :TransactionArray =>  [ @transaction1, @transaction2 ]  } }
     
@@ -27,7 +27,7 @@ class EbayImportTest < ActiveSupport::TestCase
   def build_xml_and_stub_requests!
     get_item_response = build_xml_from_hash(@item_response)
     get_order_response = build_xml_from_hash(@order_response)
-    stub_request(:post, "https://api.ebay.com/ws/api.dll").to_return({:body => get_order_response}, {:body => get_item_response}, { :body => get_item_response } )
+    stub_request(:post, "https://api.sandbox.ebay.com/ws/api.dll").to_return({:body => get_order_response}, {:body => get_item_response}, { :body => get_item_response } )
   end
 
   test "1 creates new customer and new order if doesn't already exist" do 
@@ -64,6 +64,7 @@ class EbayImportTest < ActiveSupport::TestCase
     build_xml_and_stub_requests!
     assert_difference 'CustomerAddress.count', 1 do
             ImportOrders.new
+            pp CustomerAddress.all
     end
 
     customer = Customer.find_by_eias_token("nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4CoAZeCoAqdj6x9nY+seQ==")
