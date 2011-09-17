@@ -12,7 +12,7 @@
   <% end %>
   <% @order.items.each do |item| %>
     <% unless item.guests_remaining < 1 %>
-    <%= f.label item.product.product_type.description %>
+    <%= f.label item.product.description %>
     <%= item.guests_remaining %> remaining
       <%= check_box_tag "guest[item_ids][]", item.id %><br />
       <% end %>

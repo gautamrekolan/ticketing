@@ -11,6 +11,10 @@ class Item < ActiveRecord::Base
 	def guests_remaining
 		quantity_ordered - guests.count 
 	end
+	
+	def quantity_awaiting_despatch
+	  quantity_ordered - quantity_despatched
+	end
 
 end
 

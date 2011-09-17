@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110902184520) do
+ActiveRecord::Schema.define(:version => 20110916191951) do
 
   create_table "attachments", :force => true do |t|
     t.integer "message_id"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(:version => 20110902184520) do
     t.integer "theme_id"
     t.integer "paper_id"
     t.integer "price"
+    t.integer "character_limit"
   end
 
   create_table "themes", :force => true do |t|

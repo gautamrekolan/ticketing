@@ -1,7 +1,7 @@
 class CustomerAddress < ActiveRecord::Base
 
-	belongs_to :customer
-	has_many :orders
+	belongs_to :customer, :inverse_of => :customer_addresses
+	has_many :orders, :inverse_of => :customer_address
 	
 end
 

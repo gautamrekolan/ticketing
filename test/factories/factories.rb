@@ -14,21 +14,21 @@ FactoryGirl.define do
 		customer_emails { |e| [ e.association(:customer_email) ] }
 	end
 
+  factory :customer_address do 
+    name "Mr D Pettifer"
+    company "Dizzy New Media Ltd"
+    address_1 "Communication Hse"
+    address_2 "22 Brook Road"
+    town "Shanklin"
+    county "Isle of Wight"
+    country "United Kingdom"
+    postcode "PO37 7LU"
+  end
 	
 	factory :customer_email do 
 		address "david.pettifer@dizzy.co.uk"
 	end
-	
-	factory :customer_address do
-		name "David Pettifer"
-		company "Dizzy New Media Ltd"
-		address_1 "40 Grange Road"
-		town "Strood"
-		county "Kent"
-		country "United Kingdom"
-		postcode "ME2 4DA"
-	end
-	
+
 	factory :theme do
 		name
 	end

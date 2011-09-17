@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
 	belongs_to :customer
-	belongs_to :customer_address
+	belongs_to :customer_address, :inverse_of => :orders
 	has_many :items, :dependent => :destroy
 	has_many :monograms
 	

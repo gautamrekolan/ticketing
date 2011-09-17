@@ -10,6 +10,7 @@ gem 'mail'
 gem "ebay_api_trading", :path => "~/ebay_trading_api"
 gem 'rake', '0.8.7'
 gem 'acts_as_singleton', :git => 'git://github.com/mrdizzy/acts_as_singleton.git', :branch => 'rails3'
+gem 'jquery-rails'
 # Use unicorn as the web server
 # gem 'unicorn'
 
