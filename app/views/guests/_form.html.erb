@@ -1,3 +1,14 @@
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".envelope_true").click(function(){
+  $("#envelope_details").toggle("fast");
+  });
+});
+</script>
+</head>
+
+
+
 <%= form_for ([@order, @guest]) do |f| %>
   <% if @guest.errors.any? %>
     <div id="error_explanation">
@@ -14,7 +25,7 @@
     <% unless item.guests_remaining < 1 %>
     <%= f.label item.product.description %>
     <%= item.guests_remaining %> remaining
-      <%= check_box_tag "guest[item_ids][]", item.id %><br />
+      <%= check_box_tag "guest[item_ids][]", item.id, false, :class => "envelope_#{item.product.product_type.envelope}" %><br />
       <% end %>
   <% end %>
   <hr />
@@ -22,6 +33,7 @@
     <%= f.label :name_on_invitation %><br />
     <%= f.text_field :name_on_invitation %>
   </div>
+  <div id="envelope_details" style="display:none;">
   <% if @order.items.any? { |item| item.guests_remaining > 0 && item.product.product_type.envelope } %>
   <div class="field">
     <%= f.label :name_on_envelope %><br />
@@ -37,7 +49,7 @@
     <%= f.text_field :postcode %>
   </div>
   <% end %>
-
+  </div>
 
 
   <div class="actions">

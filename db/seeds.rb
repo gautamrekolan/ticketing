@@ -51,7 +51,8 @@ message.reply_to_addresses << [ address7, address8 ]
 
 customer_address = CustomerAddress.create(:customer => customer, :name => "Shirley Pettifer", :address_1 => "22 Brook Road", :town => "South Benfleet", :county => "Essex", :country => "United Kingdom", :postcode => "SS7 5PJ")
 order = Order.create(:customer => customer, :customer_address => customer_address)
-order.items.build(:product => product, :quantity_ordered => 30, :price => 5)
+order.items << Item.create!(:product => product, :quantity_ordered => 30, :price => 5)
+order.items << Item.create!(:product => product3, :quantity_ordered => 20, :price => 10)
 order.save!
 
 
