@@ -57,6 +57,7 @@ order = Order.create(:customer => customer, :customer_address => customer_addres
 order.items.build(:product => product, :quantity_ordered => 30, :price => 5)
 order.items.build(:product => product3, :quantity_ordered => 25, :price => 10)
 order.items.build(:product => name_place, :quantity_ordered => 15, :price => 15)
+
 order.save!
 
 
