@@ -7,7 +7,7 @@ gem 'rails', '3.0.9'
 
 gem 'sqlite3'
 gem 'mail'
-gem "ebay_api_trading", :path => "~/ebay_trading_api"
+gem "ebay_api_trading", :git => 'git://github.com/mrdizzy/ebay_trading_api.git'
 gem 'rake', '0.8.7'
 gem 'acts_as_singleton', :git => 'git://github.com/mrdizzy/acts_as_singleton.git', :branch => 'rails3'
 gem 'jquery-rails'
@@ -41,9 +41,9 @@ end
 group :test do 
 
 		gem 'factory_girl_rails'
-		gem 'spork', :git => 'git://github.com/timcharper/spork.git'
-		gem 'spork-testunit', :git => 'git://github.com/timcharper/spork-testunit.git'#
-		gem 'mocha', :require => false
-		  gem 'webmock'
+gem 'spork', '~> 0.9.0.rc'		
+gem 'spork-testunit', :git => 'git://github.com/sporkrb/spork-testunit.git'#
+	gem 'mocha', :require => false
+	  gem 'webmock'
 		#gem 'fakeweb'
 end
