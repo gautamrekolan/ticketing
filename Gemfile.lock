@@ -64,11 +64,9 @@ GEM
       activemodel (= 3.0.9)
       activesupport (= 3.0.9)
     activesupport (3.0.9)
-    addressable (2.2.6)
     annotate (2.4.0)
     arel (2.0.10)
     builder (2.1.2)
-    crack (0.3.1)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     factory_girl (2.5.0)
@@ -120,9 +118,6 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.31)
-    webmock (1.7.10)
-      addressable (~> 2.2, > 2.2.5)
-      crack (>= 0.1.7)
     xml-simple (1.1.1)
 
 PLATFORMS
@@ -143,5 +138,4 @@ DEPENDENCIES
   spork (~> 0.9.0.rc)
   spork-testunit!
   sqlite3
-  webmock
   xml-simple

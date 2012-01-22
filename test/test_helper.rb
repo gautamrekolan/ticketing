@@ -39,14 +39,10 @@ Spork.prefork do
 #
 # These instructions should self-destruct in 10 seconds.  If they don't, feel
 # free to delete them.
-
-
-
-
   ENV["RAILS_ENV"] = "test"
   require File.expand_path('../../config/environment', __FILE__)
   require 'rails/test_help'
-  require 'webmock/test_unit'
+  #require 'webmock/test_unit'
   require 'pp'
 end
 class ActiveSupport::TestCase
@@ -97,7 +93,7 @@ def process_hash(builder, hsh)
   hsh.each do |key, value|
     if value.is_a?(Hash)
       builder.__send__(key) do
-        process_hash(builder, value)    
+        process_hash(builder, value)
       end
     elsif value.is_a?(Array)
       builder.__send__(key) do
@@ -105,8 +101,8 @@ def process_hash(builder, hsh)
       end
     else
       builder.__send__(key, value)
-    end  
-      
+    end
+
   end
 
 end

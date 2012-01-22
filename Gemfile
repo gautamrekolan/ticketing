@@ -19,9 +19,9 @@ gem 'jquery-rails'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'	
+# gem 'ruby-debug19', :require => 'ruby-debug'
 gem "casamiento_mail_merge", :git => "git://github.com/mrdizzy/casamiento_mail_merge.git"
-  
+
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
@@ -33,17 +33,17 @@ gem "casamiento_mail_merge", :git => "git://github.com/mrdizzy/casamiento_mail_m
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'annotate'
-	gem 'auto_migrations', :git => 'git://github.com/mrdizzy/auto_migrations.git'	
+	gem 'auto_migrations', :git => 'git://github.com/mrdizzy/auto_migrations.git'
   gem 'xml-simple', :require => "xmlsimple"
 
 end
 
-group :test do 
+group :test do
 
 		gem 'factory_girl_rails'
-gem 'spork', '~> 0.9.0.rc'		
+gem 'spork', '~> 0.9.0.rc'
 gem 'spork-testunit', :git => 'git://github.com/sporkrb/spork-testunit.git'#
 	gem 'mocha', :require => false
-	  gem 'webmock'
+	 #gem 'webmock'
 		#gem 'fakeweb'
 end
